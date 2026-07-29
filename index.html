@@ -8,11 +8,12 @@
 
   <style>
     :root {
-      --bg: #0b0b0d;
+      --bg: #09090b;
       --panel: #121216;
-      --line: rgba(255, 255, 255, 0.08);
+      --panel-hover: #18181e;
+      --line: rgba(255, 255, 255, 0.09);
       --text: #f3f1eb;
-      --text-soft: rgba(243, 241, 235, 0.72);
+      --text-soft: rgba(243, 241, 235, 0.68);
       --accent: #d6d0c4;
     }
 
@@ -37,7 +38,7 @@
     }
 
     .container {
-      width: min(1360px, calc(100% - 48px));
+      width: min(1360px, calc(100% - 56px));
       margin: 0 auto;
     }
 
@@ -47,13 +48,13 @@
       position: sticky;
       top: 0;
       z-index: 20;
-      background: rgba(11, 11, 13, 0.78);
-      backdrop-filter: blur(12px);
+      background: rgba(9, 9, 11, 0.82);
+      backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--line);
     }
 
     .topbar-inner {
-      min-height: 76px;
+      min-height: 72px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -61,7 +62,7 @@
     }
 
     .brand {
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 500;
       letter-spacing: 0.04em;
       white-space: nowrap;
@@ -75,7 +76,7 @@
 
     .nav a {
       color: var(--text-soft);
-      font-size: 15px;
+      font-size: 14px;
       transition: color 0.25s ease;
     }
 
@@ -86,43 +87,57 @@
     /* 首屏 */
 
     .hero {
-      padding: 68px 0 48px;
+      min-height: 500px;
+      padding: 70px 0 56px;
+      display: flex;
+      align-items: center;
       border-bottom: 1px solid var(--line);
     }
 
     .hero-grid {
+      width: 100%;
       display: grid;
-      grid-template-columns: 1.45fr 0.9fr;
-      gap: 48px;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 80px;
       align-items: center;
     }
+
+    /* 小型标题组合 */
 
     .hero-title {
       margin: 0;
     }
 
-    /* 缩小后的“小船小船-” */
-
     .hero-name {
       display: block;
-      margin-bottom: 20px;
-      font-size: clamp(34px, 3.2vw, 52px);
+      margin-bottom: 10px;
+      font-size: clamp(34px, 3.3vw, 52px);
       line-height: 1;
       font-weight: 600;
       letter-spacing: 0.01em;
     }
 
-    /* 保持 PORTFOLIO 为主视觉 */
-
     .portfolio {
       display: block;
-      font-size: clamp(72px, 8.7vw, 134px);
-      line-height: 0.82;
+      font-size: clamp(20px, 1.7vw, 28px);
+      line-height: 1;
       font-weight: 400;
-      letter-spacing: -0.055em;
+      letter-spacing: 0.3em;
+      color: var(--text-soft);
+    }
+
+    .hero-meta {
+      margin-top: 40px;
+      display: flex;
+      gap: 22px;
+      color: var(--text-soft);
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
     }
 
     .hero-side {
+      max-width: 650px;
       display: flex;
       flex-direction: column;
       gap: 22px;
@@ -130,16 +145,24 @@
 
     .eyebrow {
       color: var(--text-soft);
-      font-size: 13px;
-      letter-spacing: 0.17em;
+      font-size: 12px;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
     }
 
+    .hero-heading {
+      margin: 0;
+      font-size: clamp(34px, 4vw, 62px);
+      line-height: 1.18;
+      font-weight: 500;
+      letter-spacing: -0.04em;
+    }
+
     .hero-desc {
-      max-width: 520px;
+      max-width: 580px;
       margin: 0;
       color: var(--text-soft);
-      font-size: 17px;
+      font-size: 16px;
       line-height: 2;
     }
 
@@ -150,8 +173,8 @@
     }
 
     .button {
-      min-width: 142px;
-      padding: 14px 20px;
+      min-width: 138px;
+      padding: 13px 20px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -167,27 +190,27 @@
     .button:hover {
       transform: translateY(-2px);
       background: var(--panel);
-      border-color: rgba(255, 255, 255, 0.16);
+      border-color: rgba(255, 255, 255, 0.17);
     }
 
     .button.primary {
-      color: #111111;
+      color: #111;
       background: var(--text);
       border-color: var(--text);
     }
 
     .button.primary:hover {
-      background: #ffffff;
+      background: #fff;
     }
 
     /* 通用区域 */
 
     .section {
-      padding: 50px 0;
+      padding: 54px 0;
     }
 
     .section-head {
-      margin-bottom: 25px;
+      margin-bottom: 26px;
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
@@ -196,7 +219,7 @@
 
     .section-title {
       margin: 0;
-      font-size: 34px;
+      font-size: 32px;
       font-weight: 600;
       letter-spacing: -0.03em;
     }
@@ -222,7 +245,7 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      background: linear-gradient(180deg, #16161b 0%, #111116 100%);
+      background: linear-gradient(180deg, #151519 0%, #101014 100%);
       border: 1px solid var(--line);
       transition:
         transform 0.3s ease,
@@ -232,19 +255,19 @@
 
     .category-card:hover {
       transform: translateY(-4px);
-      background: linear-gradient(180deg, #1a1a20 0%, #121218 100%);
-      border-color: rgba(255, 255, 255, 0.16);
+      background: var(--panel-hover);
+      border-color: rgba(255, 255, 255, 0.17);
     }
 
     .category-num {
       color: var(--text-soft);
-      font-size: 14px;
-      letter-spacing: 0.08em;
+      font-size: 13px;
+      letter-spacing: 0.1em;
     }
 
     .category-name {
       margin: 0 0 12px;
-      font-size: 33px;
+      font-size: 31px;
       line-height: 1.15;
       letter-spacing: -0.04em;
     }
@@ -258,7 +281,7 @@
 
     .category-arrow {
       color: var(--accent);
-      font-size: 23px;
+      font-size: 22px;
     }
 
     /* 精选作品 */
@@ -280,7 +303,7 @@
 
     .work-card:hover {
       transform: translateY(-4px);
-      border-color: rgba(255, 255, 255, 0.16);
+      border-color: rgba(255, 255, 255, 0.17);
     }
 
     .work-thumb {
@@ -288,19 +311,19 @@
       padding: 18px;
       display: flex;
       align-items: flex-end;
-      color: rgba(255, 255, 255, 0.48);
-      font-size: 13px;
-      letter-spacing: 0.1em;
+      color: rgba(255, 255, 255, 0.45);
+      font-size: 12px;
+      letter-spacing: 0.12em;
       background:
         radial-gradient(
           circle at top left,
-          rgba(214, 208, 196, 0.22),
+          rgba(214, 208, 196, 0.2),
           transparent 42%
         ),
         linear-gradient(
           135deg,
-          rgba(255, 255, 255, 0.08),
-          rgba(255, 255, 255, 0.02)
+          rgba(255, 255, 255, 0.07),
+          rgba(255, 255, 255, 0.01)
         ),
         #18181d;
       border-bottom: 1px solid var(--line);
@@ -312,7 +335,7 @@
 
     .work-title {
       margin: 0 0 12px;
-      font-size: 22px;
+      font-size: 21px;
       line-height: 1.35;
       letter-spacing: -0.02em;
     }
@@ -322,24 +345,24 @@
       justify-content: space-between;
       gap: 12px;
       color: var(--text-soft);
-      font-size: 14px;
+      font-size: 13px;
     }
 
     /* 关于我 */
 
     .about-box {
-      padding: 30px;
+      padding: 32px;
       display: grid;
       grid-template-columns: 1.1fr 1fr;
-      gap: 38px;
+      gap: 42px;
       background: linear-gradient(180deg, #141419 0%, #101014 100%);
       border: 1px solid var(--line);
     }
 
     .about-title {
       margin: 0 0 16px;
-      font-size: 30px;
-      line-height: 1.4;
+      font-size: 29px;
+      line-height: 1.45;
       letter-spacing: -0.03em;
     }
 
@@ -382,7 +405,7 @@
     .footer {
       padding: 34px 0 44px;
       color: var(--text-soft);
-      font-size: 14px;
+      font-size: 13px;
       border-top: 1px solid var(--line);
     }
 
@@ -393,7 +416,7 @@
       flex-wrap: wrap;
     }
 
-    /* 平板适配 */
+    /* 平板 */
 
     @media (max-width: 1100px) {
       .hero-grid,
@@ -401,8 +424,8 @@
         grid-template-columns: 1fr;
       }
 
-      .hero-side {
-        max-width: 700px;
+      .hero-grid {
+        gap: 50px;
       }
 
       .category-grid {
@@ -414,7 +437,7 @@
       }
     }
 
-    /* 手机适配 */
+    /* 手机 */
 
     @media (max-width: 720px) {
       .container {
@@ -441,21 +464,24 @@
       }
 
       .hero {
-        padding: 44px 0 34px;
+        min-height: auto;
+        padding: 50px 0 42px;
       }
 
       .hero-grid {
-        gap: 36px;
+        gap: 42px;
       }
 
       .hero-name {
-        margin-bottom: 16px;
         font-size: 34px;
       }
 
       .portfolio {
-        font-size: clamp(54px, 18vw, 82px);
-        line-height: 0.88;
+        font-size: 19px;
+      }
+
+      .hero-heading {
+        font-size: 36px;
       }
 
       .hero-desc {
@@ -464,7 +490,7 @@
       }
 
       .section {
-        padding: 38px 0;
+        padding: 40px 0;
       }
 
       .section-head {
@@ -499,8 +525,6 @@
 
 <body>
 
-  <!-- 顶部导航 -->
-
   <header class="topbar">
     <div class="container topbar-inner">
 
@@ -528,16 +552,25 @@
             <span class="hero-name">小船小船-</span>
             <span class="portfolio">PORTFOLIO</span>
           </h1>
+
+          <div class="hero-meta">
+            <span>Designer</span>
+            <span>2026</span>
+          </div>
         </div>
 
         <div class="hero-side">
 
           <div class="eyebrow">
-            Designer Portfolio
+            Personal Design Archive
           </div>
 
+          <h2 class="hero-heading">
+            用设计记录想法，也记录每个阶段的成长。
+          </h2>
+
           <p class="hero-desc">
-            以定制产品设计、平面视觉与 IP 设计为核心，
+            以定制类产品设计、平面视觉与 IP 设计为核心，
             持续整理我的设计实践。这里会逐步收录鞋类、化妆包、
             服装、详情页设计、Logo 设计以及更多视觉项目。
           </p>
@@ -557,15 +590,11 @@
       <div class="container">
 
         <div class="section-head">
-
-          <h2 class="section-title">
-            四大分类
-          </h2>
+          <h2 class="section-title">四大分类</h2>
 
           <div class="section-sub">
             首页保留四个主要入口，后续每个分类都可以继续扩展子分类和独立项目页面。
           </div>
-
         </div>
 
         <div class="category-grid">
@@ -574,13 +603,8 @@
             <div class="category-num">01</div>
 
             <div>
-              <h3 class="category-name">
-                定制类产品设计
-              </h3>
-
-              <p class="category-sub">
-                鞋类｜化妆包｜服装｜其他
-              </p>
+              <h3 class="category-name">定制类产品设计</h3>
+              <p class="category-sub">鞋类｜化妆包｜服装｜其他</p>
             </div>
 
             <div class="category-arrow">→</div>
@@ -590,13 +614,8 @@
             <div class="category-num">02</div>
 
             <div>
-              <h3 class="category-name">
-                平面视觉
-              </h3>
-
-              <p class="category-sub">
-                详情页设计｜Logo设计｜图案｜包装｜其他
-              </p>
+              <h3 class="category-name">平面视觉</h3>
+              <p class="category-sub">详情页设计｜Logo设计｜图案｜包装｜其他</p>
             </div>
 
             <div class="category-arrow">→</div>
@@ -606,13 +625,8 @@
             <div class="category-num">03</div>
 
             <div>
-              <h3 class="category-name">
-                IP设计
-              </h3>
-
-              <p class="category-sub">
-                角色形象｜延展应用｜动态设计｜文创方向
-              </p>
+              <h3 class="category-name">IP设计</h3>
+              <p class="category-sub">角色形象｜延展应用｜动态设计｜文创方向</p>
             </div>
 
             <div class="category-arrow">→</div>
@@ -622,13 +636,8 @@
             <div class="category-num">04</div>
 
             <div>
-              <h3 class="category-name">
-                关于我
-              </h3>
-
-              <p class="category-sub">
-                个人简介｜设计方向｜能力概览｜联系方式
-              </p>
+              <h3 class="category-name">关于我</h3>
+              <p class="category-sub">个人简介｜设计方向｜能力概览｜联系方式</p>
             </div>
 
             <div class="category-arrow">→</div>
@@ -644,28 +653,20 @@
       <div class="container">
 
         <div class="section-head">
-
-          <h2 class="section-title">
-            精选作品
-          </h2>
+          <h2 class="section-title">精选作品</h2>
 
           <div class="section-sub">
-            这一部分目前使用占位卡片，后续会逐个替换成你的真实项目封面和项目文字。
+            目前使用占位卡片，后续会逐个替换成你的真实项目封面和项目文字。
           </div>
-
         </div>
 
         <div class="works-grid">
 
           <article class="work-card">
-            <div class="work-thumb">
-              PROJECT COVER
-            </div>
+            <div class="work-thumb">PROJECT COVER</div>
 
             <div class="work-info">
-              <h3 class="work-title">
-                鞋类定制设计
-              </h3>
+              <h3 class="work-title">鞋类定制设计</h3>
 
               <div class="work-meta">
                 <span>定制类产品设计</span>
@@ -675,14 +676,10 @@
           </article>
 
           <article class="work-card">
-            <div class="work-thumb">
-              PROJECT COVER
-            </div>
+            <div class="work-thumb">PROJECT COVER</div>
 
             <div class="work-info">
-              <h3 class="work-title">
-                化妆包系列设计
-              </h3>
+              <h3 class="work-title">化妆包系列设计</h3>
 
               <div class="work-meta">
                 <span>定制类产品设计</span>
@@ -692,14 +689,10 @@
           </article>
 
           <article class="work-card">
-            <div class="work-thumb">
-              PROJECT COVER
-            </div>
+            <div class="work-thumb">PROJECT COVER</div>
 
             <div class="work-info">
-              <h3 class="work-title">
-                服装图案设计
-              </h3>
+              <h3 class="work-title">服装图案设计</h3>
 
               <div class="work-meta">
                 <span>定制类产品设计</span>
@@ -709,14 +702,10 @@
           </article>
 
           <article class="work-card" id="visual">
-            <div class="work-thumb">
-              PROJECT COVER
-            </div>
+            <div class="work-thumb">PROJECT COVER</div>
 
             <div class="work-info">
-              <h3 class="work-title">
-                商品详情页设计
-              </h3>
+              <h3 class="work-title">商品详情页设计</h3>
 
               <div class="work-meta">
                 <span>平面视觉</span>
@@ -726,14 +715,10 @@
           </article>
 
           <article class="work-card">
-            <div class="work-thumb">
-              PROJECT COVER
-            </div>
+            <div class="work-thumb">PROJECT COVER</div>
 
             <div class="work-info">
-              <h3 class="work-title">
-                Logo 与图形设计
-              </h3>
+              <h3 class="work-title">Logo 与图形设计</h3>
 
               <div class="work-meta">
                 <span>平面视觉</span>
@@ -743,14 +728,10 @@
           </article>
 
           <article class="work-card" id="ip">
-            <div class="work-thumb">
-              PROJECT COVER
-            </div>
+            <div class="work-thumb">PROJECT COVER</div>
 
             <div class="work-info">
-              <h3 class="work-title">
-                原创 IP 角色设计
-              </h3>
+              <h3 class="work-title">原创 IP 角色设计</h3>
 
               <div class="work-meta">
                 <span>IP设计</span>
@@ -769,15 +750,11 @@
       <div class="container">
 
         <div class="section-head">
-
-          <h2 class="section-title">
-            关于我
-          </h2>
+          <h2 class="section-title">关于我</h2>
 
           <div class="section-sub">
             这里目前是第一版文字结构，后续会根据你的真实经历继续调整。
           </div>
-
         </div>
 
         <div class="about-box">
@@ -800,30 +777,22 @@
 
             <div class="about-item">
               <strong>设计方向</strong>
-              <span>
-                定制类产品设计 / 平面视觉 / IP设计
-              </span>
+              <span>定制类产品设计 / 平面视觉 / IP设计</span>
             </div>
 
             <div class="about-item">
               <strong>项目类型</strong>
-              <span>
-                鞋类、化妆包、服装、详情页、Logo、图案、角色延展等
-              </span>
+              <span>鞋类、化妆包、服装、详情页、Logo、图案、角色延展等</span>
             </div>
 
             <div class="about-item">
               <strong>目前状态</strong>
-              <span>
-                持续整理与更新个人作品中
-              </span>
+              <span>持续整理与更新个人作品中</span>
             </div>
 
             <div class="about-item">
               <strong>联系方式</strong>
-              <span>
-                后续补充邮箱、社交媒体或其他联系方式
-              </span>
+              <span>后续补充邮箱、社交媒体或其他联系方式</span>
             </div>
 
           </div>
@@ -832,8 +801,6 @@
     </section>
 
   </main>
-
-  <!-- 页脚 -->
 
   <footer class="footer">
     <div class="container footer-inner">
