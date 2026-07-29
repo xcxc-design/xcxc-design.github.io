@@ -3,1604 +3,332 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <meta
-    name="description"
-    content="小船小船-个人设计作品集，展示定制类产品设计、平面视觉与IP设计。"
-  >
-
+  <meta name="description" content="小船小船-个人设计作品集">
   <title>小船小船-｜设计作品集</title>
-
-  <style>
-    :root {
-      --bg: #0b0b0d;
-      --bg-deep: #08080a;
-      --panel: #131317;
-      --panel-hover: #19191f;
-
-      --text: #f3f1eb;
-      --text-soft: rgba(243, 241, 235, 0.68);
-      --text-light: rgba(243, 241, 235, 0.42);
-
-      --line: rgba(255, 255, 255, 0.09);
-      --line-strong: rgba(255, 255, 255, 0.18);
-
-      --accent: #d6d0c4;
-
-      /*
-        以后觉得标题还要调整，
-        只改下面两个数值即可
-      */
-      --hero-name-size: clamp(34px, 3.2vw, 50px);
-      --hero-portfolio-size: clamp(18px, 1.45vw, 23px);
-
-      --max-width: 1400px;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      overflow-x: hidden;
-
-      background:
-        radial-gradient(
-          circle at 72% 8%,
-          rgba(255, 255, 255, 0.035),
-          transparent 30%
-        ),
-        var(--bg);
-
-      color: var(--text);
-
-      font-family:
-        Arial,
-        "PingFang SC",
-        "Microsoft YaHei",
-        sans-serif;
-
-      -webkit-font-smoothing: antialiased;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img {
-      display: block;
-      width: 100%;
-    }
-
-    button {
-      color: inherit;
-      font: inherit;
-    }
-
-    .container {
-      width: min(
-        var(--max-width),
-        calc(100% - 56px)
-      );
-
-      margin: 0 auto;
-    }
-
-    .section {
-      padding: 58px 0;
-    }
-
-    /* =========================
-       顶部导航
-    ========================= */
-
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-
-      background:
-        rgba(11, 11, 13, 0.80);
-
-      border-bottom: 1px solid var(--line);
-
-      backdrop-filter: blur(15px);
-    }
-
-    .header-inner {
-      min-height: 76px;
-
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 30px;
-    }
-
-    .header-brand {
-      font-size: 17px;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      white-space: nowrap;
-    }
-
-    .site-nav {
-      display: flex;
-      align-items: center;
-      gap: 32px;
-    }
-
-    .site-nav a {
-      position: relative;
-
-      color: var(--text-soft);
-
-      font-size: 14px;
-
-      transition: color 0.25s ease;
-    }
-
-    .site-nav a::after {
-      content: "";
-
-      position: absolute;
-      left: 0;
-      right: 100%;
-      bottom: -9px;
-
-      height: 1px;
-
-      background: var(--text);
-
-      transition: right 0.25s ease;
-    }
-
-    .site-nav a:hover {
-      color: var(--text);
-    }
-
-    .site-nav a:hover::after {
-      right: 0;
-    }
-
-    .menu-button {
-      width: 42px;
-      height: 42px;
-
-      display: none;
-      align-items: center;
-      justify-content: center;
-
-      padding: 0;
-
-      background: transparent;
-      border: 1px solid var(--line);
-      border-radius: 50%;
-
-      cursor: pointer;
-    }
-
-    .menu-line,
-    .menu-line::before,
-    .menu-line::after {
-      width: 17px;
-      height: 1px;
-
-      display: block;
-
-      background: var(--text);
-    }
-
-    .menu-line {
-      position: relative;
-    }
-
-    .menu-line::before,
-    .menu-line::after {
-      content: "";
-
-      position: absolute;
-      left: 0;
-    }
-
-    .menu-line::before {
-      top: -5px;
-    }
-
-    .menu-line::after {
-      top: 5px;
-    }
-
-    /* =========================
-       首页首屏
-    ========================= */
-
-    .hero {
-      min-height: 515px;
-
-      padding: 74px 0 62px;
-
-      display: flex;
-      align-items: center;
-
-      border-bottom: 1px solid var(--line);
-    }
-
-    .hero-grid {
-      width: 100%;
-
-      display: grid;
-      grid-template-columns:
-        minmax(270px, 0.72fr)
-        minmax(520px, 1.28fr);
-
-      gap: clamp(70px, 10vw, 160px);
-      align-items: center;
-    }
-
-    /*
-      左侧标题现在是小型标识，
-      不再占满整个首屏
-    */
-
-    .hero-lockup {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-    }
-
-    .hero-name {
-      margin: 0 0 13px;
-
-      font-size: var(--hero-name-size);
-      line-height: 1;
-      font-weight: 600;
-      letter-spacing: 0.015em;
-    }
-
-    .hero-portfolio {
-      color: var(--text-soft);
-
-      font-size: var(--hero-portfolio-size);
-      line-height: 1;
-      font-weight: 400;
-      letter-spacing: 0.30em;
-    }
-
-    .hero-meta {
-      margin-top: 46px;
-
-      display: flex;
-      align-items: center;
-      gap: 20px;
-
-      color: var(--text-light);
-
-      font-size: 11px;
-      letter-spacing: 0.13em;
-      text-transform: uppercase;
-    }
-
-    .hero-meta span + span::before {
-      content: "";
-
-      width: 28px;
-      height: 1px;
-
-      display: inline-block;
-
-      margin-right: 20px;
-      vertical-align: middle;
-
-      background: var(--line-strong);
-    }
-
-    .hero-content {
-      max-width: 760px;
-    }
-
-    .hero-kicker {
-      margin-bottom: 20px;
-
-      color: var(--text-light);
-
-      font-size: 12px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-    }
-
-    .hero-heading {
-      max-width: 760px;
-      margin: 0 0 27px;
-
-      font-family:
-        "Songti SC",
-        SimSun,
-        serif;
-
-      font-size: clamp(42px, 5vw, 76px);
-      line-height: 1.18;
-      font-weight: 400;
-      letter-spacing: -0.045em;
-    }
-
-    .hero-description {
-      max-width: 630px;
-      margin: 0 0 32px;
-
-      color: var(--text-soft);
-
-      font-size: 16px;
-      line-height: 2;
-    }
-
-    .hero-actions {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-
-    .button {
-      min-width: 140px;
-      min-height: 48px;
-
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 11px;
-
-      padding: 0 22px;
-
-      border: 1px solid var(--line);
-      border-radius: 999px;
-
-      font-size: 14px;
-
-      transition:
-        transform 0.25s ease,
-        background 0.25s ease,
-        border-color 0.25s ease;
-    }
-
-    .button:hover {
-      transform: translateY(-2px);
-
-      background: var(--panel);
-
-      border-color: var(--line-strong);
-    }
-
-    .button-primary {
-      color: #111111;
-      background: var(--text);
-      border-color: var(--text);
-    }
-
-    .button-primary:hover {
-      background: #ffffff;
-      border-color: #ffffff;
-    }
-
-    /* =========================
-       四大分类
-    ========================= */
-
-    .section-header {
-      margin-bottom: 27px;
-
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 36px;
-    }
-
-    .section-title {
-      margin: 0;
-
-      font-size: 33px;
-      line-height: 1.25;
-      font-weight: 600;
-      letter-spacing: -0.03em;
-    }
-
-    .section-description {
-      max-width: 570px;
-      margin: 0;
-
-      color: var(--text-soft);
-
-      font-size: 14px;
-      line-height: 1.8;
-    }
-
-    .category-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 17px;
-    }
-
-    .category-card {
-      position: relative;
-
-      min-height: 265px;
-
-      padding: 23px;
-
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-
-      overflow: hidden;
-
-      background:
-        linear-gradient(
-          180deg,
-          #16161b 0%,
-          #101014 100%
-        );
-
-      border: 1px solid var(--line);
-
-      transition:
-        transform 0.3s ease,
-        background 0.3s ease,
-        border-color 0.3s ease;
-    }
-
-    .category-card::after {
-      content: "";
-
-      position: absolute;
-      right: -60px;
-      bottom: -75px;
-
-      width: 180px;
-      height: 180px;
-
-      border-radius: 50%;
-
-      background:
-        rgba(255, 255, 255, 0.025);
-
-      transition:
-        transform 0.35s ease,
-        background 0.35s ease;
-    }
-
-    .category-card:hover {
-      transform: translateY(-5px);
-
-      background:
-        linear-gradient(
-          180deg,
-          #1a1a20 0%,
-          #121217 100%
-        );
-
-      border-color: var(--line-strong);
-    }
-
-    .category-card:hover::after {
-      transform: scale(1.25);
-
-      background:
-        rgba(255, 255, 255, 0.045);
-    }
-
-    .category-number {
-      position: relative;
-      z-index: 2;
-
-      color: var(--text-light);
-
-      font-size: 13px;
-      letter-spacing: 0.10em;
-    }
-
-    .category-content {
-      position: relative;
-      z-index: 2;
-    }
-
-    .category-name {
-      margin: 0 0 12px;
-
-      font-size: 31px;
-      line-height: 1.15;
-      font-weight: 600;
-      letter-spacing: -0.04em;
-    }
-
-    .category-detail {
-      margin: 0;
-
-      color: var(--text-soft);
-
-      font-size: 14px;
-      line-height: 1.8;
-    }
-
-    .category-arrow {
-      position: relative;
-      z-index: 2;
-
-      color: var(--accent);
-
-      font-size: 22px;
-
-      transition: transform 0.25s ease;
-    }
-
-    .category-card:hover
-    .category-arrow {
-      transform: translateX(7px);
-    }
-
-    /* =========================
-       精选作品
-    ========================= */
-
-    .works-section {
-      background: var(--bg-deep);
-
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-    }
-
-    .works-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 17px;
-    }
-
-    .work-card {
-      overflow: hidden;
-
-      background: var(--panel);
-      border: 1px solid var(--line);
-
-      transition:
-        transform 0.3s ease,
-        border-color 0.3s ease;
-    }
-
-    .work-card:hover {
-      transform: translateY(-5px);
-
-      border-color: var(--line-strong);
-    }
-
-    .work-visual {
-      position: relative;
-
-      aspect-ratio: 4 / 3;
-
-      overflow: hidden;
-
-      background:
-        radial-gradient(
-          circle at 25% 20%,
-          rgba(214, 208, 196, 0.18),
-          transparent 38%
-        ),
-        linear-gradient(
-          145deg,
-          #29292f,
-          #111115 70%
-        );
-
-      border-bottom: 1px solid var(--line);
-    }
-
-    .work-code {
-      position: absolute;
-      top: 18px;
-      left: 18px;
-      z-index: 4;
-
-      color: var(--text-light);
-
-      font-size: 10px;
-      letter-spacing: 0.13em;
-    }
-
-    .work-object {
-      position: absolute;
-      left: 50%;
-      top: 52%;
-
-      width: 72%;
-      height: 57%;
-
-      transform:
-        translate(-50%, -50%);
-
-      background:
-        linear-gradient(
-          140deg,
-          #555555,
-          #151515 72%
-        );
-
-      filter:
-        drop-shadow(
-          0 28px 22px
-          rgba(0, 0, 0, 0.55)
-        );
-    }
-
-    .work-object.shoe {
-      clip-path:
-        polygon(
-          3% 64%,
-          18% 35%,
-          40% 23%,
-          69% 34%,
-          91% 62%,
-          99% 81%,
-          72% 91%,
-          20% 88%
-        );
-    }
-
-    .work-object.bag {
-      width: 54%;
-      height: 63%;
-
-      border-radius:
-        12px 12px 18px 18px;
-
-      background:
-        linear-gradient(
-          145deg,
-          #444444,
-          #121212
-        );
-    }
-
-    .work-object.bag::before {
-      content: "";
-
-      position: absolute;
-      left: 25%;
-      right: 25%;
-      top: -20%;
-
-      height: 38%;
-
-      border:
-        7px solid #333333;
-
-      border-bottom: 0;
-      border-radius:
-        50% 50% 0 0;
-    }
-
-    .work-object.clothes {
-      width: 55%;
-      height: 76%;
-
-      clip-path:
-        polygon(
-          34% 3%,
-          66% 3%,
-          76% 17%,
-          96% 31%,
-          82% 53%,
-          76% 97%,
-          24% 97%,
-          18% 53%,
-          4% 31%,
-          24% 17%
-        );
-
-      background:
-        linear-gradient(
-          135deg,
-          #737373,
-          #262626
-        );
-    }
-
-    .work-object.poster {
-      width: 52%;
-      height: 72%;
-
-      transform:
-        translate(-50%, -50%)
-        rotate(-4deg);
-
-      background:
-        repeating-linear-gradient(
-          145deg,
-          #d0d0cf 0,
-          #d0d0cf 19px,
-          #171717 20px,
-          #171717 34px
-        );
-    }
-
-    .work-object.logo {
-      width: 52%;
-      height: 52%;
-
-      border-radius: 50%;
-
-      background:
-        radial-gradient(
-          circle,
-          #b7b7b4,
-          #3b3b39 68%
-        );
-    }
-
-    .work-object.logo::before {
-      content: "LOGO";
-
-      position: absolute;
-      inset: 0;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      color: rgba(255, 255, 255, 0.65);
-
-      font-family:
-        "Times New Roman",
-        serif;
-
-      letter-spacing: 0.14em;
-    }
-
-    .work-object.ip {
-      width: 57%;
-      height: 61%;
-
-      border-radius: 48%;
-
-      background:
-        radial-gradient(
-          circle at 35% 28%,
-          #c4c4c2,
-          #666662 48%,
-          #222222
-        );
-    }
-
-    .work-info {
-      padding: 19px 18px 21px;
-    }
-
-    .work-title {
-      margin: 0 0 11px;
-
-      font-size: 21px;
-      line-height: 1.4;
-      font-weight: 500;
-    }
-
-    .work-meta {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-
-      color: var(--text-soft);
-
-      font-size: 13px;
-    }
-
-    /* =========================
-       关于我
-    ========================= */
-
-    .about-grid {
-      padding: 34px;
-
-      display: grid;
-      grid-template-columns: 1.08fr 1fr;
-      gap: 58px;
-
-      background:
-        linear-gradient(
-          180deg,
-          #141419 0%,
-          #101014 100%
-        );
-
-      border: 1px solid var(--line);
-    }
-
-    .about-title {
-      max-width: 570px;
-      margin: 0 0 20px;
-
-      font-family:
-        "Songti SC",
-        SimSun,
-        serif;
-
-      font-size: clamp(31px, 3.4vw, 53px);
-      line-height: 1.35;
-      font-weight: 400;
-      letter-spacing: -0.035em;
-    }
-
-    .about-copy {
-      max-width: 650px;
-      margin: 0;
-
-      color: var(--text-soft);
-
-      font-size: 15px;
-      line-height: 2;
-    }
-
-    .about-list {
-      display: grid;
-      gap: 0;
-    }
-
-    .about-item {
-      padding: 17px 0;
-
-      border-bottom: 1px solid var(--line);
-    }
-
-    .about-item:first-child {
-      padding-top: 0;
-    }
-
-    .about-item:last-child {
-      border-bottom: 0;
-    }
-
-    .about-item strong {
-      display: block;
-      margin-bottom: 8px;
-
-      font-size: 14px;
-      font-weight: 500;
-    }
-
-    .about-item span {
-      color: var(--text-soft);
-
-      font-size: 14px;
-      line-height: 1.8;
-    }
-
-    /* =========================
-       页脚
-    ========================= */
-
-    .site-footer {
-      padding: 31px 0 40px;
-
-      color: var(--text-light);
-
-      font-size: 12px;
-
-      border-top: 1px solid var(--line);
-    }
-
-    .footer-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 30px;
-    }
-
-    /* =========================
-       平板
-    ========================= */
-
-    @media (max-width: 1080px) {
-      .hero-grid {
-        grid-template-columns: 1fr;
-        gap: 58px;
-      }
-
-      .hero {
-        min-height: auto;
-      }
-
-      .hero-lockup {
-        max-width: 420px;
-      }
-
-      .category-grid {
-        grid-template-columns:
-          repeat(2, 1fr);
-      }
-
-      .works-grid {
-        grid-template-columns:
-          repeat(2, 1fr);
-      }
-
-      .about-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* =========================
-       手机
-    ========================= */
-
-    @media (max-width: 720px) {
-      .container {
-        width:
-          min(
-            100%,
-            calc(100% - 28px)
-          );
-      }
-
-      .header-inner {
-        min-height: 70px;
-      }
-
-      .site-nav {
-        position: fixed;
-        top: 70px;
-        left: 0;
-        right: 0;
-
-        max-height: 0;
-
-        overflow: hidden;
-
-        display: flex;
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 0;
-
-        background: var(--bg);
-
-        border-bottom: 1px solid var(--line);
-
-        transition: max-height 0.35s ease;
-      }
-
-      .site-nav.open {
-        max-height: 310px;
-      }
-
-      .site-nav a {
-        width: 100%;
-
-        padding: 18px 22px;
-
-        border-top: 1px solid var(--line);
-      }
-
-      .site-nav a::after {
-        display: none;
-      }
-
-      .menu-button {
-        display: inline-flex;
-      }
-
-      .hero {
-        padding: 51px 0 45px;
-      }
-
-      .hero-grid {
-        gap: 47px;
-      }
-
-      .hero-name {
-        font-size: 34px;
-      }
-
-      .hero-portfolio {
-        font-size: 18px;
-      }
-
-      .hero-meta {
-        margin-top: 30px;
-      }
-
-      .hero-heading {
-        font-size: 40px;
-      }
-
-      .hero-description {
-        font-size: 15px;
-      }
-
-      .section {
-        padding: 43px 0;
-      }
-
-      .section-header {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 14px;
-      }
-
-      .section-title {
-        font-size: 29px;
-      }
-
-      .category-grid,
-      .works-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .category-card {
-        min-height: 225px;
-      }
-
-      .category-name {
-        font-size: 29px;
-      }
-
-      .about-grid {
-        padding: 23px;
-        gap: 38px;
-      }
-
-      .about-title {
-        font-size: 34px;
-      }
-
-      .footer-inner {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 10px;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
 
-  <!-- 顶部导航 -->
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="header-brand" href="index.html">
+      <strong>小船小船-</strong>
+      <span>PORTFOLIO</span>
+    </a>
 
-  <header class="site-header">
-    <div class="container header-inner">
+    <nav class="site-nav" id="siteNav">
+      <a href="custom.html" >定制类产品设计</a>
+      <a href="visual.html" >平面视觉</a>
+      <a href="ip.html" >IP设计</a>
+      <a href="about.html" >关于我</a>
+    </nav>
 
-      <a
-        class="header-brand"
-        href="#top"
-      >
-        小船小船-
-      </a>
+    <button class="menu-button" id="menuButton" type="button" aria-label="打开导航菜单">
+      <span class="menu-line"></span>
+    </button>
+  </div>
+</header>
 
-      <nav
-        class="site-nav"
-        id="siteNav"
-      >
-        <a href="#categories">
-          定制类产品设计
-        </a>
+<main id="top">
 
-        <a href="#works">
-          平面视觉
-        </a>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-lockup">
+        <h1 class="hero-name">小船小船-</h1>
+        <div class="hero-portfolio">PORTFOLIO</div>
+        <div class="hero-meta">
+          <span>Designer</span>
+          <span>2026</span>
+        </div>
+      </div>
 
-        <a href="#works">
-          IP设计
-        </a>
-
-        <a href="#about">
-          关于我
-        </a>
-      </nav>
-
-      <button
-        class="menu-button"
-        id="menuButton"
-        type="button"
-        aria-label="打开导航菜单"
-      >
-        <span class="menu-line"></span>
-      </button>
-
+      <div>
+        <div class="hero-kicker">Personal Design Archive</div>
+        <h2 class="hero-heading">用设计记录想法，也记录每一个阶段的成长。</h2>
+        <p class="hero-description">
+          以定制类产品设计、平面视觉与IP设计为核心，持续整理我的设计实践。
+          这里会逐步收录鞋类、化妆包、服装、详情页设计、Logo设计以及更多视觉项目。
+        </p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#featured">查看精选作品 →</a>
+          <a class="button" href="about.html">关于我</a>
+        </div>
+      </div>
     </div>
-  </header>
+  </section>
 
-  <main id="top">
-
-    <!-- 首页首屏 -->
-
-    <section class="hero">
-      <div class="container hero-grid">
-
-        <div class="hero-lockup">
-
-          <h1 class="hero-name">
-            小船小船-
-          </h1>
-
-          <div class="hero-portfolio">
-            PORTFOLIO
-          </div>
-
-          <div class="hero-meta">
-            <span>Designer</span>
-            <span>2026</span>
-          </div>
-
-        </div>
-
-        <div class="hero-content">
-
-          <div class="hero-kicker">
-            Personal Design Archive
-          </div>
-
-          <h2 class="hero-heading">
-            用设计记录想法，也记录每一个阶段的成长。
-          </h2>
-
-          <p class="hero-description">
-            以定制类产品设计、平面视觉与IP设计为核心，
-            持续整理我的设计实践。这里会逐步收录鞋类、
-            化妆包、服装、详情页设计、Logo设计以及更多视觉项目。
-          </p>
-
-          <div class="hero-actions">
-
-            <a
-              class="button button-primary"
-              href="#works"
-            >
-              查看作品
-              <span>→</span>
-            </a>
-
-            <a
-              class="button"
-              href="#about"
-            >
-              关于我
-            </a>
-
-          </div>
-
-        </div>
+  <section class="section" id="categories">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">四大分类</h2>
+        <p class="section-description">
+          点击分类后会进入独立页面，不再在首页向下滚动。
+          后续子分类和项目都可以继续增加。
+        </p>
       </div>
-    </section>
 
-    <!-- 四大分类 -->
-
-    <section
-      class="section"
-      id="categories"
-    >
-      <div class="container">
-
-        <div class="section-header">
-
-          <h2 class="section-title">
-            四大分类
-          </h2>
-
-          <p class="section-description">
-            首页保留四个主要入口。
-            后续每个分类都可以继续增加子分类、
-            调整名称或增加独立项目页面。
-          </p>
-
-        </div>
-
-        <div class="category-grid">
-
-          <a
-            class="category-card"
-            href="#works"
-          >
-            <div class="category-number">
-              01
-            </div>
-
-            <div class="category-content">
-
-              <h3 class="category-name">
-                定制类产品设计
-              </h3>
-
-              <p class="category-detail">
-                鞋类｜化妆包｜服装｜其他
-              </p>
-
-            </div>
-
-            <div class="category-arrow">
-              →
-            </div>
-          </a>
-
-          <a
-            class="category-card"
-            href="#works"
-          >
-            <div class="category-number">
-              02
-            </div>
-
-            <div class="category-content">
-
-              <h3 class="category-name">
-                平面视觉
-              </h3>
-
-              <p class="category-detail">
-                详情页｜Logo｜图案｜包装｜其他
-              </p>
-
-            </div>
-
-            <div class="category-arrow">
-              →
-            </div>
-          </a>
-
-          <a
-            class="category-card"
-            href="#works"
-          >
-            <div class="category-number">
-              03
-            </div>
-
-            <div class="category-content">
-
-              <h3 class="category-name">
-                IP设计
-              </h3>
-
-              <p class="category-detail">
-                角色形象｜延展应用｜动态设计｜文创
-              </p>
-
-            </div>
-
-            <div class="category-arrow">
-              →
-            </div>
-          </a>
-
-          <a
-            class="category-card"
-            href="#about"
-          >
-            <div class="category-number">
-              04
-            </div>
-
-            <div class="category-content">
-
-              <h3 class="category-name">
-                关于我
-              </h3>
-
-              <p class="category-detail">
-                个人简介｜设计方向｜能力｜联系方式
-              </p>
-
-            </div>
-
-            <div class="category-arrow">
-              →
-            </div>
-          </a>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- 精选作品 -->
-
-    <section
-      class="section works-section"
-      id="works"
-    >
-      <div class="container">
-
-        <div class="section-header">
-
-          <h2 class="section-title">
-            精选作品
-          </h2>
-
-          <p class="section-description">
-            目前先用占位图搭建整体结构。
-            下一步再替换成你的真实项目封面、项目名称和详情内容。
-          </p>
-
-        </div>
-
-        <div class="works-grid">
-
-          <article class="work-card">
-
-            <div class="work-visual">
-              <div class="work-code">
-                PROJECT 01
-              </div>
-
-              <div class="work-object shoe"></div>
-            </div>
-
-            <div class="work-info">
-
-              <h3 class="work-title">
-                鞋类定制系列设计
-              </h3>
-
-              <div class="work-meta">
-                <span>定制类产品设计</span>
-                <span>2026</span>
-              </div>
-
-            </div>
-          </article>
-
-          <article class="work-card">
-
-            <div class="work-visual">
-              <div class="work-code">
-                PROJECT 02
-              </div>
-
-              <div class="work-object bag"></div>
-            </div>
-
-            <div class="work-info">
-
-              <h3 class="work-title">
-                化妆包系列设计
-              </h3>
-
-              <div class="work-meta">
-                <span>定制类产品设计</span>
-                <span>2026</span>
-              </div>
-
-            </div>
-          </article>
-
-          <article class="work-card">
-
-            <div class="work-visual">
-              <div class="work-code">
-                PROJECT 03
-              </div>
-
-              <div class="work-object clothes"></div>
-            </div>
-
-            <div class="work-info">
-
-              <h3 class="work-title">
-                服装图案系列设计
-              </h3>
-
-              <div class="work-meta">
-                <span>定制类产品设计</span>
-                <span>2026</span>
-              </div>
-
-            </div>
-          </article>
-
-          <article class="work-card">
-
-            <div class="work-visual">
-              <div class="work-code">
-                PROJECT 04
-              </div>
-
-              <div class="work-object poster"></div>
-            </div>
-
-            <div class="work-info">
-
-              <h3 class="work-title">
-                商品详情页视觉设计
-              </h3>
-
-              <div class="work-meta">
-                <span>平面视觉</span>
-                <span>2026</span>
-              </div>
-
-            </div>
-          </article>
-
-          <article class="work-card">
-
-            <div class="work-visual">
-              <div class="work-code">
-                PROJECT 05
-              </div>
-
-              <div class="work-object logo"></div>
-            </div>
-
-            <div class="work-info">
-
-              <h3 class="work-title">
-                Logo与品牌图形设计
-              </h3>
-
-              <div class="work-meta">
-                <span>平面视觉</span>
-                <span>2026</span>
-              </div>
-
-            </div>
-          </article>
-
-          <article class="work-card">
-
-            <div class="work-visual">
-              <div class="work-code">
-                PROJECT 06
-              </div>
-
-              <div class="work-object ip"></div>
-            </div>
-
-            <div class="work-info">
-
-              <h3 class="work-title">
-                原创IP角色设计
-              </h3>
-
-              <div class="work-meta">
-                <span>IP设计</span>
-                <span>2026</span>
-              </div>
-
-            </div>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- 关于我 -->
-
-    <section
-      class="section"
-      id="about"
-    >
-      <div class="container">
-
-        <div class="section-header">
-
-          <h2 class="section-title">
-            关于我
-          </h2>
-
-          <p class="section-description">
-            这部分以后可以补充个人经历、
-            软件能力、联系方式和简历入口。
-          </p>
-
-        </div>
-
-        <div class="about-grid">
-
-          <div>
-
-            <h3 class="about-title">
-              我关注视觉表达，也关注设计能否真正使用。
-            </h3>
-
-            <p class="about-copy">
-              我主要关注定制类产品设计、平面视觉和IP形象方向。
-              喜欢从图案、材质、结构、氛围与实际使用场景出发，
-              让作品既具备视觉表现，也保留真正落地的可能性。
-              这个网站会作为长期更新的个人设计档案，
-              逐步展示不同时期的项目与能力积累。
-            </p>
-
+      <div class="category-grid">
+        <a class="category-card" href="custom.html">
+          <div class="category-number">01</div>
+          <div class="category-content">
+            <h3 class="category-name">定制类产品设计</h3>
+            <p class="category-detail">鞋类｜化妆包｜服装｜其他</p>
           </div>
+          <div class="category-arrow">→</div>
+        </a>
 
-          <div class="about-list">
-
-            <div class="about-item">
-              <strong>设计方向</strong>
-
-              <span>
-                定制类产品设计 / 平面视觉 / IP设计
-              </span>
-            </div>
-
-            <div class="about-item">
-              <strong>项目类型</strong>
-
-              <span>
-                鞋类、化妆包、服装、详情页、Logo、
-                图案和角色延展
-              </span>
-            </div>
-
-            <div class="about-item">
-              <strong>工作方式</strong>
-
-              <span>
-                灵感整理、视觉方案、图案设计、
-                效果呈现与落地优化
-              </span>
-            </div>
-
-            <div class="about-item">
-              <strong>目前状态</strong>
-
-              <span>
-                持续整理与更新个人作品中
-              </span>
-            </div>
-
+        <a class="category-card" href="visual.html">
+          <div class="category-number">02</div>
+          <div class="category-content">
+            <h3 class="category-name">平面视觉</h3>
+            <p class="category-detail">详情页｜Logo｜图案｜包装｜其他</p>
           </div>
-        </div>
+          <div class="category-arrow">→</div>
+        </a>
+
+        <a class="category-card" href="ip.html">
+          <div class="category-number">03</div>
+          <div class="category-content">
+            <h3 class="category-name">IP设计</h3>
+            <p class="category-detail">角色形象｜延展应用｜动态设计｜文创</p>
+          </div>
+          <div class="category-arrow">→</div>
+        </a>
+
+        <a class="category-card" href="about.html">
+          <div class="category-number">04</div>
+          <div class="category-content">
+            <h3 class="category-name">关于我</h3>
+            <p class="category-detail">个人简介｜设计方向｜能力｜联系方式</p>
+          </div>
+          <div class="category-arrow">→</div>
+        </a>
       </div>
-    </section>
-
-  </main>
-
-  <!-- 页脚 -->
-
-  <footer class="site-footer">
-    <div class="container footer-inner">
-
-      <span>
-        © <span id="currentYear"></span>
-        小船小船- PORTFOLIO
-      </span>
-
-      <span>
-        BUILT WITH GITHUB PAGES
-      </span>
-
     </div>
-  </footer>
+  </section>
 
-  <script>
-    const menuButton =
-      document.getElementById("menuButton");
+  <section class="section featured-section" id="featured">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">热销定制产品</h2>
+        <p class="section-description">
+          首页仅展示销量和表现较好的定制类产品。桌面端每排5个，共两排10个位置。
+        </p>
+      </div>
 
-    const siteNav =
-      document.getElementById("siteNav");
+      <div class="product-grid">
+        
+<a class="product-card" href="custom.html">
+  <div class="product-image">
+    <div class="product-index">TOP 01</div>
+    <div class="product-placeholder"></div>
+  </div>
+  <div class="product-info">
+    <h3 class="product-title">热销定制产品 01</h3>
+    <div class="product-meta">
+      <span>定制类产品设计</span>
+      <span>2026</span>
+    </div>
+  </div>
+</a>
 
-    menuButton.addEventListener(
-      "click",
-      () => {
-        siteNav.classList.toggle("open");
-      }
-    );
 
-    siteNav
-      .querySelectorAll("a")
-      .forEach(link => {
-        link.addEventListener(
-          "click",
-          () => {
-            siteNav.classList.remove("open");
-          }
-        );
-      });
+<a class="product-card" href="custom.html">
+  <div class="product-image">
+    <div class="product-index">TOP 02</div>
+    <div class="product-placeholder"></div>
+  </div>
+  <div class="product-info">
+    <h3 class="product-title">热销定制产品 02</h3>
+    <div class="product-meta">
+      <span>定制类产品设计</span>
+      <span>2026</span>
+    </div>
+  </div>
+</a>
 
-    document.getElementById(
-      "currentYear"
-    ).textContent =
-      new Date().getFullYear();
-  </script>
+
+<a class="product-card" href="custom.html">
+  <div class="product-image">
+    <div class="product-index">TOP 03</div>
+    <div class="product-placeholder"></div>
+  </div>
+  <div class="product-info">
+    <h3 class="product-title">热销定制产品 03</h3>
+    <div class="product-meta">
+      <span>定制类产品设计</span>
+      <span>2026</span>
+    </div>
+  </div>
+</a>
+
+
+<a class="product-card" href="custom.html">
+  <div class="product-image">
+    <div class="product-index">TOP 04</div>
+    <div class="product-placeholder"></div>
+  </div>
+  <div class="product-info">
+    <h3 class="product-title">热销定制产品 04</h3>
+    <div class="product-meta">
+      <span>定制类产品设计</span>
+      <span>2026</span>
+    </div>
+  </div>
+</a>
+
+
+<a class="product-card" href="custom.html">
+  <div class="product-image">
+    <div class="product-index">TOP 05</div>
+    <div class="product-placeholder"></div>
+  </div>
+  <div class="product-info">
+    <h3 class="product-title">热销定制产品 05</h3>
+    <div class="product-meta">
+      <span>定制类产品设计</span>
+      <span>2026</span>
+    </div>
+  </div>
+</a>
+
+
+<a class="product-card" href="custom.html">
+  <div class="product-image">
+    <div class="product-index">TOP 06</div>
+    <div class="product-placeholder"></div>
+  </div>
+  <div class="product-info">
+    <h3 class="product-title">热销定制产品 06</h3>
+    <div class="product-meta">
+      <span>定制类产品设计</span>
+      <span>2026</span>
+    </div>
+  </div>
+</a>
+
+
+<a class="product-card" href="custom.html">
+  <div class="product-image">
+    <div class="product-index">TOP 07</div>
+    <div class="product-placeholder"></div>
+  </div>
+  <div class="product-info">
+    <h3 class="product-title">热销定制产品 07</h3>
+    <div class="product-meta">
+      <span>定制类产品设计</span>
+      <span>2026</span>
+    </div>
+  </div>
+</a>
+
+
+<a class="product-card" href="custom.html">
+  <div class="product-image">
+    <div class="product-index">TOP 08</div>
+    <div class="product-placeholder"></div>
+  </div>
+  <div class="product-info">
+    <h3 class="product-title">热销定制产品 08</h3>
+    <div class="product-meta">
+      <span>定制类产品设计</span>
+      <span>2026</span>
+    </div>
+  </div>
+</a>
+
+
+<a class="product-card" href="custom.html">
+  <div class="product-image">
+    <div class="product-index">TOP 09</div>
+    <div class="product-placeholder"></div>
+  </div>
+  <div class="product-info">
+    <h3 class="product-title">热销定制产品 09</h3>
+    <div class="product-meta">
+      <span>定制类产品设计</span>
+      <span>2026</span>
+    </div>
+  </div>
+</a>
+
+
+<a class="product-card" href="custom.html">
+  <div class="product-image">
+    <div class="product-index">TOP 10</div>
+    <div class="product-placeholder"></div>
+  </div>
+  <div class="product-info">
+    <h3 class="product-title">热销定制产品 10</h3>
+    <div class="product-meta">
+      <span>定制类产品设计</span>
+      <span>2026</span>
+    </div>
+  </div>
+</a>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">设计方式</h2>
+        <p class="section-description">
+          从定位、视觉方向到成品呈现，保留清晰、克制和可落地的设计逻辑。
+        </p>
+      </div>
+
+      <div class="method-grid">
+        <article class="method-intro">
+          <h3>不只做视觉效果，也关注产品是否真正成立。</h3>
+          <p>根据产品、受众和使用场景建立设计方向，再完成图案、配色、材质与展示。</p>
+        </article>
+
+        <article class="method-card">
+          <div class="method-index">01 / RESEARCH</div>
+          <h3>定位与整理</h3>
+          <p>明确产品方向、目标人群、设计限制和最终使用场景。</p>
+        </article>
+
+        <article class="method-card">
+          <div class="method-index">02 / DESIGN</div>
+          <h3>视觉与方案</h3>
+          <p>完成图案、版式、配色、材质及系列化视觉方案。</p>
+        </article>
+
+        <article class="method-card">
+          <div class="method-index">03 / DELIVERY</div>
+          <h3>呈现与落地</h3>
+          <p>整理效果图、商品展示、细节优化与最终作品归档。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-strip">
+    <div class="container about-grid">
+      <div class="about-label">ABOUT THE DESIGNER</div>
+      <div>
+        <h2 class="about-title">我关注视觉表达，也关注设计能否真正使用。</h2>
+        <p class="about-copy">
+          我主要关注定制类产品设计、平面视觉和IP形象方向。
+          这个网站会作为长期更新的个人设计档案，逐步展示不同时期的项目与能力积累。
+        </p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <span>© <span id="currentYear"></span> 小船小船- PORTFOLIO</span>
+    <span>BUILT WITH GITHUB PAGES</span>
+  </div>
+</footer>
+<script src="script.js"></script>
 
 </body>
 </html>
