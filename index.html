@@ -4,23 +4,37 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <meta
+    name="description"
+    content="小船小船-个人设计作品集，展示定制类产品设计、平面视觉与IP设计项目。"
+  >
+
   <title>小船小船-｜设计作品集</title>
 
   <style>
     :root {
-      --bg: #050505;
-      --bg-soft: #0a0a0a;
-      --panel: #101010;
-      --panel-light: #171717;
+      --background: #f4f1eb;
+      --background-soft: #ebe7df;
+      --card: #f8f6f1;
+      --card-deep: #e4dfd6;
 
-      --text: #f2f2f0;
-      --text-soft: rgba(242, 242, 240, 0.62);
-      --text-faint: rgba(242, 242, 240, 0.38);
+      --text: #171715;
+      --text-soft: #706b63;
+      --text-light: #969087;
 
-      --line: rgba(255, 255, 255, 0.10);
-      --line-strong: rgba(255, 255, 255, 0.18);
+      --line: rgba(23, 23, 21, 0.12);
+      --line-strong: rgba(23, 23, 21, 0.22);
 
-      --accent: #9b7452;
+      --accent: #9a795d;
+      --accent-soft: #d9cbbb;
+      --green: #7f9989;
+
+      --radius-large: 26px;
+      --radius-medium: 18px;
+      --radius-small: 12px;
+
+      --shadow:
+        0 24px 70px rgba(48, 42, 34, 0.08);
 
       --max-width: 1440px;
     }
@@ -37,14 +51,7 @@
       margin: 0;
       overflow-x: hidden;
 
-      background:
-        radial-gradient(
-          circle at 50% 10%,
-          rgba(255, 255, 255, 0.035),
-          transparent 32%
-        ),
-        var(--bg);
-
+      background: var(--background);
       color: var(--text);
 
       font-family:
@@ -52,36 +59,12 @@
         "PingFang SC",
         "Microsoft YaHei",
         sans-serif;
+
+      -webkit-font-smoothing: antialiased;
     }
 
-    body::before {
-      content: "";
-
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-
-      pointer-events: none;
-
-      background-image:
-        linear-gradient(
-          rgba(255, 255, 255, 0.012) 1px,
-          transparent 1px
-        ),
-        linear-gradient(
-          90deg,
-          rgba(255, 255, 255, 0.012) 1px,
-          transparent 1px
-        );
-
-      background-size: 48px 48px;
-
-      mask-image:
-        linear-gradient(
-          to bottom,
-          rgba(0, 0, 0, 0.55),
-          transparent 80%
-        );
+    body.menu-open {
+      overflow: hidden;
     }
 
     a {
@@ -90,6 +73,7 @@
     }
 
     button {
+      color: inherit;
       font: inherit;
     }
 
@@ -99,28 +83,117 @@
     }
 
     .container {
-      width: min(var(--max-width), calc(100% - 80px));
+      width: min(
+        var(--max-width),
+        calc(100% - 80px)
+      );
+
       margin: 0 auto;
     }
 
-    /* =========================
+    .section {
+      padding: 92px 0;
+    }
+
+    .section-heading {
+      margin-bottom: 38px;
+
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .section-label {
+      margin-bottom: 12px;
+
+      color: var(--text-light);
+
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      margin: 0;
+
+      font-family:
+        "Songti SC",
+        SimSun,
+        serif;
+
+      font-size: clamp(36px, 4vw, 64px);
+      line-height: 1.14;
+      font-weight: 400;
+      letter-spacing: -0.04em;
+    }
+
+    .section-description {
+      max-width: 520px;
+      margin: 0;
+
+      color: var(--text-soft);
+
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .text-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 13px;
+
+      color: var(--text-soft);
+
+      font-size: 13px;
+
+      transition:
+        gap 0.25s ease,
+        color 0.25s ease;
+    }
+
+    .text-link span {
+      font-size: 18px;
+    }
+
+    .text-link:hover {
+      gap: 19px;
+      color: var(--text);
+    }
+
+    /* ========================
        顶部导航
-    ========================= */
+    ======================== */
 
     .site-header {
-      position: absolute;
+      position: sticky;
       top: 0;
-      left: 0;
-      right: 0;
+      z-index: 100;
 
-      z-index: 50;
+      background:
+        rgba(244, 241, 235, 0.86);
 
-      padding: 34px 0 20px;
+      border-bottom: 1px solid transparent;
+
+      backdrop-filter: blur(18px);
+
+      transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    .site-header.scrolled {
+      border-color: var(--line);
+
+      box-shadow:
+        0 10px 30px rgba(37, 32, 26, 0.04);
     }
 
     .header-inner {
+      min-height: 86px;
+
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       justify-content: space-between;
       gap: 40px;
     }
@@ -128,56 +201,41 @@
     .site-brand {
       display: inline-flex;
       flex-direction: column;
-      gap: 9px;
+      gap: 5px;
     }
 
-    .brand-cn {
+    .brand-name {
       font-family:
-        "Times New Roman",
         "Songti SC",
         SimSun,
         serif;
 
-      font-size: clamp(27px, 2.2vw, 38px);
+      font-size: 24px;
       line-height: 1;
-      font-weight: 400;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.02em;
     }
 
-    .brand-en {
-      padding-left: 2px;
-
+    .brand-subtitle {
       color: var(--text-soft);
 
-      font-size: clamp(13px, 1.1vw, 18px);
-      line-height: 1;
-      font-weight: 300;
-      letter-spacing: 0.33em;
-    }
-
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 34px;
+      font-size: 9px;
+      letter-spacing: 0.32em;
     }
 
     .site-nav {
       display: flex;
       align-items: center;
-      gap: clamp(28px, 3.5vw, 58px);
+      gap: 42px;
     }
 
     .site-nav a {
       position: relative;
 
-      color: rgba(255, 255, 255, 0.88);
+      color: var(--text-soft);
 
       font-size: 14px;
-      letter-spacing: 0.04em;
 
-      transition:
-        color 0.25s ease,
-        transform 0.25s ease;
+      transition: color 0.25s ease;
     }
 
     .site-nav a::after {
@@ -192,1114 +250,119 @@
 
       background: var(--text);
 
-      transition: right 0.28s ease;
+      transition: right 0.25s ease;
     }
 
     .site-nav a:hover {
-      color: #ffffff;
-      transform: translateY(-1px);
+      color: var(--text);
     }
 
     .site-nav a:hover::after {
       right: 0;
     }
 
-    .round-button {
-      width: 34px;
-      height: 34px;
+    .menu-button {
+      width: 42px;
+      height: 42px;
 
-      display: inline-flex;
+      display: none;
       align-items: center;
       justify-content: center;
 
-      border: 1px solid var(--line-strong);
+      padding: 0;
+
+      background: transparent;
+      border: 1px solid var(--line);
       border-radius: 50%;
 
-      background: rgba(255, 255, 255, 0.025);
-      color: var(--text);
-
       cursor: pointer;
-
-      transition:
-        background 0.25s ease,
-        transform 0.25s ease;
     }
 
-    .round-button:hover {
-      background: rgba(255, 255, 255, 0.08);
-      transform: rotate(12deg);
+    .menu-lines,
+    .menu-lines::before,
+    .menu-lines::after {
+      width: 17px;
+      height: 1px;
+
+      display: block;
+
+      background: var(--text);
     }
 
-    .round-button span {
-      font-size: 17px;
-      line-height: 1;
-    }
-
-    /* =========================
-       展厅式首屏
-    ========================= */
-
-    .hero {
+    .menu-lines {
       position: relative;
-
-      min-height: 570px;
-      padding: 120px 0 34px;
-
-      overflow: hidden;
-
-      background:
-        linear-gradient(
-          to bottom,
-          rgba(0, 0, 0, 0.20),
-          rgba(0, 0, 0, 0.54)
-        ),
-        radial-gradient(
-          ellipse at 50% 20%,
-          rgba(255, 255, 255, 0.10),
-          transparent 45%
-        ),
-        #050505;
-
-      border-bottom: 1px solid var(--line);
     }
 
-    .hero::before {
+    .menu-lines::before,
+    .menu-lines::after {
       content: "";
 
       position: absolute;
       left: 0;
-      right: 0;
-      bottom: 0;
 
-      height: 43%;
-
-      background:
-        linear-gradient(
-          to bottom,
-          transparent,
-          rgba(0, 0, 0, 0.55)
-        ),
-        repeating-linear-gradient(
-          92deg,
-          transparent 0,
-          transparent 90px,
-          rgba(255, 255, 255, 0.015) 91px,
-          transparent 92px
-        );
-
-      transform: perspective(550px) rotateX(57deg);
-      transform-origin: bottom;
-
-      opacity: 0.8;
-
-      pointer-events: none;
+      transition:
+        transform 0.25s ease,
+        top 0.25s ease;
     }
 
-    .ceiling-lines {
-      position: absolute;
-      top: 0;
-      left: 28%;
-      right: 28%;
-
-      height: 140px;
-
-      background:
-        repeating-linear-gradient(
-          to bottom,
-          transparent 0,
-          transparent 28px,
-          rgba(255, 255, 255, 0.045) 29px,
-          transparent 30px
-        );
-
-      mask-image:
-        linear-gradient(
-          to bottom,
-          rgba(0, 0, 0, 0.8),
-          transparent
-        );
-
-      pointer-events: none;
+    .menu-lines::before {
+      top: -5px;
     }
 
-    .gallery-stage {
-      position: relative;
-      z-index: 2;
+    .menu-lines::after {
+      top: 5px;
+    }
 
-      min-height: 390px;
+    /* ========================
+       首页首屏
+    ======================== */
 
+    .hero {
+      padding: 58px 0 72px;
+    }
+
+    .hero-grid {
       display: grid;
       grid-template-columns:
-        minmax(120px, 0.8fr)
-        minmax(90px, 0.48fr)
-        minmax(420px, 2.7fr)
-        minmax(110px, 0.68fr)
-        minmax(120px, 0.8fr);
+        minmax(360px, 0.92fr)
+        minmax(560px, 1.32fr);
 
+      gap: clamp(60px, 8vw, 130px);
       align-items: center;
-      gap: clamp(18px, 2vw, 34px);
     }
 
-    .gallery-frame {
-      position: relative;
-
-      overflow: hidden;
-
-      background:
-        linear-gradient(
-          145deg,
-          rgba(255, 255, 255, 0.075),
-          rgba(255, 255, 255, 0.012)
-        ),
-        #111111;
-
-      border: 1px solid rgba(255, 255, 255, 0.06);
-
-      box-shadow:
-        0 30px 60px rgba(0, 0, 0, 0.42),
-        inset 0 0 60px rgba(0, 0, 0, 0.35);
+    .hero-copy {
+      padding-left: 4px;
     }
 
-    .gallery-frame::after {
-      content: "";
+    .hero-kicker {
+      margin-bottom: 25px;
 
-      position: absolute;
-      inset: 0;
+      color: var(--text-soft);
 
-      pointer-events: none;
-
-      background:
-        linear-gradient(
-          to bottom,
-          rgba(255, 255, 255, 0.025),
-          transparent 35%,
-          rgba(0, 0, 0, 0.34)
-        );
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
     }
 
-    .gallery-frame.small-one {
-      height: 230px;
-      transform: perspective(900px) rotateY(3deg);
-    }
-
-    .gallery-frame.small-two {
-      height: 270px;
-      transform: perspective(900px) rotateY(2deg);
-    }
-
-    .gallery-frame.small-three {
-      height: 260px;
-      transform: perspective(900px) rotateY(-2deg);
-    }
-
-    .gallery-frame.small-four {
-      height: 230px;
-      transform: perspective(900px) rotateY(-3deg);
-    }
-
-    .frame-product {
-      position: absolute;
-      left: 50%;
-      bottom: 15%;
-
-      width: 76%;
-      aspect-ratio: 1.15 / 1;
-
-      transform: translateX(-50%);
-
-      background:
-        radial-gradient(
-          ellipse at 50% 76%,
-          rgba(255, 255, 255, 0.16),
-          transparent 52%
-        ),
-        linear-gradient(
-          145deg,
-          #3d3d3d,
-          #111111 68%
-        );
-
-      clip-path:
-        polygon(
-          12% 72%,
-          24% 42%,
-          42% 31%,
-          70% 39%,
-          88% 62%,
-          96% 83%,
-          73% 91%,
-          31% 89%
-        );
-
-      filter:
-        drop-shadow(0 24px 17px rgba(0, 0, 0, 0.8));
-    }
-
-    .frame-product.bag {
-      width: 65%;
-      aspect-ratio: 0.82 / 1;
-
-      clip-path:
-        polygon(
-          21% 20%,
-          35% 9%,
-          66% 11%,
-          80% 25%,
-          87% 88%,
-          15% 88%
-        );
-
-      background:
-        linear-gradient(
-          135deg,
-          #252525,
-          #0c0c0c
-        );
-    }
-
-    .frame-product.jacket {
-      width: 67%;
-      aspect-ratio: 0.75 / 1;
-
-      clip-path:
-        polygon(
-          35% 6%,
-          65% 6%,
-          76% 18%,
-          93% 31%,
-          81% 51%,
-          75% 91%,
-          25% 91%,
-          19% 51%,
-          7% 31%,
-          24% 18%
-        );
-
-      background:
-        linear-gradient(
-          130deg,
-          #6a6a68 0%,
-          #2c2d2d 45%,
-          #0b0b0b 100%
-        );
-    }
-
-    .frame-product.backpack {
-      width: 63%;
-      aspect-ratio: 0.78 / 1;
-
-      clip-path:
-        polygon(
-          28% 8%,
-          70% 8%,
-          84% 25%,
-          90% 89%,
-          11% 89%,
-          17% 25%
-        );
-
-      background:
-        linear-gradient(
-          145deg,
-          #292929,
-          #080808
-        );
-    }
-
-    /* 中央大屏 */
-
-    .center-screen {
-      position: relative;
-
-      height: 330px;
-
-      overflow: hidden;
-
-      background:
-        radial-gradient(
-          circle at 30% 25%,
-          rgba(255, 255, 255, 0.14),
-          transparent 42%
-        ),
-        linear-gradient(
-          110deg,
-          #777775 0%,
-          #414140 46%,
-          #999996 100%
-        );
-
-      border: 1px solid rgba(255, 255, 255, 0.12);
-
-      box-shadow:
-        0 30px 80px rgba(0, 0, 0, 0.56),
-        inset 0 0 90px rgba(0, 0, 0, 0.30);
-    }
-
-    .center-screen::before {
-      content: "";
-
-      position: absolute;
-      inset: 0;
-
-      background-image:
-        repeating-linear-gradient(
-          0deg,
-          rgba(255, 255, 255, 0.022) 0,
-          rgba(255, 255, 255, 0.022) 1px,
-          transparent 1px,
-          transparent 5px
-        ),
-        repeating-linear-gradient(
-          90deg,
-          rgba(0, 0, 0, 0.035) 0,
-          rgba(0, 0, 0, 0.035) 1px,
-          transparent 1px,
-          transparent 7px
-        );
-
-      mix-blend-mode: multiply;
-    }
-
-    .screen-copy {
-      position: absolute;
-      top: 51%;
-      left: 11%;
-
-      z-index: 3;
-
-      transform: translateY(-50%);
-    }
-
-    .screen-copy-cn {
-      margin: 0 0 21px;
-
-      color: rgba(20, 20, 20, 0.78);
+    .hero-title {
+      max-width: 650px;
+      margin: 0 0 28px;
 
       font-family:
         "Songti SC",
         SimSun,
         serif;
 
-      font-size: clamp(15px, 1.25vw, 20px);
-      line-height: 1.75;
-      letter-spacing: 0.08em;
-    }
-
-    .screen-line {
-      width: 22px;
-      height: 1px;
-      margin: 0 0 18px;
-
-      background: rgba(20, 20, 20, 0.55);
-    }
-
-    .screen-copy-en {
-      max-width: 145px;
-      margin: 0;
-
-      color: rgba(20, 20, 20, 0.64);
-
-      font-size: 10px;
-      line-height: 1.55;
-      letter-spacing: 0.02em;
-    }
-
-    /* CSS 人物剪影 */
-
-    .silhouette {
-      position: absolute;
-      left: 56%;
-      bottom: 0;
-
-      z-index: 4;
-
-      width: 90px;
-      height: 230px;
-
-      transform: translateX(-50%);
-
-      filter:
-        drop-shadow(0 12px 8px rgba(0, 0, 0, 0.7));
-    }
-
-    .silhouette-head {
-      position: absolute;
-      top: 4px;
-      left: 50%;
-
-      width: 34px;
-      height: 36px;
-
-      transform: translateX(-50%);
-
-      border-radius: 48% 48% 44% 44%;
-
-      background: #050505;
-    }
-
-    .silhouette-body {
-      position: absolute;
-      top: 34px;
-      left: 50%;
-
-      width: 54px;
-      height: 118px;
-
-      transform: translateX(-50%);
-
-      border-radius: 22px 22px 13px 13px;
-
-      background:
-        linear-gradient(
-          to right,
-          #030303,
-          #101010 48%,
-          #020202
-        );
-    }
-
-    .silhouette-arm {
-      position: absolute;
-      top: 47px;
-
-      width: 17px;
-      height: 105px;
-
-      border-radius: 10px;
-
-      background: #050505;
-    }
-
-    .silhouette-arm.left {
-      left: 10px;
-      transform: rotate(4deg);
-    }
-
-    .silhouette-arm.right {
-      right: 10px;
-      transform: rotate(-4deg);
-    }
-
-    .silhouette-leg {
-      position: absolute;
-      top: 141px;
-
-      width: 21px;
-      height: 84px;
-
-      border-radius: 4px 4px 6px 6px;
-
-      background:
-        linear-gradient(
-          to right,
-          #020202,
-          #0d0d0d
-        );
-    }
-
-    .silhouette-leg.left {
-      left: 22px;
-      transform: rotate(1deg);
-    }
-
-    .silhouette-leg.right {
-      right: 22px;
-      transform: rotate(-1deg);
-    }
-
-    .hero-label {
-      position: absolute;
-      right: 16px;
-      bottom: 17px;
-
-      z-index: 6;
-
-      padding: 10px 16px;
-
-      border: 1px solid rgba(255, 255, 255, 0.45);
-
-      color: rgba(255, 255, 255, 0.72);
-
-      font-family:
-        "Songti SC",
-        SimSun,
-        serif;
-
-      font-size: 14px;
-      letter-spacing: 0.10em;
-
-      background: rgba(0, 0, 0, 0.28);
-      backdrop-filter: blur(6px);
-    }
-
-    /* =========================
-       四大分类卡片
-    ========================= */
-
-    .category-section {
-      position: relative;
-      z-index: 7;
-
-      margin-top: -17px;
-    }
-
-    .category-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-
-      border-top: 1px solid var(--line);
-      border-left: 1px solid var(--line);
-    }
-
-    .category-card {
-      position: relative;
-
-      min-height: 192px;
-      padding: 30px 30px 23px;
-
-      overflow: hidden;
-
-      background:
-        linear-gradient(
-          90deg,
-          rgba(0, 0, 0, 0.93) 0%,
-          rgba(0, 0, 0, 0.72) 45%,
-          rgba(0, 0, 0, 0.16) 100%
-        ),
-        var(--card-image),
-        linear-gradient(
-          145deg,
-          #222222,
-          #080808
-        );
-
-      background-position: center;
-      background-size: cover;
-
-      border-right: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-
-      transition:
-        transform 0.35s ease,
-        border-color 0.35s ease,
-        filter 0.35s ease;
-    }
-
-    .category-card::before {
-      content: "";
-
-      position: absolute;
-      inset: 0;
-
-      background:
-        linear-gradient(
-          to bottom,
-          rgba(255, 255, 255, 0.025),
-          transparent 42%,
-          rgba(0, 0, 0, 0.40)
-        );
-
-      pointer-events: none;
-    }
-
-    .category-card:hover {
-      z-index: 4;
-
-      transform: translateY(-7px);
-
-      border-color: var(--line-strong);
-
-      filter: brightness(1.12);
-    }
-
-    .category-content {
-      position: relative;
-      z-index: 2;
-
-      height: 100%;
-
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-    }
-
-    .category-title {
-      margin: 6px 0 4px;
-
-      font-size: clamp(20px, 1.7vw, 29px);
-      line-height: 1.2;
-      font-weight: 500;
-      letter-spacing: 0.02em;
-    }
-
-    .category-en {
-      color: var(--text-soft);
-
-      font-size: 10px;
-      line-height: 1.4;
-      letter-spacing: 0.06em;
-    }
-
-    .category-link {
-      margin-top: auto;
-
-      display: inline-flex;
-      align-items: center;
-      gap: 13px;
-
-      color: var(--text-soft);
-
-      font-size: 12px;
-
-      transition:
-        color 0.25s ease,
-        gap 0.25s ease;
-    }
-
-    .category-link span {
-      font-size: 18px;
-      line-height: 1;
-    }
-
-    .category-card:hover .category-link {
-      gap: 19px;
-      color: var(--text);
-    }
-
-    /* 分类卡片内的装饰形状 */
-
-    .category-decoration {
-      position: absolute;
-      right: 1%;
-      bottom: -8%;
-
-      width: 50%;
-      height: 92%;
-
-      opacity: 0.80;
-
-      pointer-events: none;
-    }
-
-    .category-decoration.shoe {
-      background:
-        linear-gradient(
-          145deg,
-          #4b4b4a,
-          #101010 70%
-        );
-
-      clip-path:
-        polygon(
-          2% 70%,
-          17% 39%,
-          41% 29%,
-          72% 39%,
-          94% 70%,
-          100% 88%,
-          63% 94%,
-          17% 88%
-        );
-
-      filter:
-        drop-shadow(0 22px 18px rgba(0, 0, 0, 0.9));
-    }
-
-    .category-decoration.graphic {
-      right: -2%;
-      bottom: -12%;
-
-      width: 52%;
-
-      transform: rotate(-8deg);
-
-      background:
-        linear-gradient(
-          120deg,
-          #4e4e4e,
-          #0b0b0b 72%
-        );
-
-      clip-path:
-        polygon(
-          8% 8%,
-          92% 8%,
-          92% 92%,
-          8% 92%
-        );
-
-      box-shadow:
-        -20px 15px 0 #222222;
-    }
-
-    .category-decoration.ip {
-      right: 4%;
-      bottom: -20%;
-
-      width: 48%;
-      height: 105%;
-
-      border-radius: 48% 48% 42% 42%;
-
-      background:
-        radial-gradient(
-          circle at 38% 23%,
-          #858585 0%,
-          #494949 19%,
-          #151515 55%,
-          #050505 100%
-        );
-
-      box-shadow:
-        inset 0 0 0 14px rgba(255, 255, 255, 0.035),
-        0 25px 35px rgba(0, 0, 0, 0.8);
-    }
-
-    .category-decoration.person {
-      right: 6%;
-      bottom: -15%;
-
-      width: 41%;
-      height: 118%;
-
-      border-radius: 48% 48% 15% 15%;
-
-      background:
-        radial-gradient(
-          circle at 52% 18%,
-          #3b3b3b 0%,
-          #161616 30%,
-          #050505 72%
-        );
-
-      filter:
-        drop-shadow(0 20px 18px rgba(0, 0, 0, 0.9));
-    }
-
-    /* =========================
-       精选作品
-    ========================= */
-
-    .works-section {
-      padding: 34px 0 68px;
-    }
-
-    .section-header {
-      margin-bottom: 18px;
-
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 30px;
-    }
-
-    .section-title-group {
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
-    }
-
-    .section-title {
-      margin: 0;
-
-      font-size: clamp(25px, 2vw, 34px);
-      line-height: 1.2;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-    }
-
-    .section-title-en {
-      color: var(--text-faint);
-
-      font-size: 12px;
-      letter-spacing: 0.13em;
-    }
-
-    .view-all {
-      display: inline-flex;
-      align-items: center;
-      gap: 17px;
-
-      padding-bottom: 2px;
-
-      color: var(--text-soft);
-
-      font-size: 12px;
-
-      transition:
-        color 0.25s ease,
-        gap 0.25s ease;
-    }
-
-    .view-all span {
-      font-size: 19px;
-    }
-
-    .view-all:hover {
-      gap: 23px;
-      color: var(--text);
-    }
-
-    .works-grid {
-      display: grid;
-      grid-template-columns: 1.36fr repeat(4, 1fr);
-      gap: 4px;
-    }
-
-    .work-card {
-      position: relative;
-
-      min-width: 0;
-
-      overflow: hidden;
-
-      background: #0c0c0c;
-      border: 1px solid var(--line);
-
-      transition:
-        transform 0.35s ease,
-        border-color 0.35s ease;
-    }
-
-    .work-card:hover {
-      z-index: 5;
-
-      transform: translateY(-7px);
-
-      border-color: var(--line-strong);
-    }
-
-    .work-image {
-      position: relative;
-
-      min-height: 270px;
-
-      overflow: hidden;
-
-      background:
-        radial-gradient(
-          circle at 40% 28%,
-          rgba(255, 255, 255, 0.16),
-          transparent 36%
-        ),
-        linear-gradient(
-          145deg,
-          #414141,
-          #080808 72%
-        );
-    }
-
-    .work-card:first-child .work-image {
-      min-height: 300px;
-    }
-
-    .work-image::after {
-      content: "";
-
-      position: absolute;
-      inset: 0;
-
-      background:
-        linear-gradient(
-          to bottom,
-          transparent 42%,
-          rgba(0, 0, 0, 0.78)
-        );
-
-      pointer-events: none;
-    }
-
-    .work-object {
-      position: absolute;
-      left: 50%;
-      top: 51%;
-
-      width: 78%;
-      height: 62%;
-
-      transform: translate(-50%, -50%);
-
-      background:
-        linear-gradient(
-          140deg,
-          #555555,
-          #111111 72%
-        );
-
-      filter:
-        drop-shadow(0 30px 18px rgba(0, 0, 0, 0.78));
-    }
-
-    .work-object.shoe {
-      clip-path:
-        polygon(
-          3% 64%,
-          19% 35%,
-          40% 23%,
-          69% 34%,
-          91% 62%,
-          99% 81%,
-          72% 91%,
-          20% 88%
-        );
-    }
-
-    .work-object.bag {
-      width: 66%;
-      height: 65%;
-
-      clip-path:
-        polygon(
-          24% 10%,
-          76% 10%,
-          91% 27%,
-          88% 93%,
-          12% 93%,
-          9% 27%
-        );
-
-      background:
-        linear-gradient(
-          145deg,
-          #303030,
-          #080808
-        );
-    }
-
-    .work-object.poster {
-      width: 70%;
-      height: 74%;
-
-      transform:
-        translate(-50%, -50%)
-        rotate(-4deg);
-
-      clip-path:
-        polygon(
-          3% 1%,
-          98% 5%,
-          95% 98%,
-          0 94%
-        );
-
-      background:
-        repeating-linear-gradient(
-          145deg,
-          #d3d3d3 0,
-          #d3d3d3 18px,
-          #111111 19px,
-          #111111 33px
-        );
-    }
-
-    .work-object.ip {
-      width: 66%;
-      height: 66%;
-
-      border-radius: 48%;
-
-      background:
-        radial-gradient(
-          circle at 32% 26%,
-          #dedede,
-          #8e8e8e 38%,
-          #333333 66%,
-          #101010
-        );
-    }
-
-    .work-object.clothes {
-      width: 68%;
-      height: 80%;
-
-      clip-path:
-        polygon(
-          34% 4%,
-          66% 4%,
-          76% 17%,
-          96% 31%,
-          82% 53%,
-          76% 96%,
-          24% 96%,
-          18% 53%,
-          4% 31%,
-          24% 17%
-        );
-
-      background:
-        linear-gradient(
-          135deg,
-          #d0d0ce,
-          #6f6f6e 50%,
-          #202020
-        );
-    }
-
-    .work-info {
-      position: absolute;
-      left: 17px;
-      right: 17px;
-      bottom: 15px;
-
-      z-index: 3;
-    }
-
-    .work-title {
-      margin: 0 0 7px;
-
-      font-size: clamp(14px, 1.05vw, 18px);
-      line-height: 1.4;
-      font-weight: 500;
-      letter-spacing: 0.02em;
-    }
-
-    .work-category {
-      color: var(--text-soft);
-
-      font-size: 10px;
-      letter-spacing: 0.05em;
-    }
-
-    /* =========================
-       关于我
-    ========================= */
-
-    .about-section {
-      padding: 70px 0 90px;
-
-      border-top: 1px solid var(--line);
-    }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 0.85fr 1.4fr;
-      gap: 100px;
-    }
-
-    .about-label {
-      color: var(--text-soft);
-
-      font-size: 12px;
-      letter-spacing: 0.15em;
-    }
-
-    .about-heading {
-      max-width: 760px;
-      margin: 0 0 25px;
-
-      font-family:
-        "Songti SC",
-        SimSun,
-        serif;
-
-      font-size: clamp(32px, 4vw, 65px);
-      line-height: 1.25;
+      font-size: clamp(52px, 5.3vw, 86px);
+      line-height: 1.13;
       font-weight: 400;
+      letter-spacing: -0.055em;
     }
 
-    .about-copy {
-      max-width: 720px;
-      margin: 0;
+    .hero-description {
+      max-width: 520px;
+      margin: 0 0 36px;
 
       color: var(--text-soft);
 
@@ -1307,64 +370,1202 @@
       line-height: 2;
     }
 
-    /* =========================
-       页脚
-    ========================= */
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
 
-    .site-footer {
-      padding: 28px 0 36px;
+    .button {
+      min-width: 134px;
+      min-height: 46px;
 
-      border-top: 1px solid var(--line);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
 
-      color: var(--text-faint);
+      padding: 0 24px;
+
+      border: 1px solid var(--line-strong);
+      border-radius: 4px;
+
+      font-size: 13px;
+
+      transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease;
+    }
+
+    .button span {
+      font-size: 17px;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button-primary {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+    }
+
+    .button-primary:hover {
+      background: #87694f;
+      border-color: #87694f;
+    }
+
+    .button-secondary {
+      background: transparent;
+    }
+
+    .button-secondary:hover {
+      background: rgba(255, 255, 255, 0.36);
+    }
+
+    /* 首屏右侧视觉 */
+
+    .hero-visual {
+      position: relative;
+
+      min-height: 550px;
+
+      overflow: hidden;
+
+      background:
+        linear-gradient(
+          135deg,
+          #e6dfd3,
+          #d9d0c3 62%,
+          #cbc0b2
+        );
+
+      border-radius: var(--radius-large);
+
+      box-shadow: var(--shadow);
+    }
+
+    .hero-visual::before {
+      content: "";
+
+      position: absolute;
+      top: -80px;
+      right: -70px;
+
+      width: 330px;
+      height: 330px;
+
+      border-radius: 50%;
+
+      background:
+        rgba(255, 255, 255, 0.34);
+    }
+
+    .hero-visual::after {
+      content: "";
+
+      position: absolute;
+      left: 8%;
+      right: 8%;
+      bottom: 52px;
+
+      height: 2px;
+
+      background:
+        rgba(77, 65, 52, 0.10);
+
+      box-shadow:
+        0 18px 36px rgba(66, 53, 40, 0.12);
+    }
+
+    .hero-branch {
+      position: absolute;
+      top: -30px;
+      right: 80px;
+
+      width: 230px;
+      height: 220px;
+
+      transform: rotate(-12deg);
+
+      opacity: 0.68;
+    }
+
+    .hero-branch::before {
+      content: "";
+
+      position: absolute;
+      top: 0;
+      left: 50%;
+
+      width: 4px;
+      height: 240px;
+
+      background: #626c45;
+
+      border-radius: 999px;
+
+      transform: rotate(39deg);
+      transform-origin: top;
+    }
+
+    .leaf {
+      position: absolute;
+
+      width: 37px;
+      height: 16px;
+
+      background: #7a8158;
+
+      border-radius: 100% 0 100% 0;
+    }
+
+    .leaf-one {
+      top: 28px;
+      left: 105px;
+
+      transform: rotate(18deg);
+    }
+
+    .leaf-two {
+      top: 65px;
+      left: 137px;
+
+      transform: rotate(-16deg);
+    }
+
+    .leaf-three {
+      top: 92px;
+      left: 79px;
+
+      transform: rotate(28deg);
+    }
+
+    .leaf-four {
+      top: 127px;
+      left: 115px;
+
+      transform: rotate(-24deg);
+    }
+
+    .leaf-five {
+      top: 155px;
+      left: 54px;
+
+      transform: rotate(30deg);
+    }
+
+    .hero-object {
+      position: absolute;
+      z-index: 4;
+    }
+
+    .hero-board {
+      right: 13%;
+      bottom: 89px;
+
+      width: 42%;
+      height: 54%;
+
+      transform: rotate(2deg);
+
+      background:
+        linear-gradient(
+          145deg,
+          #9b9387,
+          #57534d 54%,
+          #3b3935
+        );
+
+      border-radius: 15px;
+
+      box-shadow:
+        0 35px 55px rgba(51, 42, 33, 0.24);
+    }
+
+    .hero-board::before {
+      content: "XIAOCHUAN\A PORTFOLIO";
+
+      position: absolute;
+      left: 14%;
+      bottom: 17%;
+
+      color: rgba(255, 255, 255, 0.82);
+
+      white-space: pre;
+
+      font-family:
+        "Times New Roman",
+        serif;
+
+      font-size: clamp(13px, 1.2vw, 20px);
+      line-height: 1.4;
+      letter-spacing: 0.13em;
+    }
+
+    .hero-paper {
+      right: 7%;
+      bottom: 102px;
+
+      width: 32%;
+      height: 51%;
+
+      background:
+        linear-gradient(
+          145deg,
+          #efede7,
+          #cec9c0
+        );
+
+      border-radius: 12px;
+
+      box-shadow:
+        0 32px 50px rgba(51, 42, 33, 0.18);
+    }
+
+    .hero-paper::before {
+      content: "01";
+
+      position: absolute;
+      top: 11%;
+      right: 13%;
+
+      color: var(--text-soft);
+
+      font-family:
+        "Times New Roman",
+        serif;
+
+      font-size: 18px;
+    }
+
+    .hero-paper::after {
+      content: "";
+
+      position: absolute;
+      left: 14%;
+      right: 14%;
+      top: 25%;
+
+      height: 1px;
+
+      background: rgba(30, 30, 28, 0.16);
+
+      box-shadow:
+        0 20px 0 rgba(30, 30, 28, 0.10),
+        0 40px 0 rgba(30, 30, 28, 0.10),
+        0 60px 0 rgba(30, 30, 28, 0.10);
+    }
+
+    .hero-stone {
+      right: 1%;
+      bottom: 56px;
+
+      width: 150px;
+      height: 130px;
+
+      background:
+        radial-gradient(
+          circle at 30% 25%,
+          #8a725c,
+          #5b4938 68%
+        );
+
+      border-radius:
+        48% 52% 45% 55% /
+        57% 43% 57% 43%;
+
+      box-shadow:
+        0 25px 40px rgba(48, 38, 29, 0.20);
+    }
+
+    .hero-platform {
+      left: 14%;
+      right: 5%;
+      bottom: 45px;
+
+      height: 41px;
+
+      background:
+        linear-gradient(
+          to bottom,
+          #d7cec1,
+          #bcb0a1
+        );
+
+      border-radius: 4px;
+
+      box-shadow:
+        0 24px 45px rgba(54, 44, 34, 0.15);
+    }
+
+    .hero-note {
+      position: absolute;
+      left: 7%;
+      bottom: 70px;
+      z-index: 7;
+
+      max-width: 190px;
+
+      color: rgba(32, 30, 27, 0.62);
 
       font-size: 11px;
-      letter-spacing: 0.05em;
+      line-height: 1.8;
+    }
+
+    /* ========================
+       四大分类
+    ======================== */
+
+    .categories-section {
+      padding: 28px 0 90px;
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .category-card {
+      position: relative;
+
+      min-height: 310px;
+
+      overflow: hidden;
+
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-medium);
+
+      transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+    }
+
+    .category-card:hover {
+      transform: translateY(-7px);
+
+      border-color: var(--line-strong);
+
+      box-shadow:
+        0 24px 50px rgba(43, 38, 32, 0.09);
+    }
+
+    .category-top {
+      position: relative;
+      z-index: 4;
+
+      padding: 22px 23px;
+    }
+
+    .category-number {
+      margin-bottom: 20px;
+
+      color: var(--text-light);
+
+      font-size: 11px;
+      letter-spacing: 0.12em;
+    }
+
+    .category-name {
+      margin: 0 0 7px;
+
+      font-size: clamp(20px, 1.55vw, 27px);
+      line-height: 1.25;
+      font-weight: 500;
+    }
+
+    .category-english {
+      color: var(--text-light);
+
+      font-size: 9px;
+      letter-spacing: 0.08em;
+    }
+
+    .category-bottom {
+      position: absolute;
+      left: 23px;
+      bottom: 21px;
+      z-index: 5;
+    }
+
+    .category-visual {
+      position: absolute;
+      right: -4%;
+      bottom: -8%;
+
+      width: 70%;
+      height: 63%;
+
+      pointer-events: none;
+    }
+
+    .shape-shoe {
+      background:
+        linear-gradient(
+          145deg,
+          #817c76,
+          #464440 62%,
+          #252422
+        );
+
+      clip-path:
+        polygon(
+          2% 68%,
+          17% 37%,
+          42% 22%,
+          70% 33%,
+          93% 61%,
+          100% 80%,
+          72% 92%,
+          21% 88%
+        );
+
+      filter:
+        drop-shadow(
+          0 18px 15px
+          rgba(50, 45, 40, 0.23)
+        );
+    }
+
+    .shape-graphic {
+      right: -2%;
+      bottom: -6%;
+
+      width: 68%;
+
+      background:
+        linear-gradient(
+          125deg,
+          #ddd4c7,
+          #a89e91
+        );
+
+      border-radius: 7px;
+
+      transform: rotate(-7deg);
+
+      box-shadow:
+        -20px 20px 0 #c5b9aa,
+        0 22px 30px rgba(61, 52, 43, 0.15);
+    }
+
+    .shape-graphic::before {
+      content: "VISUAL\A DESIGN";
+
+      position: absolute;
+      top: 20%;
+      left: 16%;
+
+      color: rgba(43, 38, 32, 0.70);
+
+      white-space: pre;
+
+      font-family:
+        "Times New Roman",
+        serif;
+
+      font-size: 15px;
+      line-height: 1.5;
+      letter-spacing: 0.12em;
+    }
+
+    .shape-ip {
+      right: 7%;
+      bottom: -16%;
+
+      width: 54%;
+      height: 67%;
+
+      background:
+        radial-gradient(
+          circle at 37% 27%,
+          #d8d7d1,
+          #9d9d98 43%,
+          #656560 70%
+        );
+
+      border-radius:
+        48% 48% 42% 42%;
+
+      box-shadow:
+        inset 0 0 0 11px
+        rgba(255, 255, 255, 0.24),
+        0 25px 40px rgba(59, 54, 48, 0.18);
+    }
+
+    .shape-person {
+      right: 6%;
+      bottom: -14%;
+
+      width: 54%;
+      height: 74%;
+
+      background:
+        radial-gradient(
+          circle at 50% 18%,
+          #c6bbae,
+          #8f8275 35%,
+          #5b5149 72%
+        );
+
+      border-radius:
+        48% 48% 14% 14%;
+
+      box-shadow:
+        0 25px 40px rgba(59, 54, 48, 0.19);
+    }
+
+    /* ========================
+       精选作品
+    ======================== */
+
+    .works-section {
+      background: #ebe7df;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 16px;
+    }
+
+    .project-card {
+      position: relative;
+
+      grid-column: span 3;
+
+      min-width: 0;
+
+      overflow: hidden;
+
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-medium);
+
+      transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+    }
+
+    .project-card:nth-child(1) {
+      grid-column: span 7;
+    }
+
+    .project-card:nth-child(2) {
+      grid-column: span 5;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+
+      box-shadow:
+        0 26px 55px rgba(43, 38, 32, 0.10);
+    }
+
+    .project-visual {
+      position: relative;
+
+      min-height: 270px;
+
+      overflow: hidden;
+
+      background:
+        linear-gradient(
+          145deg,
+          #d8d2c8,
+          #bfb6aa
+        );
+    }
+
+    .project-card:nth-child(1)
+    .project-visual,
+    .project-card:nth-child(2)
+    .project-visual {
+      min-height: 410px;
+    }
+
+    .project-card.has-image
+    .project-visual {
+      background-position: center;
+      background-size: cover;
+    }
+
+    .project-card.has-image
+    .project-shape,
+    .project-card.has-image
+    .project-code {
+      display: none;
+    }
+
+    .project-visual::after {
+      content: "";
+
+      position: absolute;
+      inset: 0;
+
+      background:
+        linear-gradient(
+          to bottom,
+          transparent 55%,
+          rgba(32, 27, 22, 0.12)
+        );
+
+      pointer-events: none;
+    }
+
+    .project-code {
+      position: absolute;
+      top: 20px;
+      left: 21px;
+
+      z-index: 4;
+
+      color:
+        rgba(39, 35, 31, 0.50);
+
+      font-size: 10px;
+      letter-spacing: 0.15em;
+    }
+
+    .project-shape {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+
+      width: 68%;
+      height: 58%;
+
+      transform:
+        translate(-50%, -50%);
+
+      filter:
+        drop-shadow(
+          0 25px 24px
+          rgba(48, 42, 36, 0.20)
+        );
+    }
+
+    .project-shape.shoe {
+      background:
+        linear-gradient(
+          145deg,
+          #6f6c68,
+          #3f3e3a 68%,
+          #252422
+        );
+
+      clip-path:
+        polygon(
+          3% 64%,
+          17% 34%,
+          40% 22%,
+          69% 33%,
+          91% 62%,
+          99% 80%,
+          73% 91%,
+          19% 88%
+        );
+    }
+
+    .project-shape.bag {
+      width: 51%;
+      height: 65%;
+
+      background:
+        linear-gradient(
+          145deg,
+          #e1ddd5,
+          #aaa39a
+        );
+
+      border-radius: 14px 14px 20px 20px;
+    }
+
+    .project-shape.bag::before {
+      content: "";
+
+      position: absolute;
+      left: 24%;
+      right: 24%;
+      top: -18%;
+
+      height: 38%;
+
+      border:
+        8px solid rgba(96, 88, 78, 0.55);
+
+      border-bottom: 0;
+      border-radius:
+        50% 50% 0 0;
+    }
+
+    .project-shape.poster {
+      width: 52%;
+      height: 72%;
+
+      background:
+        repeating-linear-gradient(
+          145deg,
+          #2f2e2b 0,
+          #2f2e2b 20px,
+          #d9d3ca 21px,
+          #d9d3ca 37px
+        );
+
+      transform:
+        translate(-50%, -50%)
+        rotate(-4deg);
+
+      border-radius: 3px;
+    }
+
+    .project-shape.ip {
+      width: 54%;
+      height: 60%;
+
+      background:
+        radial-gradient(
+          circle at 38% 28%,
+          #f2f0eb,
+          #b8b7b1 48%,
+          #85847f
+        );
+
+      border-radius: 48%;
+    }
+
+    .project-shape.clothes {
+      width: 55%;
+      height: 75%;
+
+      background:
+        linear-gradient(
+          135deg,
+          #d6d3cc,
+          #89867f
+        );
+
+      clip-path:
+        polygon(
+          34% 3%,
+          66% 3%,
+          77% 17%,
+          96% 31%,
+          82% 52%,
+          76% 97%,
+          24% 97%,
+          18% 52%,
+          4% 31%,
+          23% 17%
+        );
+    }
+
+    .project-shape.logo {
+      width: 55%;
+      height: 55%;
+
+      background:
+        linear-gradient(
+          145deg,
+          #f1eee8,
+          #c2b8aa
+        );
+
+      border-radius: 50%;
+    }
+
+    .project-shape.logo::before {
+      content: "LOGO";
+
+      position: absolute;
+      inset: 0;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      color: rgba(49, 43, 37, 0.65);
+
+      font-family:
+        "Times New Roman",
+        serif;
+
+      font-size: 28px;
+      letter-spacing: 0.12em;
+    }
+
+    .project-info {
+      padding: 20px 21px 22px;
+    }
+
+    .project-title {
+      margin: 0 0 9px;
+
+      font-size: 19px;
+      line-height: 1.45;
+      font-weight: 500;
+    }
+
+    .project-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+
+      color: var(--text-light);
+
+      font-size: 11px;
+    }
+
+    /* ========================
+       设计能力
+    ======================== */
+
+    .capability-section {
+      background: var(--background);
+    }
+
+    .capability-grid {
+      display: grid;
+      grid-template-columns:
+        1.15fr repeat(3, 1fr);
+
+      gap: 14px;
+    }
+
+    .capability-intro,
+    .capability-card {
+      min-height: 310px;
+
+      padding: 28px;
+
+      border: 1px solid var(--line);
+      border-radius: var(--radius-medium);
+    }
+
+    .capability-intro {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      background: var(--text);
+      color: #f4f1eb;
+    }
+
+    .capability-intro h3 {
+      max-width: 390px;
+      margin: 0;
+
+      font-family:
+        "Songti SC",
+        SimSun,
+        serif;
+
+      font-size: clamp(31px, 3vw, 50px);
+      line-height: 1.25;
+      font-weight: 400;
+    }
+
+    .capability-intro p {
+      max-width: 390px;
+      margin: 0;
+
+      color:
+        rgba(244, 241, 235, 0.62);
+
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    .capability-card {
+      display: flex;
+      flex-direction: column;
+
+      background: var(--card);
+    }
+
+    .capability-index {
+      margin-bottom: auto;
+
+      color: var(--text-light);
+
+      font-size: 11px;
+      letter-spacing: 0.12em;
+    }
+
+    .capability-name {
+      margin: 0 0 16px;
+
+      font-size: 24px;
+      line-height: 1.3;
+      font-weight: 500;
+    }
+
+    .capability-copy {
+      margin: 0;
+
+      color: var(--text-soft);
+
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    /* ========================
+       关于我
+    ======================== */
+
+    .about-section {
+      padding: 108px 0;
+
+      background: #e5e0d7;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.8fr 1.4fr;
+      gap: 100px;
+    }
+
+    .about-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .about-small {
+      color: var(--text-light);
+
+      font-size: 11px;
+      letter-spacing: 0.16em;
+    }
+
+    .about-number {
+      margin-top: 80px;
+
+      color:
+        rgba(23, 23, 21, 0.09);
+
+      font-family:
+        "Times New Roman",
+        serif;
+
+      font-size: 130px;
+      line-height: 0.8;
+    }
+
+    .about-title {
+      max-width: 810px;
+      margin: 0 0 30px;
+
+      font-family:
+        "Songti SC",
+        SimSun,
+        serif;
+
+      font-size: clamp(42px, 5vw, 76px);
+      line-height: 1.22;
+      font-weight: 400;
+      letter-spacing: -0.045em;
+    }
+
+    .about-copy {
+      max-width: 700px;
+      margin: 0;
+
+      color: var(--text-soft);
+
+      font-size: 15px;
+      line-height: 2.1;
+    }
+
+    .about-details {
+      margin-top: 45px;
+
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0 45px;
+    }
+
+    .about-detail {
+      padding: 17px 0;
+
+      border-top: 1px solid var(--line);
+    }
+
+    .about-detail strong {
+      display: block;
+      margin-bottom: 8px;
+
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .about-detail span {
+      color: var(--text-soft);
+
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    /* ========================
+       联系区域
+    ======================== */
+
+    .contact-section {
+      padding: 100px 0;
+
+      background: var(--text);
+      color: #f4f1eb;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 80px;
+      align-items: end;
+    }
+
+    .contact-title {
+      max-width: 900px;
+      margin: 0;
+
+      font-family:
+        "Songti SC",
+        SimSun,
+        serif;
+
+      font-size: clamp(45px, 6vw, 94px);
+      line-height: 1.1;
+      font-weight: 400;
+      letter-spacing: -0.055em;
+    }
+
+    .contact-side {
+      padding-bottom: 10px;
+    }
+
+    .contact-side p {
+      margin: 0 0 24px;
+
+      color:
+        rgba(244, 241, 235, 0.62);
+
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 15px;
+
+      padding-bottom: 8px;
+
+      border-bottom:
+        1px solid
+        rgba(244, 241, 235, 0.34);
+
+      font-size: 14px;
+
+      transition: gap 0.25s ease;
+    }
+
+    .contact-link:hover {
+      gap: 22px;
+    }
+
+    /* ========================
+       页脚
+    ======================== */
+
+    .site-footer {
+      padding: 25px 0 34px;
+
+      background: var(--text);
+      color:
+        rgba(244, 241, 235, 0.40);
+
+      border-top:
+        1px solid
+        rgba(244, 241, 235, 0.10);
+
+      font-size: 10px;
+      letter-spacing: 0.06em;
     }
 
     .footer-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 25px;
+      gap: 30px;
     }
 
-    /* =========================
-       平板端
-    ========================= */
+    /* ========================
+       动画
+    ======================== */
 
-    @media (max-width: 1150px) {
+    .reveal {
+      opacity: 0;
+
+      transform:
+        translateY(24px);
+
+      transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ========================
+       平板适配
+    ======================== */
+
+    @media (max-width: 1120px) {
       .container {
-        width: min(var(--max-width), calc(100% - 44px));
+        width:
+          min(
+            var(--max-width),
+            calc(100% - 44px)
+          );
       }
 
-      .gallery-stage {
+      .hero-grid {
+        grid-template-columns: 1fr 1.1fr;
+        gap: 55px;
+      }
+
+      .hero-visual {
+        min-height: 500px;
+      }
+
+      .category-grid {
         grid-template-columns:
-          0.65fr
-          0.44fr
-          2.7fr
-          0.56fr
-          0.65fr;
-
-        gap: 16px;
+          repeat(2, 1fr);
       }
 
-      .center-screen {
-        height: 305px;
+      .project-card {
+        grid-column: span 6;
       }
 
-      .category-card {
-        min-height: 175px;
-        padding: 26px 22px 21px;
+      .project-card:nth-child(1),
+      .project-card:nth-child(2) {
+        grid-column: span 6;
       }
 
-      .works-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 8px;
-      }
-
-      .work-card:first-child {
-        grid-column: span 2;
+      .capability-grid {
+        grid-template-columns:
+          repeat(2, 1fr);
       }
 
       .about-grid {
@@ -1372,109 +1573,151 @@
       }
     }
 
-    /* =========================
-       手机端
-    ========================= */
+    /* ========================
+       手机适配
+    ======================== */
 
     @media (max-width: 760px) {
       .container {
-        width: min(100%, calc(100% - 28px));
+        width:
+          min(
+            100%,
+            calc(100% - 28px)
+          );
       }
 
-      .site-header {
-        position: relative;
-
-        padding: 22px 0;
-
-        background: rgba(0, 0, 0, 0.88);
-        border-bottom: 1px solid var(--line);
+      .section {
+        padding: 65px 0;
       }
 
-      .header-inner {
+      .section-heading {
+        margin-bottom: 28px;
+
         align-items: flex-start;
         flex-direction: column;
-        gap: 24px;
-      }
-
-      .brand-cn {
-        font-size: 28px;
-      }
-
-      .brand-en {
-        font-size: 13px;
-      }
-
-      .header-right {
-        width: 100%;
-
         gap: 16px;
       }
 
-      .site-nav {
-        width: calc(100% - 50px);
-
-        gap: 22px;
-
-        overflow-x: auto;
-
-        scrollbar-width: none;
+      .section-title {
+        font-size: 40px;
       }
 
-      .site-nav::-webkit-scrollbar {
-        display: none;
+      .header-inner {
+        min-height: 72px;
+      }
+
+      .site-nav {
+        position: fixed;
+        inset: 72px 0 auto 0;
+
+        max-height: 0;
+
+        overflow: hidden;
+
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 0;
+
+        background: var(--background);
+
+        border-bottom: 1px solid var(--line);
+
+        transition:
+          max-height 0.35s ease;
+      }
+
+      .site-nav.open {
+        max-height: 320px;
       }
 
       .site-nav a {
-        flex: 0 0 auto;
+        width: 100%;
 
-        font-size: 13px;
+        padding: 19px 25px;
+
+        border-top: 1px solid var(--line);
       }
 
-      .hero {
-        min-height: auto;
-        padding: 34px 0 22px;
-      }
-
-      .ceiling-lines,
-      .gallery-frame {
+      .site-nav a::after {
         display: none;
       }
 
-      .gallery-stage {
-        min-height: 335px;
-
-        display: block;
+      .menu-button {
+        display: inline-flex;
       }
 
-      .center-screen {
-        width: 100%;
-        height: 335px;
+      .hero {
+        padding: 42px 0 58px;
       }
 
-      .screen-copy {
-        top: 45%;
-        left: 9%;
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 46px;
       }
 
-      .screen-copy-cn {
-        font-size: 15px;
+      .hero-title {
+        font-size: 52px;
       }
 
-      .silhouette {
-        left: 67%;
+      .hero-description {
+        font-size: 14px;
       }
 
-      .hero-label {
-        right: 10px;
-        bottom: 10px;
+      .hero-visual {
+        min-height: 420px;
 
-        padding: 8px 10px;
-
-        font-size: 11px;
+        border-radius: 19px;
       }
 
-      .category-section {
-        margin-top: 0;
+      .hero-branch {
+        right: 14px;
+
+        transform:
+          scale(0.82)
+          rotate(-12deg);
+      }
+
+      .hero-board {
+        right: 18%;
+        bottom: 74px;
+
+        width: 45%;
+        height: 51%;
+      }
+
+      .hero-paper {
+        right: 8%;
+        bottom: 83px;
+
+        width: 34%;
+        height: 48%;
+      }
+
+      .hero-stone {
+        right: -20px;
+        bottom: 48px;
+
+        width: 115px;
+        height: 100px;
+      }
+
+      .hero-platform {
+        left: 10%;
+        bottom: 38px;
+      }
+
+      .hero-note {
+        left: 6%;
+        bottom: 54px;
+
+        max-width: 120px;
+
+        font-size: 9px;
+      }
+
+      .categories-section {
+        padding: 10px 0 65px;
       }
 
       .category-grid {
@@ -1482,77 +1725,74 @@
       }
 
       .category-card {
-        min-height: 178px;
+        min-height: 260px;
       }
 
-      .category-title {
-        font-size: 24px;
+      .project-grid {
+        grid-template-columns: 1fr;
       }
 
-      .category-decoration {
-        width: 42%;
-      }
-
-      .works-section {
-        padding: 38px 0 54px;
-      }
-
-      .section-header {
-        align-items: flex-start;
-      }
-
-      .view-all {
-        margin-top: 4px;
-      }
-
-      .works-grid {
-        display: flex;
-        gap: 10px;
-
-        overflow-x: auto;
-
-        scroll-snap-type: x mandatory;
-
-        padding-bottom: 8px;
-      }
-
-      .works-grid::-webkit-scrollbar {
-        height: 3px;
-      }
-
-      .works-grid::-webkit-scrollbar-thumb {
-        background: rgba(255, 255, 255, 0.18);
-      }
-
-      .work-card,
-      .work-card:first-child {
-        min-width: 78%;
+      .project-card,
+      .project-card:nth-child(1),
+      .project-card:nth-child(2) {
         grid-column: auto;
-
-        scroll-snap-align: start;
       }
 
-      .work-image,
-      .work-card:first-child .work-image {
-        min-height: 320px;
+      .project-card:nth-child(1)
+      .project-visual,
+      .project-card:nth-child(2)
+      .project-visual,
+      .project-visual {
+        min-height: 310px;
+      }
+
+      .capability-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .capability-intro,
+      .capability-card {
+        min-height: 270px;
       }
 
       .about-section {
-        padding: 55px 0 65px;
+        padding: 70px 0;
       }
 
       .about-grid {
         grid-template-columns: 1fr;
-        gap: 30px;
+        gap: 28px;
       }
 
-      .about-heading {
-        font-size: 38px;
+      .about-number {
+        display: none;
+      }
+
+      .about-title {
+        font-size: 45px;
+      }
+
+      .about-details {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-section {
+        padding: 70px 0;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 45px;
+      }
+
+      .contact-title {
+        font-size: 50px;
       }
 
       .footer-inner {
         align-items: flex-start;
         flex-direction: column;
+        gap: 10px;
       }
     }
   </style>
@@ -1560,357 +1800,267 @@
 
 <body>
 
-  <!-- =========================
-       顶部导航
-  ========================== -->
+  <!-- 顶部导航 -->
 
-  <header class="site-header">
+  <header
+    class="site-header"
+    id="siteHeader"
+  >
     <div class="container header-inner">
 
-      <a class="site-brand" href="#">
-        <span class="brand-cn">小船小船-</span>
-        <span class="brand-en">PORTFOLIO</span>
+      <a
+        href="#top"
+        class="site-brand"
+      >
+        <span class="brand-name">
+          小船小船-
+        </span>
+
+        <span class="brand-subtitle">
+          PORTFOLIO
+        </span>
       </a>
 
-      <div class="header-right">
+      <nav
+        class="site-nav"
+        id="siteNav"
+      >
+        <a href="#categories">
+          定制类产品设计
+        </a>
 
-        <nav class="site-nav">
-          <a href="#custom">定制类产品设计</a>
-          <a href="#visual">平面视觉</a>
-          <a href="#ip">IP设计</a>
-          <a href="#about">关于我</a>
-        </nav>
+        <a href="#works">
+          平面视觉
+        </a>
 
-        <button
-          class="round-button"
-          type="button"
-          aria-label="装饰按钮"
-        >
-          <span>◐</span>
-        </button>
+        <a href="#works">
+          IP设计
+        </a>
 
-      </div>
+        <a href="#about">
+          关于我
+        </a>
+      </nav>
+
+      <button
+        class="menu-button"
+        id="menuButton"
+        type="button"
+        aria-label="打开导航菜单"
+      >
+        <span class="menu-lines"></span>
+      </button>
+
     </div>
   </header>
 
-  <main>
+  <main id="top">
 
-    <!-- =========================
-         展厅式首屏
-    ========================== -->
+    <!-- 首页首屏 -->
 
     <section class="hero">
+      <div class="container hero-grid">
 
-      <div class="ceiling-lines"></div>
+        <div class="hero-copy reveal">
 
-      <div class="container">
-
-        <div class="gallery-stage">
-
-          <!-- 左侧鞋类展品 -->
-
-          <div class="gallery-frame small-one">
-            <div class="frame-product"></div>
+          <div class="hero-kicker">
+            Personal Design Portfolio
           </div>
 
-          <!-- 左侧包袋展品 -->
+          <h1 class="hero-title">
+            定制产品、平面视觉与IP设计作品集。
+          </h1>
 
-          <div class="gallery-frame small-two">
-            <div class="frame-product bag"></div>
-          </div>
+          <p class="hero-description">
+            关注图案、材质、结构和视觉落地。
+            这里集中展示我的鞋类、化妆包、服装、
+            商品详情页、Logo以及原创IP项目。
+          </p>
 
-          <!-- 中央大屏 -->
+          <div class="hero-actions">
 
-          <div class="center-screen">
+            <a
+              href="#works"
+              class="button button-primary"
+            >
+              浏览作品
+              <span>→</span>
+            </a>
 
-            <div class="screen-copy">
-
-              <p class="screen-copy-cn">
-                以设计为舟<br>
-                探索更多可能<br>
-                让创意落地生长
-              </p>
-
-              <div class="screen-line"></div>
-
-              <p class="screen-copy-en">
-                Design as a boat,<br>
-                explore more possibilities.<br>
-                Make creativity<br>
-                take root.
-              </p>
-
-            </div>
-
-            <div class="silhouette">
-              <div class="silhouette-head"></div>
-              <div class="silhouette-body"></div>
-              <div class="silhouette-arm left"></div>
-              <div class="silhouette-arm right"></div>
-              <div class="silhouette-leg left"></div>
-              <div class="silhouette-leg right"></div>
-            </div>
+            <a
+              href="#about"
+              class="button button-secondary"
+            >
+              关于我
+            </a>
 
           </div>
-
-          <!-- 右侧服装展品 -->
-
-          <div class="gallery-frame small-three">
-            <div class="frame-product jacket"></div>
-          </div>
-
-          <!-- 右侧包袋展品 -->
-
-          <div class="gallery-frame small-four">
-            <div class="frame-product backpack"></div>
-          </div>
-
         </div>
-      </div>
 
-      <div class="hero-label">
-        暗色作品画廊
-      </div>
+        <div class="hero-visual reveal">
 
-    </section>
+          <div class="hero-branch">
+            <span class="leaf leaf-one"></span>
+            <span class="leaf leaf-two"></span>
+            <span class="leaf leaf-three"></span>
+            <span class="leaf leaf-four"></span>
+            <span class="leaf leaf-five"></span>
+          </div>
 
-    <!-- =========================
-         四大分类
-    ========================== -->
+          <div class="hero-object hero-board"></div>
+          <div class="hero-object hero-paper"></div>
+          <div class="hero-object hero-stone"></div>
+          <div class="hero-object hero-platform"></div>
 
-    <section class="category-section">
-
-      <div class="container">
-
-        <div class="category-grid">
-
-          <a
-            class="category-card"
-            id="custom"
-            href="#works"
-          >
-            <div class="category-decoration shoe"></div>
-
-            <div class="category-content">
-
-              <h2 class="category-title">
-                定制类产品设计
-              </h2>
-
-              <div class="category-en">
-                CUSTOM PRODUCT DESIGN
-              </div>
-
-              <div class="category-link">
-                进入浏览
-                <span>→</span>
-              </div>
-
-            </div>
-          </a>
-
-          <a
-            class="category-card"
-            id="visual"
-            href="#works"
-          >
-            <div class="category-decoration graphic"></div>
-
-            <div class="category-content">
-
-              <h2 class="category-title">
-                平面视觉
-              </h2>
-
-              <div class="category-en">
-                GRAPHIC DESIGN
-              </div>
-
-              <div class="category-link">
-                进入浏览
-                <span>→</span>
-              </div>
-
-            </div>
-          </a>
-
-          <a
-            class="category-card"
-            id="ip"
-            href="#works"
-          >
-            <div class="category-decoration ip"></div>
-
-            <div class="category-content">
-
-              <h2 class="category-title">
-                IP设计
-              </h2>
-
-              <div class="category-en">
-                IP DESIGN
-              </div>
-
-              <div class="category-link">
-                进入浏览
-                <span>→</span>
-              </div>
-
-            </div>
-          </a>
-
-          <a
-            class="category-card"
-            href="#about"
-          >
-            <div class="category-decoration person"></div>
-
-            <div class="category-content">
-
-              <h2 class="category-title">
-                关于我
-              </h2>
-
-              <div class="category-en">
-                ABOUT ME
-              </div>
-
-              <div class="category-link">
-                进入浏览
-                <span>→</span>
-              </div>
-
-            </div>
-          </a>
+          <div class="hero-note">
+            CUSTOM PRODUCT DESIGN<br>
+            GRAPHIC DESIGN<br>
+            IP DESIGN
+          </div>
 
         </div>
       </div>
     </section>
 
-    <!-- =========================
-         精选作品
-    ========================== -->
+    <!-- 四大分类 -->
 
     <section
-      class="works-section"
-      id="works"
+      class="categories-section"
+      id="categories"
     >
-
       <div class="container">
 
-        <div class="section-header">
+        <div
+          class="category-grid reveal"
+          id="categoryGrid"
+        ></div>
 
-          <div class="section-title-group">
+      </div>
+    </section>
+
+    <!-- 精选作品 -->
+
+    <section
+      class="section works-section"
+      id="works"
+    >
+      <div class="container">
+
+        <div class="section-heading reveal">
+
+          <div>
+            <div class="section-label">
+              Selected Works
+            </div>
 
             <h2 class="section-title">
               精选作品
             </h2>
-
-            <div class="section-title-en">
-              SELECTED WORKS
-            </div>
-
           </div>
 
-          <a
-            class="view-all"
-            href="#works"
-          >
-            查看全部作品
-            <span>→</span>
-          </a>
+          <p class="section-description">
+            这里展示具有代表性的项目。
+            后续可以继续增加、删除和调整作品顺序，
+            也可以为每个项目建立独立详情页面。
+          </p>
 
         </div>
 
-        <div class="works-grid">
+        <div
+          class="project-grid"
+          id="projectGrid"
+        ></div>
 
-          <article class="work-card">
+      </div>
+    </section>
 
-            <div class="work-image">
-              <div class="work-object shoe"></div>
+    <!-- 设计能力 -->
+
+    <section class="section capability-section">
+      <div class="container">
+
+        <div class="section-heading reveal">
+
+          <div>
+            <div class="section-label">
+              Capabilities
             </div>
 
-            <div class="work-info">
-              <h3 class="work-title">
-                鞋类定制系列设计
-              </h3>
+            <h2 class="section-title">
+              设计能力
+            </h2>
+          </div>
 
-              <div class="work-category">
-                定制类产品设计
-              </div>
-            </div>
+          <p class="section-description">
+            从产品图案到视觉呈现，
+            关注设计概念、商业适配与最终落地。
+          </p>
+
+        </div>
+
+        <div class="capability-grid">
+
+          <article class="capability-intro reveal">
+
+            <h3>
+              从想法整理到最终呈现。
+            </h3>
+
+            <p>
+              根据产品定位、使用场景与目标人群，
+              建立清晰的视觉方向，并完成可落地的设计方案。
+            </p>
 
           </article>
 
-          <article class="work-card">
+          <article class="capability-card reveal">
 
-            <div class="work-image">
-              <div class="work-object bag"></div>
+            <div class="capability-index">
+              01 / PRODUCT
             </div>
 
-            <div class="work-info">
-              <h3 class="work-title">
-                化妆包产品设计
-              </h3>
+            <h3 class="capability-name">
+              产品设计
+            </h3>
 
-              <div class="work-category">
-                定制类产品设计
-              </div>
-            </div>
+            <p class="capability-copy">
+              鞋类、化妆包、服装及其他定制类产品，
+              包含图案、配色、材质和系列化设计。
+            </p>
 
           </article>
 
-          <article class="work-card">
+          <article class="capability-card reveal">
 
-            <div class="work-image">
-              <div class="work-object poster"></div>
+            <div class="capability-index">
+              02 / VISUAL
             </div>
 
-            <div class="work-info">
-              <h3 class="work-title">
-                平面视觉海报设计
-              </h3>
+            <h3 class="capability-name">
+              平面视觉
+            </h3>
 
-              <div class="work-category">
-                平面视觉
-              </div>
-            </div>
+            <p class="capability-copy">
+              商品详情页、Logo、品牌视觉、图案、
+              海报和电商展示等设计内容。
+            </p>
 
           </article>
 
-          <article class="work-card">
+          <article class="capability-card reveal">
 
-            <div class="work-image">
-              <div class="work-object ip"></div>
+            <div class="capability-index">
+              03 / IP
             </div>
 
-            <div class="work-info">
-              <h3 class="work-title">
-                原创IP角色设计
-              </h3>
+            <h3 class="capability-name">
+              IP设计
+            </h3>
 
-              <div class="work-category">
-                IP设计
-              </div>
-            </div>
-
-          </article>
-
-          <article class="work-card">
-
-            <div class="work-image">
-              <div class="work-object clothes"></div>
-            </div>
-
-            <div class="work-info">
-              <h3 class="work-title">
-                服装图案系列设计
-              </h3>
-
-              <div class="work-category">
-                定制类产品设计
-              </div>
-            </div>
+            <p class="capability-copy">
+              角色设定、形象延展、表情包、
+              文创应用及动态传播方向。
+            </p>
 
           </article>
 
@@ -1918,52 +2068,115 @@
       </div>
     </section>
 
-    <!-- =========================
-         关于我
-    ========================== -->
+    <!-- 关于我 -->
 
     <section
       class="about-section"
       id="about"
     >
-
       <div class="container about-grid">
 
-        <div class="about-label">
-          ABOUT THE DESIGNER
+        <div class="about-left reveal">
+
+          <div class="about-small">
+            ABOUT THE DESIGNER
+          </div>
+
+          <div class="about-number">
+            04
+          </div>
+
         </div>
 
-        <div>
+        <div class="reveal">
 
-          <h2 class="about-heading">
-            用设计整理想法，记录每一个阶段的成长。
+          <h2 class="about-title">
+            我关注视觉表达，也关注设计能否真正使用。
           </h2>
 
           <p class="about-copy">
-            我主要关注定制类产品设计、平面视觉与IP形象设计。
-            喜欢从图案、材质、结构、氛围和实际使用场景出发，
-            让作品既具备视觉表达，也能够真正落地。
+            我主要从事定制类产品设计、平面视觉和IP形象设计。
+            在项目中，我会从目标人群、产品定位和实际应用出发，
+            逐步完成灵感整理、视觉方向、图案设计、效果呈现和最终优化。
             这个网站将作为长期更新的个人设计档案，
-            逐步收录鞋类、化妆包、服装、详情页、
-            Logo、图案和原创IP等项目。
+            用于集中展示不同时期的项目和专业能力。
           </p>
 
+          <div class="about-details">
+
+            <div class="about-detail">
+              <strong>设计方向</strong>
+              <span>
+                定制产品 / 平面视觉 / IP设计
+              </span>
+            </div>
+
+            <div class="about-detail">
+              <strong>项目类型</strong>
+              <span>
+                鞋、包袋、服装、品牌与电商视觉
+              </span>
+            </div>
+
+            <div class="about-detail">
+              <strong>工作方式</strong>
+              <span>
+                独立设计、视觉整理与方案落地
+              </span>
+            </div>
+
+            <div class="about-detail">
+              <strong>网站状态</strong>
+              <span>
+                作品持续整理与更新中
+              </span>
+            </div>
+
+          </div>
         </div>
+
+      </div>
+    </section>
+
+    <!-- 联系 -->
+
+    <section class="contact-section">
+      <div class="container contact-grid">
+
+        <h2 class="contact-title reveal">
+          了解更多项目与设计内容。
+        </h2>
+
+        <div class="contact-side reveal">
+
+          <p>
+            联系方式会在作品整理完成后补充。
+            未来也可以增加邮箱、社交账号和简历下载入口。
+          </p>
+
+          <a
+            href="#top"
+            class="contact-link"
+          >
+            返回顶部
+            <span>↑</span>
+          </a>
+
+        </div>
+
       </div>
     </section>
 
   </main>
 
-  <!-- =========================
-       页脚
-  ========================== -->
+  <!-- 页脚 -->
 
   <footer class="site-footer">
-
     <div class="container footer-inner">
 
       <span>
-        © 2026 小船小船- PORTFOLIO
+        © <span id="currentYear"></span>
+        小船小船- PORTFOLIO
       </span>
 
       <span>
@@ -1972,6 +2185,319 @@
 
     </div>
   </footer>
+
+  <script>
+    /*
+      分类管理区：
+      后续需要增加、删除或修改分类时，
+      只调整下面 categories 里的内容。
+    */
+
+    const categories = [
+      {
+        number: "01",
+        name: "定制类产品设计",
+        english: "CUSTOM PRODUCT DESIGN",
+        detail: "鞋类｜化妆包｜服装｜其他",
+        shape: "shoe",
+        link: "#works"
+      },
+      {
+        number: "02",
+        name: "平面视觉",
+        english: "GRAPHIC DESIGN",
+        detail: "详情页｜Logo｜图案｜包装",
+        shape: "graphic",
+        link: "#works"
+      },
+      {
+        number: "03",
+        name: "IP设计",
+        english: "IP DESIGN",
+        detail: "角色形象｜延展｜动态｜文创",
+        shape: "ip",
+        link: "#works"
+      },
+      {
+        number: "04",
+        name: "关于我",
+        english: "ABOUT ME",
+        detail: "简介｜能力｜经历｜联系",
+        shape: "person",
+        link: "#about"
+      }
+    ];
+
+    /*
+      作品管理区：
+
+      image 留空时显示当前的临时占位造型。
+
+      上传真实图片后可以这样填写：
+      image: "images/shoe-project.jpg"
+
+      kind 可填写：
+      shoe / bag / clothes / poster / logo / ip
+    */
+
+    const projects = [
+      {
+        code: "PROJECT 01",
+        title: "鞋类定制系列设计",
+        category: "定制类产品设计",
+        year: "2026",
+        kind: "shoe",
+        image: "",
+        link: "#"
+      },
+      {
+        code: "PROJECT 02",
+        title: "化妆包系列设计",
+        category: "定制类产品设计",
+        year: "2026",
+        kind: "bag",
+        image: "",
+        link: "#"
+      },
+      {
+        code: "PROJECT 03",
+        title: "服装图案设计",
+        category: "定制类产品设计",
+        year: "2026",
+        kind: "clothes",
+        image: "",
+        link: "#"
+      },
+      {
+        code: "PROJECT 04",
+        title: "商品详情页设计",
+        category: "平面视觉",
+        year: "2026",
+        kind: "poster",
+        image: "",
+        link: "#"
+      },
+      {
+        code: "PROJECT 05",
+        title: "Logo与品牌图形设计",
+        category: "平面视觉",
+        year: "2026",
+        kind: "logo",
+        image: "",
+        link: "#"
+      },
+      {
+        code: "PROJECT 06",
+        title: "原创IP角色设计",
+        category: "IP设计",
+        year: "2026",
+        kind: "ip",
+        image: "",
+        link: "#"
+      }
+    ];
+
+    const categoryGrid =
+      document.getElementById("categoryGrid");
+
+    const projectGrid =
+      document.getElementById("projectGrid");
+
+    function renderCategories() {
+      categoryGrid.innerHTML =
+        categories
+          .map(category => `
+            <a
+              class="category-card"
+              href="${category.link}"
+            >
+              <div class="category-top">
+
+                <div class="category-number">
+                  ${category.number}
+                </div>
+
+                <h2 class="category-name">
+                  ${category.name}
+                </h2>
+
+                <div class="category-english">
+                  ${category.english}
+                </div>
+
+              </div>
+
+              <div
+                class="
+                  category-visual
+                  shape-${category.shape}
+                "
+              ></div>
+
+              <div class="category-bottom">
+
+                <span class="text-link">
+                  ${category.detail}
+                  <span>→</span>
+                </span>
+
+              </div>
+            </a>
+          `)
+          .join("");
+    }
+
+    function renderProjects() {
+      projectGrid.innerHTML =
+        projects
+          .map(project => {
+            const imageStyle =
+              project.image
+                ? `style="background-image: url('${project.image}')"`
+                : "";
+
+            const imageClass =
+              project.image
+                ? "has-image"
+                : "";
+
+            return `
+              <a
+                class="
+                  project-card
+                  reveal
+                  ${imageClass}
+                "
+                href="${project.link}"
+              >
+
+                <div
+                  class="project-visual"
+                  ${imageStyle}
+                >
+
+                  <div class="project-code">
+                    ${project.code}
+                  </div>
+
+                  <div
+                    class="
+                      project-shape
+                      ${project.kind}
+                    "
+                  ></div>
+
+                </div>
+
+                <div class="project-info">
+
+                  <h3 class="project-title">
+                    ${project.title}
+                  </h3>
+
+                  <div class="project-meta">
+
+                    <span>
+                      ${project.category}
+                    </span>
+
+                    <span>
+                      ${project.year}
+                    </span>
+
+                  </div>
+
+                </div>
+              </a>
+            `;
+          })
+          .join("");
+    }
+
+    renderCategories();
+    renderProjects();
+
+    /*
+      手机导航
+    */
+
+    const menuButton =
+      document.getElementById("menuButton");
+
+    const siteNav =
+      document.getElementById("siteNav");
+
+    menuButton.addEventListener(
+      "click",
+      () => {
+        siteNav.classList.toggle("open");
+        document.body.classList.toggle("menu-open");
+      }
+    );
+
+    siteNav
+      .querySelectorAll("a")
+      .forEach(link => {
+        link.addEventListener(
+          "click",
+          () => {
+            siteNav.classList.remove("open");
+            document.body.classList.remove("menu-open");
+          }
+        );
+      });
+
+    /*
+      顶部导航滚动状态
+    */
+
+    const siteHeader =
+      document.getElementById("siteHeader");
+
+    window.addEventListener(
+      "scroll",
+      () => {
+        siteHeader.classList.toggle(
+          "scrolled",
+          window.scrollY > 20
+        );
+      }
+    );
+
+    /*
+      滚动出现动画
+    */
+
+    const revealObserver =
+      new IntersectionObserver(
+        entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          threshold: 0.12
+        }
+      );
+
+    document
+      .querySelectorAll(".reveal")
+      .forEach(element => {
+        revealObserver.observe(element);
+      });
+
+    /*
+      自动更新页脚年份
+    */
+
+    document.getElementById(
+      "currentYear"
+    ).textContent =
+      new Date().getFullYear();
+  </script>
 
 </body>
 </html>
