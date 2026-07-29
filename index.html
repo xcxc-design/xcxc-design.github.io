@@ -4,17 +4,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>小船小船- 作品集</title>
+  <title>小船小船-｜设计作品集</title>
 
   <style>
     :root {
-      --bg: #09090b;
-      --panel: #121216;
-      --panel-hover: #18181e;
-      --line: rgba(255, 255, 255, 0.09);
-      --text: #f3f1eb;
-      --text-soft: rgba(243, 241, 235, 0.68);
-      --accent: #d6d0c4;
+      --bg: #050505;
+      --bg-soft: #0a0a0a;
+      --panel: #101010;
+      --panel-light: #171717;
+
+      --text: #f2f2f0;
+      --text-soft: rgba(242, 242, 240, 0.62);
+      --text-faint: rgba(242, 242, 240, 0.38);
+
+      --line: rgba(255, 255, 255, 0.10);
+      --line-strong: rgba(255, 255, 255, 0.18);
+
+      --accent: #9b7452;
+
+      --max-width: 1440px;
     }
 
     * {
@@ -27,9 +35,53 @@
 
     body {
       margin: 0;
-      background: var(--bg);
+      overflow-x: hidden;
+
+      background:
+        radial-gradient(
+          circle at 50% 10%,
+          rgba(255, 255, 255, 0.035),
+          transparent 32%
+        ),
+        var(--bg);
+
       color: var(--text);
-      font-family: Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+
+      font-family:
+        Arial,
+        "PingFang SC",
+        "Microsoft YaHei",
+        sans-serif;
+    }
+
+    body::before {
+      content: "";
+
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+
+      pointer-events: none;
+
+      background-image:
+        linear-gradient(
+          rgba(255, 255, 255, 0.012) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0.012) 1px,
+          transparent 1px
+        );
+
+      background-size: 48px 48px;
+
+      mask-image:
+        linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.55),
+          transparent 80%
+        );
     }
 
     a {
@@ -37,487 +89,1470 @@
       text-decoration: none;
     }
 
+    button {
+      font: inherit;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+    }
+
     .container {
-      width: min(1360px, calc(100% - 56px));
+      width: min(var(--max-width), calc(100% - 80px));
       margin: 0 auto;
     }
 
-    /* 顶部导航 */
+    /* =========================
+       顶部导航
+    ========================= */
 
-    .topbar {
-      position: sticky;
+    .site-header {
+      position: absolute;
       top: 0;
-      z-index: 20;
-      background: rgba(9, 9, 11, 0.82);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--line);
+      left: 0;
+      right: 0;
+
+      z-index: 50;
+
+      padding: 34px 0 20px;
     }
 
-    .topbar-inner {
-      min-height: 72px;
+    .header-inner {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-between;
-      gap: 24px;
+      gap: 40px;
     }
 
-    .brand {
-      font-size: 16px;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      white-space: nowrap;
+    .site-brand {
+      display: inline-flex;
+      flex-direction: column;
+      gap: 9px;
     }
 
-    .nav {
-      display: flex;
-      align-items: center;
-      gap: 30px;
-    }
+    .brand-cn {
+      font-family:
+        "Times New Roman",
+        "Songti SC",
+        SimSun,
+        serif;
 
-    .nav a {
-      color: var(--text-soft);
-      font-size: 14px;
-      transition: color 0.25s ease;
-    }
-
-    .nav a:hover {
-      color: var(--text);
-    }
-
-    /* 首屏 */
-
-    .hero {
-      min-height: 500px;
-      padding: 70px 0 56px;
-      display: flex;
-      align-items: center;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .hero-grid {
-      width: 100%;
-      display: grid;
-      grid-template-columns: 0.8fr 1.2fr;
-      gap: 80px;
-      align-items: center;
-    }
-
-    /* 小型标题组合 */
-
-    .hero-title {
-      margin: 0;
-    }
-
-    .hero-name {
-      display: block;
-      margin-bottom: 10px;
-      font-size: clamp(34px, 3.3vw, 52px);
-      line-height: 1;
-      font-weight: 600;
-      letter-spacing: 0.01em;
-    }
-
-    .portfolio {
-      display: block;
-      font-size: clamp(20px, 1.7vw, 28px);
+      font-size: clamp(27px, 2.2vw, 38px);
       line-height: 1;
       font-weight: 400;
-      letter-spacing: 0.3em;
-      color: var(--text-soft);
+      letter-spacing: 0.04em;
     }
 
-    .hero-meta {
-      margin-top: 40px;
+    .brand-en {
+      padding-left: 2px;
+
+      color: var(--text-soft);
+
+      font-size: clamp(13px, 1.1vw, 18px);
+      line-height: 1;
+      font-weight: 300;
+      letter-spacing: 0.33em;
+    }
+
+    .header-right {
       display: flex;
-      gap: 22px;
-      color: var(--text-soft);
-      font-size: 12px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-
-    .hero-side {
-      max-width: 650px;
-      display: flex;
-      flex-direction: column;
-      gap: 22px;
-    }
-
-    .eyebrow {
-      color: var(--text-soft);
-      font-size: 12px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-    }
-
-    .hero-heading {
-      margin: 0;
-      font-size: clamp(34px, 4vw, 62px);
-      line-height: 1.18;
-      font-weight: 500;
-      letter-spacing: -0.04em;
-    }
-
-    .hero-desc {
-      max-width: 580px;
-      margin: 0;
-      color: var(--text-soft);
-      font-size: 16px;
-      line-height: 2;
-    }
-
-    .hero-links {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-
-    .button {
-      min-width: 138px;
-      padding: 13px 20px;
-      display: inline-flex;
       align-items: center;
-      justify-content: center;
-      border: 1px solid var(--line);
-      border-radius: 999px;
+      gap: 34px;
+    }
+
+    .site-nav {
+      display: flex;
+      align-items: center;
+      gap: clamp(28px, 3.5vw, 58px);
+    }
+
+    .site-nav a {
+      position: relative;
+
+      color: rgba(255, 255, 255, 0.88);
+
       font-size: 14px;
+      letter-spacing: 0.04em;
+
       transition:
-        background 0.25s ease,
-        border-color 0.25s ease,
+        color 0.25s ease,
         transform 0.25s ease;
     }
 
-    .button:hover {
-      transform: translateY(-2px);
-      background: var(--panel);
-      border-color: rgba(255, 255, 255, 0.17);
-    }
+    .site-nav a::after {
+      content: "";
 
-    .button.primary {
-      color: #111;
+      position: absolute;
+      left: 0;
+      right: 100%;
+      bottom: -9px;
+
+      height: 1px;
+
       background: var(--text);
-      border-color: var(--text);
+
+      transition: right 0.28s ease;
     }
 
-    .button.primary:hover {
-      background: #fff;
+    .site-nav a:hover {
+      color: #ffffff;
+      transform: translateY(-1px);
     }
 
-    /* 通用区域 */
-
-    .section {
-      padding: 54px 0;
+    .site-nav a:hover::after {
+      right: 0;
     }
 
-    .section-head {
-      margin-bottom: 26px;
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 30px;
+    .round-button {
+      width: 34px;
+      height: 34px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      border: 1px solid var(--line-strong);
+      border-radius: 50%;
+
+      background: rgba(255, 255, 255, 0.025);
+      color: var(--text);
+
+      cursor: pointer;
+
+      transition:
+        background 0.25s ease,
+        transform 0.25s ease;
     }
 
-    .section-title {
+    .round-button:hover {
+      background: rgba(255, 255, 255, 0.08);
+      transform: rotate(12deg);
+    }
+
+    .round-button span {
+      font-size: 17px;
+      line-height: 1;
+    }
+
+    /* =========================
+       展厅式首屏
+    ========================= */
+
+    .hero {
+      position: relative;
+
+      min-height: 570px;
+      padding: 120px 0 34px;
+
+      overflow: hidden;
+
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.20),
+          rgba(0, 0, 0, 0.54)
+        ),
+        radial-gradient(
+          ellipse at 50% 20%,
+          rgba(255, 255, 255, 0.10),
+          transparent 45%
+        ),
+        #050505;
+
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero::before {
+      content: "";
+
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+
+      height: 43%;
+
+      background:
+        linear-gradient(
+          to bottom,
+          transparent,
+          rgba(0, 0, 0, 0.55)
+        ),
+        repeating-linear-gradient(
+          92deg,
+          transparent 0,
+          transparent 90px,
+          rgba(255, 255, 255, 0.015) 91px,
+          transparent 92px
+        );
+
+      transform: perspective(550px) rotateX(57deg);
+      transform-origin: bottom;
+
+      opacity: 0.8;
+
+      pointer-events: none;
+    }
+
+    .ceiling-lines {
+      position: absolute;
+      top: 0;
+      left: 28%;
+      right: 28%;
+
+      height: 140px;
+
+      background:
+        repeating-linear-gradient(
+          to bottom,
+          transparent 0,
+          transparent 28px,
+          rgba(255, 255, 255, 0.045) 29px,
+          transparent 30px
+        );
+
+      mask-image:
+        linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.8),
+          transparent
+        );
+
+      pointer-events: none;
+    }
+
+    .gallery-stage {
+      position: relative;
+      z-index: 2;
+
+      min-height: 390px;
+
+      display: grid;
+      grid-template-columns:
+        minmax(120px, 0.8fr)
+        minmax(90px, 0.48fr)
+        minmax(420px, 2.7fr)
+        minmax(110px, 0.68fr)
+        minmax(120px, 0.8fr);
+
+      align-items: center;
+      gap: clamp(18px, 2vw, 34px);
+    }
+
+    .gallery-frame {
+      position: relative;
+
+      overflow: hidden;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.075),
+          rgba(255, 255, 255, 0.012)
+        ),
+        #111111;
+
+      border: 1px solid rgba(255, 255, 255, 0.06);
+
+      box-shadow:
+        0 30px 60px rgba(0, 0, 0, 0.42),
+        inset 0 0 60px rgba(0, 0, 0, 0.35);
+    }
+
+    .gallery-frame::after {
+      content: "";
+
+      position: absolute;
+      inset: 0;
+
+      pointer-events: none;
+
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0.025),
+          transparent 35%,
+          rgba(0, 0, 0, 0.34)
+        );
+    }
+
+    .gallery-frame.small-one {
+      height: 230px;
+      transform: perspective(900px) rotateY(3deg);
+    }
+
+    .gallery-frame.small-two {
+      height: 270px;
+      transform: perspective(900px) rotateY(2deg);
+    }
+
+    .gallery-frame.small-three {
+      height: 260px;
+      transform: perspective(900px) rotateY(-2deg);
+    }
+
+    .gallery-frame.small-four {
+      height: 230px;
+      transform: perspective(900px) rotateY(-3deg);
+    }
+
+    .frame-product {
+      position: absolute;
+      left: 50%;
+      bottom: 15%;
+
+      width: 76%;
+      aspect-ratio: 1.15 / 1;
+
+      transform: translateX(-50%);
+
+      background:
+        radial-gradient(
+          ellipse at 50% 76%,
+          rgba(255, 255, 255, 0.16),
+          transparent 52%
+        ),
+        linear-gradient(
+          145deg,
+          #3d3d3d,
+          #111111 68%
+        );
+
+      clip-path:
+        polygon(
+          12% 72%,
+          24% 42%,
+          42% 31%,
+          70% 39%,
+          88% 62%,
+          96% 83%,
+          73% 91%,
+          31% 89%
+        );
+
+      filter:
+        drop-shadow(0 24px 17px rgba(0, 0, 0, 0.8));
+    }
+
+    .frame-product.bag {
+      width: 65%;
+      aspect-ratio: 0.82 / 1;
+
+      clip-path:
+        polygon(
+          21% 20%,
+          35% 9%,
+          66% 11%,
+          80% 25%,
+          87% 88%,
+          15% 88%
+        );
+
+      background:
+        linear-gradient(
+          135deg,
+          #252525,
+          #0c0c0c
+        );
+    }
+
+    .frame-product.jacket {
+      width: 67%;
+      aspect-ratio: 0.75 / 1;
+
+      clip-path:
+        polygon(
+          35% 6%,
+          65% 6%,
+          76% 18%,
+          93% 31%,
+          81% 51%,
+          75% 91%,
+          25% 91%,
+          19% 51%,
+          7% 31%,
+          24% 18%
+        );
+
+      background:
+        linear-gradient(
+          130deg,
+          #6a6a68 0%,
+          #2c2d2d 45%,
+          #0b0b0b 100%
+        );
+    }
+
+    .frame-product.backpack {
+      width: 63%;
+      aspect-ratio: 0.78 / 1;
+
+      clip-path:
+        polygon(
+          28% 8%,
+          70% 8%,
+          84% 25%,
+          90% 89%,
+          11% 89%,
+          17% 25%
+        );
+
+      background:
+        linear-gradient(
+          145deg,
+          #292929,
+          #080808
+        );
+    }
+
+    /* 中央大屏 */
+
+    .center-screen {
+      position: relative;
+
+      height: 330px;
+
+      overflow: hidden;
+
+      background:
+        radial-gradient(
+          circle at 30% 25%,
+          rgba(255, 255, 255, 0.14),
+          transparent 42%
+        ),
+        linear-gradient(
+          110deg,
+          #777775 0%,
+          #414140 46%,
+          #999996 100%
+        );
+
+      border: 1px solid rgba(255, 255, 255, 0.12);
+
+      box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.56),
+        inset 0 0 90px rgba(0, 0, 0, 0.30);
+    }
+
+    .center-screen::before {
+      content: "";
+
+      position: absolute;
+      inset: 0;
+
+      background-image:
+        repeating-linear-gradient(
+          0deg,
+          rgba(255, 255, 255, 0.022) 0,
+          rgba(255, 255, 255, 0.022) 1px,
+          transparent 1px,
+          transparent 5px
+        ),
+        repeating-linear-gradient(
+          90deg,
+          rgba(0, 0, 0, 0.035) 0,
+          rgba(0, 0, 0, 0.035) 1px,
+          transparent 1px,
+          transparent 7px
+        );
+
+      mix-blend-mode: multiply;
+    }
+
+    .screen-copy {
+      position: absolute;
+      top: 51%;
+      left: 11%;
+
+      z-index: 3;
+
+      transform: translateY(-50%);
+    }
+
+    .screen-copy-cn {
+      margin: 0 0 21px;
+
+      color: rgba(20, 20, 20, 0.78);
+
+      font-family:
+        "Songti SC",
+        SimSun,
+        serif;
+
+      font-size: clamp(15px, 1.25vw, 20px);
+      line-height: 1.75;
+      letter-spacing: 0.08em;
+    }
+
+    .screen-line {
+      width: 22px;
+      height: 1px;
+      margin: 0 0 18px;
+
+      background: rgba(20, 20, 20, 0.55);
+    }
+
+    .screen-copy-en {
+      max-width: 145px;
       margin: 0;
-      font-size: 32px;
-      font-weight: 600;
-      letter-spacing: -0.03em;
+
+      color: rgba(20, 20, 20, 0.64);
+
+      font-size: 10px;
+      line-height: 1.55;
+      letter-spacing: 0.02em;
     }
 
-    .section-sub {
-      max-width: 580px;
-      color: var(--text-soft);
+    /* CSS 人物剪影 */
+
+    .silhouette {
+      position: absolute;
+      left: 56%;
+      bottom: 0;
+
+      z-index: 4;
+
+      width: 90px;
+      height: 230px;
+
+      transform: translateX(-50%);
+
+      filter:
+        drop-shadow(0 12px 8px rgba(0, 0, 0, 0.7));
+    }
+
+    .silhouette-head {
+      position: absolute;
+      top: 4px;
+      left: 50%;
+
+      width: 34px;
+      height: 36px;
+
+      transform: translateX(-50%);
+
+      border-radius: 48% 48% 44% 44%;
+
+      background: #050505;
+    }
+
+    .silhouette-body {
+      position: absolute;
+      top: 34px;
+      left: 50%;
+
+      width: 54px;
+      height: 118px;
+
+      transform: translateX(-50%);
+
+      border-radius: 22px 22px 13px 13px;
+
+      background:
+        linear-gradient(
+          to right,
+          #030303,
+          #101010 48%,
+          #020202
+        );
+    }
+
+    .silhouette-arm {
+      position: absolute;
+      top: 47px;
+
+      width: 17px;
+      height: 105px;
+
+      border-radius: 10px;
+
+      background: #050505;
+    }
+
+    .silhouette-arm.left {
+      left: 10px;
+      transform: rotate(4deg);
+    }
+
+    .silhouette-arm.right {
+      right: 10px;
+      transform: rotate(-4deg);
+    }
+
+    .silhouette-leg {
+      position: absolute;
+      top: 141px;
+
+      width: 21px;
+      height: 84px;
+
+      border-radius: 4px 4px 6px 6px;
+
+      background:
+        linear-gradient(
+          to right,
+          #020202,
+          #0d0d0d
+        );
+    }
+
+    .silhouette-leg.left {
+      left: 22px;
+      transform: rotate(1deg);
+    }
+
+    .silhouette-leg.right {
+      right: 22px;
+      transform: rotate(-1deg);
+    }
+
+    .hero-label {
+      position: absolute;
+      right: 16px;
+      bottom: 17px;
+
+      z-index: 6;
+
+      padding: 10px 16px;
+
+      border: 1px solid rgba(255, 255, 255, 0.45);
+
+      color: rgba(255, 255, 255, 0.72);
+
+      font-family:
+        "Songti SC",
+        SimSun,
+        serif;
+
       font-size: 14px;
-      line-height: 1.8;
+      letter-spacing: 0.10em;
+
+      background: rgba(0, 0, 0, 0.28);
+      backdrop-filter: blur(6px);
     }
 
-    /* 四大分类 */
+    /* =========================
+       四大分类卡片
+    ========================= */
+
+    .category-section {
+      position: relative;
+      z-index: 7;
+
+      margin-top: -17px;
+    }
 
     .category-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
+
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
     }
 
     .category-card {
-      min-height: 260px;
-      padding: 23px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      background: linear-gradient(180deg, #151519 0%, #101014 100%);
-      border: 1px solid var(--line);
+      position: relative;
+
+      min-height: 192px;
+      padding: 30px 30px 23px;
+
+      overflow: hidden;
+
+      background:
+        linear-gradient(
+          90deg,
+          rgba(0, 0, 0, 0.93) 0%,
+          rgba(0, 0, 0, 0.72) 45%,
+          rgba(0, 0, 0, 0.16) 100%
+        ),
+        var(--card-image),
+        linear-gradient(
+          145deg,
+          #222222,
+          #080808
+        );
+
+      background-position: center;
+      background-size: cover;
+
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+
       transition:
-        transform 0.3s ease,
-        border-color 0.3s ease,
-        background 0.3s ease;
+        transform 0.35s ease,
+        border-color 0.35s ease,
+        filter 0.35s ease;
+    }
+
+    .category-card::before {
+      content: "";
+
+      position: absolute;
+      inset: 0;
+
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0.025),
+          transparent 42%,
+          rgba(0, 0, 0, 0.40)
+        );
+
+      pointer-events: none;
     }
 
     .category-card:hover {
-      transform: translateY(-4px);
-      background: var(--panel-hover);
-      border-color: rgba(255, 255, 255, 0.17);
+      z-index: 4;
+
+      transform: translateY(-7px);
+
+      border-color: var(--line-strong);
+
+      filter: brightness(1.12);
     }
 
-    .category-num {
+    .category-content {
+      position: relative;
+      z-index: 2;
+
+      height: 100%;
+
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .category-title {
+      margin: 6px 0 4px;
+
+      font-size: clamp(20px, 1.7vw, 29px);
+      line-height: 1.2;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+
+    .category-en {
       color: var(--text-soft);
-      font-size: 13px;
-      letter-spacing: 0.1em;
+
+      font-size: 10px;
+      line-height: 1.4;
+      letter-spacing: 0.06em;
     }
 
-    .category-name {
-      margin: 0 0 12px;
-      font-size: 31px;
-      line-height: 1.15;
-      letter-spacing: -0.04em;
+    .category-link {
+      margin-top: auto;
+
+      display: inline-flex;
+      align-items: center;
+      gap: 13px;
+
+      color: var(--text-soft);
+
+      font-size: 12px;
+
+      transition:
+        color 0.25s ease,
+        gap 0.25s ease;
     }
 
-    .category-sub {
+    .category-link span {
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    .category-card:hover .category-link {
+      gap: 19px;
+      color: var(--text);
+    }
+
+    /* 分类卡片内的装饰形状 */
+
+    .category-decoration {
+      position: absolute;
+      right: 1%;
+      bottom: -8%;
+
+      width: 50%;
+      height: 92%;
+
+      opacity: 0.80;
+
+      pointer-events: none;
+    }
+
+    .category-decoration.shoe {
+      background:
+        linear-gradient(
+          145deg,
+          #4b4b4a,
+          #101010 70%
+        );
+
+      clip-path:
+        polygon(
+          2% 70%,
+          17% 39%,
+          41% 29%,
+          72% 39%,
+          94% 70%,
+          100% 88%,
+          63% 94%,
+          17% 88%
+        );
+
+      filter:
+        drop-shadow(0 22px 18px rgba(0, 0, 0, 0.9));
+    }
+
+    .category-decoration.graphic {
+      right: -2%;
+      bottom: -12%;
+
+      width: 52%;
+
+      transform: rotate(-8deg);
+
+      background:
+        linear-gradient(
+          120deg,
+          #4e4e4e,
+          #0b0b0b 72%
+        );
+
+      clip-path:
+        polygon(
+          8% 8%,
+          92% 8%,
+          92% 92%,
+          8% 92%
+        );
+
+      box-shadow:
+        -20px 15px 0 #222222;
+    }
+
+    .category-decoration.ip {
+      right: 4%;
+      bottom: -20%;
+
+      width: 48%;
+      height: 105%;
+
+      border-radius: 48% 48% 42% 42%;
+
+      background:
+        radial-gradient(
+          circle at 38% 23%,
+          #858585 0%,
+          #494949 19%,
+          #151515 55%,
+          #050505 100%
+        );
+
+      box-shadow:
+        inset 0 0 0 14px rgba(255, 255, 255, 0.035),
+        0 25px 35px rgba(0, 0, 0, 0.8);
+    }
+
+    .category-decoration.person {
+      right: 6%;
+      bottom: -15%;
+
+      width: 41%;
+      height: 118%;
+
+      border-radius: 48% 48% 15% 15%;
+
+      background:
+        radial-gradient(
+          circle at 52% 18%,
+          #3b3b3b 0%,
+          #161616 30%,
+          #050505 72%
+        );
+
+      filter:
+        drop-shadow(0 20px 18px rgba(0, 0, 0, 0.9));
+    }
+
+    /* =========================
+       精选作品
+    ========================= */
+
+    .works-section {
+      padding: 34px 0 68px;
+    }
+
+    .section-header {
+      margin-bottom: 18px;
+
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .section-title-group {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .section-title {
       margin: 0;
+
+      font-size: clamp(25px, 2vw, 34px);
+      line-height: 1.2;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+    }
+
+    .section-title-en {
+      color: var(--text-faint);
+
+      font-size: 12px;
+      letter-spacing: 0.13em;
+    }
+
+    .view-all {
+      display: inline-flex;
+      align-items: center;
+      gap: 17px;
+
+      padding-bottom: 2px;
+
       color: var(--text-soft);
-      font-size: 14px;
-      line-height: 1.8;
+
+      font-size: 12px;
+
+      transition:
+        color 0.25s ease,
+        gap 0.25s ease;
     }
 
-    .category-arrow {
-      color: var(--accent);
-      font-size: 22px;
+    .view-all span {
+      font-size: 19px;
     }
 
-    /* 精选作品 */
+    .view-all:hover {
+      gap: 23px;
+      color: var(--text);
+    }
 
     .works-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
+      grid-template-columns: 1.36fr repeat(4, 1fr);
+      gap: 4px;
     }
 
     .work-card {
+      position: relative;
+
+      min-width: 0;
+
       overflow: hidden;
-      background: var(--panel);
+
+      background: #0c0c0c;
       border: 1px solid var(--line);
+
       transition:
-        transform 0.28s ease,
-        border-color 0.28s ease;
+        transform 0.35s ease,
+        border-color 0.35s ease;
     }
 
     .work-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(255, 255, 255, 0.17);
+      z-index: 5;
+
+      transform: translateY(-7px);
+
+      border-color: var(--line-strong);
     }
 
-    .work-thumb {
-      aspect-ratio: 4 / 3;
-      padding: 18px;
-      display: flex;
-      align-items: flex-end;
-      color: rgba(255, 255, 255, 0.45);
-      font-size: 12px;
-      letter-spacing: 0.12em;
+    .work-image {
+      position: relative;
+
+      min-height: 270px;
+
+      overflow: hidden;
+
       background:
         radial-gradient(
-          circle at top left,
-          rgba(214, 208, 196, 0.2),
-          transparent 42%
+          circle at 40% 28%,
+          rgba(255, 255, 255, 0.16),
+          transparent 36%
         ),
         linear-gradient(
+          145deg,
+          #414141,
+          #080808 72%
+        );
+    }
+
+    .work-card:first-child .work-image {
+      min-height: 300px;
+    }
+
+    .work-image::after {
+      content: "";
+
+      position: absolute;
+      inset: 0;
+
+      background:
+        linear-gradient(
+          to bottom,
+          transparent 42%,
+          rgba(0, 0, 0, 0.78)
+        );
+
+      pointer-events: none;
+    }
+
+    .work-object {
+      position: absolute;
+      left: 50%;
+      top: 51%;
+
+      width: 78%;
+      height: 62%;
+
+      transform: translate(-50%, -50%);
+
+      background:
+        linear-gradient(
+          140deg,
+          #555555,
+          #111111 72%
+        );
+
+      filter:
+        drop-shadow(0 30px 18px rgba(0, 0, 0, 0.78));
+    }
+
+    .work-object.shoe {
+      clip-path:
+        polygon(
+          3% 64%,
+          19% 35%,
+          40% 23%,
+          69% 34%,
+          91% 62%,
+          99% 81%,
+          72% 91%,
+          20% 88%
+        );
+    }
+
+    .work-object.bag {
+      width: 66%;
+      height: 65%;
+
+      clip-path:
+        polygon(
+          24% 10%,
+          76% 10%,
+          91% 27%,
+          88% 93%,
+          12% 93%,
+          9% 27%
+        );
+
+      background:
+        linear-gradient(
+          145deg,
+          #303030,
+          #080808
+        );
+    }
+
+    .work-object.poster {
+      width: 70%;
+      height: 74%;
+
+      transform:
+        translate(-50%, -50%)
+        rotate(-4deg);
+
+      clip-path:
+        polygon(
+          3% 1%,
+          98% 5%,
+          95% 98%,
+          0 94%
+        );
+
+      background:
+        repeating-linear-gradient(
+          145deg,
+          #d3d3d3 0,
+          #d3d3d3 18px,
+          #111111 19px,
+          #111111 33px
+        );
+    }
+
+    .work-object.ip {
+      width: 66%;
+      height: 66%;
+
+      border-radius: 48%;
+
+      background:
+        radial-gradient(
+          circle at 32% 26%,
+          #dedede,
+          #8e8e8e 38%,
+          #333333 66%,
+          #101010
+        );
+    }
+
+    .work-object.clothes {
+      width: 68%;
+      height: 80%;
+
+      clip-path:
+        polygon(
+          34% 4%,
+          66% 4%,
+          76% 17%,
+          96% 31%,
+          82% 53%,
+          76% 96%,
+          24% 96%,
+          18% 53%,
+          4% 31%,
+          24% 17%
+        );
+
+      background:
+        linear-gradient(
           135deg,
-          rgba(255, 255, 255, 0.07),
-          rgba(255, 255, 255, 0.01)
-        ),
-        #18181d;
-      border-bottom: 1px solid var(--line);
+          #d0d0ce,
+          #6f6f6e 50%,
+          #202020
+        );
     }
 
     .work-info {
-      padding: 19px 18px 21px;
+      position: absolute;
+      left: 17px;
+      right: 17px;
+      bottom: 15px;
+
+      z-index: 3;
     }
 
     .work-title {
-      margin: 0 0 12px;
-      font-size: 21px;
-      line-height: 1.35;
-      letter-spacing: -0.02em;
+      margin: 0 0 7px;
+
+      font-size: clamp(14px, 1.05vw, 18px);
+      line-height: 1.4;
+      font-weight: 500;
+      letter-spacing: 0.02em;
     }
 
-    .work-meta {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
+    .work-category {
       color: var(--text-soft);
-      font-size: 13px;
+
+      font-size: 10px;
+      letter-spacing: 0.05em;
     }
 
-    /* 关于我 */
+    /* =========================
+       关于我
+    ========================= */
 
-    .about-box {
-      padding: 32px;
+    .about-section {
+      padding: 70px 0 90px;
+
+      border-top: 1px solid var(--line);
+    }
+
+    .about-grid {
       display: grid;
-      grid-template-columns: 1.1fr 1fr;
-      gap: 42px;
-      background: linear-gradient(180deg, #141419 0%, #101014 100%);
-      border: 1px solid var(--line);
+      grid-template-columns: 0.85fr 1.4fr;
+      gap: 100px;
     }
 
-    .about-title {
-      margin: 0 0 16px;
-      font-size: 29px;
-      line-height: 1.45;
-      letter-spacing: -0.03em;
-    }
-
-    .about-text {
-      margin: 0;
+    .about-label {
       color: var(--text-soft);
+
+      font-size: 12px;
+      letter-spacing: 0.15em;
+    }
+
+    .about-heading {
+      max-width: 760px;
+      margin: 0 0 25px;
+
+      font-family:
+        "Songti SC",
+        SimSun,
+        serif;
+
+      font-size: clamp(32px, 4vw, 65px);
+      line-height: 1.25;
+      font-weight: 400;
+    }
+
+    .about-copy {
+      max-width: 720px;
+      margin: 0;
+
+      color: var(--text-soft);
+
       font-size: 15px;
       line-height: 2;
     }
 
-    .about-list {
-      display: grid;
-      gap: 15px;
-    }
+    /* =========================
+       页脚
+    ========================= */
 
-    .about-item {
-      padding-bottom: 15px;
-      border-bottom: 1px solid var(--line);
-    }
+    .site-footer {
+      padding: 28px 0 36px;
 
-    .about-item:last-child {
-      border-bottom: 0;
-    }
-
-    .about-item strong {
-      margin-bottom: 7px;
-      display: block;
-      color: var(--text);
-      font-size: 14px;
-    }
-
-    .about-item span {
-      color: var(--text-soft);
-      font-size: 14px;
-      line-height: 1.8;
-    }
-
-    /* 页脚 */
-
-    .footer {
-      padding: 34px 0 44px;
-      color: var(--text-soft);
-      font-size: 13px;
       border-top: 1px solid var(--line);
+
+      color: var(--text-faint);
+
+      font-size: 11px;
+      letter-spacing: 0.05em;
     }
 
     .footer-inner {
       display: flex;
+      align-items: center;
       justify-content: space-between;
-      gap: 20px;
-      flex-wrap: wrap;
+      gap: 25px;
     }
 
-    /* 平板 */
+    /* =========================
+       平板端
+    ========================= */
 
-    @media (max-width: 1100px) {
-      .hero-grid,
-      .about-box {
-        grid-template-columns: 1fr;
+    @media (max-width: 1150px) {
+      .container {
+        width: min(var(--max-width), calc(100% - 44px));
       }
 
-      .hero-grid {
-        gap: 50px;
+      .gallery-stage {
+        grid-template-columns:
+          0.65fr
+          0.44fr
+          2.7fr
+          0.56fr
+          0.65fr;
+
+        gap: 16px;
       }
 
-      .category-grid {
-        grid-template-columns: repeat(2, 1fr);
+      .center-screen {
+        height: 305px;
+      }
+
+      .category-card {
+        min-height: 175px;
+        padding: 26px 22px 21px;
       }
 
       .works-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+      }
+
+      .work-card:first-child {
+        grid-column: span 2;
+      }
+
+      .about-grid {
+        gap: 60px;
       }
     }
 
-    /* 手机 */
+    /* =========================
+       手机端
+    ========================= */
 
-    @media (max-width: 720px) {
+    @media (max-width: 760px) {
       .container {
         width: min(100%, calc(100% - 28px));
       }
 
-      .topbar-inner {
-        min-height: auto;
-        padding: 16px 0;
+      .site-header {
+        position: relative;
+
+        padding: 22px 0;
+
+        background: rgba(0, 0, 0, 0.88);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .header-inner {
         align-items: flex-start;
         flex-direction: column;
+        gap: 24px;
       }
 
-      .nav {
+      .brand-cn {
+        font-size: 28px;
+      }
+
+      .brand-en {
+        font-size: 13px;
+      }
+
+      .header-right {
         width: 100%;
-        gap: 15px;
-        overflow-x: auto;
-        padding-bottom: 3px;
+
+        gap: 16px;
       }
 
-      .nav a {
-        white-space: nowrap;
+      .site-nav {
+        width: calc(100% - 50px);
+
+        gap: 22px;
+
+        overflow-x: auto;
+
+        scrollbar-width: none;
+      }
+
+      .site-nav::-webkit-scrollbar {
+        display: none;
+      }
+
+      .site-nav a {
+        flex: 0 0 auto;
+
         font-size: 13px;
       }
 
       .hero {
         min-height: auto;
-        padding: 50px 0 42px;
+        padding: 34px 0 22px;
       }
 
-      .hero-grid {
-        gap: 42px;
+      .ceiling-lines,
+      .gallery-frame {
+        display: none;
       }
 
-      .hero-name {
-        font-size: 34px;
+      .gallery-stage {
+        min-height: 335px;
+
+        display: block;
       }
 
-      .portfolio {
-        font-size: 19px;
+      .center-screen {
+        width: 100%;
+        height: 335px;
       }
 
-      .hero-heading {
-        font-size: 36px;
+      .screen-copy {
+        top: 45%;
+        left: 9%;
       }
 
-      .hero-desc {
+      .screen-copy-cn {
         font-size: 15px;
-        line-height: 1.9;
       }
 
-      .section {
-        padding: 40px 0;
+      .silhouette {
+        left: 67%;
       }
 
-      .section-head {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 12px;
+      .hero-label {
+        right: 10px;
+        bottom: 10px;
+
+        padding: 8px 10px;
+
+        font-size: 11px;
       }
 
-      .section-title {
-        font-size: 28px;
+      .category-section {
+        margin-top: 0;
       }
 
-      .category-grid,
-      .works-grid {
+      .category-grid {
         grid-template-columns: 1fr;
       }
 
       .category-card {
-        min-height: 220px;
+        min-height: 178px;
       }
 
-      .category-name {
-        font-size: 29px;
+      .category-title {
+        font-size: 24px;
       }
 
-      .about-box {
-        padding: 22px;
+      .category-decoration {
+        width: 42%;
+      }
+
+      .works-section {
+        padding: 38px 0 54px;
+      }
+
+      .section-header {
+        align-items: flex-start;
+      }
+
+      .view-all {
+        margin-top: 4px;
+      }
+
+      .works-grid {
+        display: flex;
+        gap: 10px;
+
+        overflow-x: auto;
+
+        scroll-snap-type: x mandatory;
+
+        padding-bottom: 8px;
+      }
+
+      .works-grid::-webkit-scrollbar {
+        height: 3px;
+      }
+
+      .works-grid::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.18);
+      }
+
+      .work-card,
+      .work-card:first-child {
+        min-width: 78%;
+        grid-column: auto;
+
+        scroll-snap-align: start;
+      }
+
+      .work-image,
+      .work-card:first-child .work-image {
+        min-height: 320px;
+      }
+
+      .about-section {
+        padding: 55px 0 65px;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .about-heading {
+        font-size: 38px;
+      }
+
+      .footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
       }
     }
   </style>
@@ -525,287 +1560,416 @@
 
 <body>
 
-  <header class="topbar">
-    <div class="container topbar-inner">
+  <!-- =========================
+       顶部导航
+  ========================== -->
 
-      <a class="brand" href="#">小船小船-</a>
+  <header class="site-header">
+    <div class="container header-inner">
 
-      <nav class="nav">
-        <a href="#custom">定制类产品设计</a>
-        <a href="#visual">平面视觉</a>
-        <a href="#ip">IP设计</a>
-        <a href="#about">关于我</a>
-      </nav>
+      <a class="site-brand" href="#">
+        <span class="brand-cn">小船小船-</span>
+        <span class="brand-en">PORTFOLIO</span>
+      </a>
 
+      <div class="header-right">
+
+        <nav class="site-nav">
+          <a href="#custom">定制类产品设计</a>
+          <a href="#visual">平面视觉</a>
+          <a href="#ip">IP设计</a>
+          <a href="#about">关于我</a>
+        </nav>
+
+        <button
+          class="round-button"
+          type="button"
+          aria-label="装饰按钮"
+        >
+          <span>◐</span>
+        </button>
+
+      </div>
     </div>
   </header>
 
   <main>
 
-    <!-- 首屏 -->
+    <!-- =========================
+         展厅式首屏
+    ========================== -->
 
     <section class="hero">
-      <div class="container hero-grid">
 
-        <div>
-          <h1 class="hero-title">
-            <span class="hero-name">小船小船-</span>
-            <span class="portfolio">PORTFOLIO</span>
-          </h1>
+      <div class="ceiling-lines"></div>
 
-          <div class="hero-meta">
-            <span>Designer</span>
-            <span>2026</span>
-          </div>
-        </div>
+      <div class="container">
 
-        <div class="hero-side">
+        <div class="gallery-stage">
 
-          <div class="eyebrow">
-            Personal Design Archive
+          <!-- 左侧鞋类展品 -->
+
+          <div class="gallery-frame small-one">
+            <div class="frame-product"></div>
           </div>
 
-          <h2 class="hero-heading">
-            用设计记录想法，也记录每个阶段的成长。
-          </h2>
+          <!-- 左侧包袋展品 -->
 
-          <p class="hero-desc">
-            以定制类产品设计、平面视觉与 IP 设计为核心，
-            持续整理我的设计实践。这里会逐步收录鞋类、化妆包、
-            服装、详情页设计、Logo 设计以及更多视觉项目。
-          </p>
+          <div class="gallery-frame small-two">
+            <div class="frame-product bag"></div>
+          </div>
 
-          <div class="hero-links">
-            <a href="#works" class="button primary">查看作品</a>
-            <a href="#about" class="button">关于我</a>
+          <!-- 中央大屏 -->
+
+          <div class="center-screen">
+
+            <div class="screen-copy">
+
+              <p class="screen-copy-cn">
+                以设计为舟<br>
+                探索更多可能<br>
+                让创意落地生长
+              </p>
+
+              <div class="screen-line"></div>
+
+              <p class="screen-copy-en">
+                Design as a boat,<br>
+                explore more possibilities.<br>
+                Make creativity<br>
+                take root.
+              </p>
+
+            </div>
+
+            <div class="silhouette">
+              <div class="silhouette-head"></div>
+              <div class="silhouette-body"></div>
+              <div class="silhouette-arm left"></div>
+              <div class="silhouette-arm right"></div>
+              <div class="silhouette-leg left"></div>
+              <div class="silhouette-leg right"></div>
+            </div>
+
+          </div>
+
+          <!-- 右侧服装展品 -->
+
+          <div class="gallery-frame small-three">
+            <div class="frame-product jacket"></div>
+          </div>
+
+          <!-- 右侧包袋展品 -->
+
+          <div class="gallery-frame small-four">
+            <div class="frame-product backpack"></div>
           </div>
 
         </div>
       </div>
+
+      <div class="hero-label">
+        暗色作品画廊
+      </div>
+
     </section>
 
-    <!-- 四大分类 -->
+    <!-- =========================
+         四大分类
+    ========================== -->
 
-    <section class="section" id="custom">
+    <section class="category-section">
+
       <div class="container">
-
-        <div class="section-head">
-          <h2 class="section-title">四大分类</h2>
-
-          <div class="section-sub">
-            首页保留四个主要入口，后续每个分类都可以继续扩展子分类和独立项目页面。
-          </div>
-        </div>
 
         <div class="category-grid">
 
-          <a class="category-card" href="#">
-            <div class="category-num">01</div>
+          <a
+            class="category-card"
+            id="custom"
+            href="#works"
+          >
+            <div class="category-decoration shoe"></div>
 
-            <div>
-              <h3 class="category-name">定制类产品设计</h3>
-              <p class="category-sub">鞋类｜化妆包｜服装｜其他</p>
+            <div class="category-content">
+
+              <h2 class="category-title">
+                定制类产品设计
+              </h2>
+
+              <div class="category-en">
+                CUSTOM PRODUCT DESIGN
+              </div>
+
+              <div class="category-link">
+                进入浏览
+                <span>→</span>
+              </div>
+
             </div>
-
-            <div class="category-arrow">→</div>
           </a>
 
-          <a class="category-card" href="#visual">
-            <div class="category-num">02</div>
+          <a
+            class="category-card"
+            id="visual"
+            href="#works"
+          >
+            <div class="category-decoration graphic"></div>
 
-            <div>
-              <h3 class="category-name">平面视觉</h3>
-              <p class="category-sub">详情页设计｜Logo设计｜图案｜包装｜其他</p>
+            <div class="category-content">
+
+              <h2 class="category-title">
+                平面视觉
+              </h2>
+
+              <div class="category-en">
+                GRAPHIC DESIGN
+              </div>
+
+              <div class="category-link">
+                进入浏览
+                <span>→</span>
+              </div>
+
             </div>
-
-            <div class="category-arrow">→</div>
           </a>
 
-          <a class="category-card" href="#ip">
-            <div class="category-num">03</div>
+          <a
+            class="category-card"
+            id="ip"
+            href="#works"
+          >
+            <div class="category-decoration ip"></div>
 
-            <div>
-              <h3 class="category-name">IP设计</h3>
-              <p class="category-sub">角色形象｜延展应用｜动态设计｜文创方向</p>
+            <div class="category-content">
+
+              <h2 class="category-title">
+                IP设计
+              </h2>
+
+              <div class="category-en">
+                IP DESIGN
+              </div>
+
+              <div class="category-link">
+                进入浏览
+                <span>→</span>
+              </div>
+
             </div>
-
-            <div class="category-arrow">→</div>
           </a>
 
-          <a class="category-card" href="#about">
-            <div class="category-num">04</div>
+          <a
+            class="category-card"
+            href="#about"
+          >
+            <div class="category-decoration person"></div>
 
-            <div>
-              <h3 class="category-name">关于我</h3>
-              <p class="category-sub">个人简介｜设计方向｜能力概览｜联系方式</p>
+            <div class="category-content">
+
+              <h2 class="category-title">
+                关于我
+              </h2>
+
+              <div class="category-en">
+                ABOUT ME
+              </div>
+
+              <div class="category-link">
+                进入浏览
+                <span>→</span>
+              </div>
+
             </div>
-
-            <div class="category-arrow">→</div>
           </a>
 
         </div>
       </div>
     </section>
 
-    <!-- 精选作品 -->
+    <!-- =========================
+         精选作品
+    ========================== -->
 
-    <section class="section" id="works">
+    <section
+      class="works-section"
+      id="works"
+    >
+
       <div class="container">
 
-        <div class="section-head">
-          <h2 class="section-title">精选作品</h2>
+        <div class="section-header">
 
-          <div class="section-sub">
-            目前使用占位卡片，后续会逐个替换成你的真实项目封面和项目文字。
+          <div class="section-title-group">
+
+            <h2 class="section-title">
+              精选作品
+            </h2>
+
+            <div class="section-title-en">
+              SELECTED WORKS
+            </div>
+
           </div>
+
+          <a
+            class="view-all"
+            href="#works"
+          >
+            查看全部作品
+            <span>→</span>
+          </a>
+
         </div>
 
         <div class="works-grid">
 
           <article class="work-card">
-            <div class="work-thumb">PROJECT COVER</div>
+
+            <div class="work-image">
+              <div class="work-object shoe"></div>
+            </div>
 
             <div class="work-info">
-              <h3 class="work-title">鞋类定制设计</h3>
+              <h3 class="work-title">
+                鞋类定制系列设计
+              </h3>
 
-              <div class="work-meta">
-                <span>定制类产品设计</span>
-                <span>2026</span>
+              <div class="work-category">
+                定制类产品设计
               </div>
             </div>
+
           </article>
 
           <article class="work-card">
-            <div class="work-thumb">PROJECT COVER</div>
+
+            <div class="work-image">
+              <div class="work-object bag"></div>
+            </div>
 
             <div class="work-info">
-              <h3 class="work-title">化妆包系列设计</h3>
+              <h3 class="work-title">
+                化妆包产品设计
+              </h3>
 
-              <div class="work-meta">
-                <span>定制类产品设计</span>
-                <span>2026</span>
+              <div class="work-category">
+                定制类产品设计
               </div>
             </div>
+
           </article>
 
           <article class="work-card">
-            <div class="work-thumb">PROJECT COVER</div>
+
+            <div class="work-image">
+              <div class="work-object poster"></div>
+            </div>
 
             <div class="work-info">
-              <h3 class="work-title">服装图案设计</h3>
+              <h3 class="work-title">
+                平面视觉海报设计
+              </h3>
 
-              <div class="work-meta">
-                <span>定制类产品设计</span>
-                <span>2026</span>
+              <div class="work-category">
+                平面视觉
               </div>
             </div>
-          </article>
 
-          <article class="work-card" id="visual">
-            <div class="work-thumb">PROJECT COVER</div>
-
-            <div class="work-info">
-              <h3 class="work-title">商品详情页设计</h3>
-
-              <div class="work-meta">
-                <span>平面视觉</span>
-                <span>2026</span>
-              </div>
-            </div>
           </article>
 
           <article class="work-card">
-            <div class="work-thumb">PROJECT COVER</div>
+
+            <div class="work-image">
+              <div class="work-object ip"></div>
+            </div>
 
             <div class="work-info">
-              <h3 class="work-title">Logo 与图形设计</h3>
+              <h3 class="work-title">
+                原创IP角色设计
+              </h3>
 
-              <div class="work-meta">
-                <span>平面视觉</span>
-                <span>2026</span>
+              <div class="work-category">
+                IP设计
               </div>
             </div>
+
           </article>
 
-          <article class="work-card" id="ip">
-            <div class="work-thumb">PROJECT COVER</div>
+          <article class="work-card">
+
+            <div class="work-image">
+              <div class="work-object clothes"></div>
+            </div>
 
             <div class="work-info">
-              <h3 class="work-title">原创 IP 角色设计</h3>
+              <h3 class="work-title">
+                服装图案系列设计
+              </h3>
 
-              <div class="work-meta">
-                <span>IP设计</span>
-                <span>2026</span>
+              <div class="work-category">
+                定制类产品设计
               </div>
             </div>
+
           </article>
 
         </div>
       </div>
     </section>
 
-    <!-- 关于我 -->
+    <!-- =========================
+         关于我
+    ========================== -->
 
-    <section class="section" id="about">
-      <div class="container">
+    <section
+      class="about-section"
+      id="about"
+    >
 
-        <div class="section-head">
-          <h2 class="section-title">关于我</h2>
+      <div class="container about-grid">
 
-          <div class="section-sub">
-            这里目前是第一版文字结构，后续会根据你的真实经历继续调整。
-          </div>
+        <div class="about-label">
+          ABOUT THE DESIGNER
         </div>
 
-        <div class="about-box">
+        <div>
 
-          <div>
-            <h3 class="about-title">
-              设计是整理表达、建立连接的一种方式。
-            </h3>
+          <h2 class="about-heading">
+            用设计整理想法，记录每一个阶段的成长。
+          </h2>
 
-            <p class="about-text">
-              我主要关注定制类产品设计、平面视觉和 IP 形象方向。
-              喜欢从图案、材质、结构、氛围与使用场景出发，
-              让作品既有表达感，也保留实际落地的可能性。
-              这个网站会作为我长期更新的个人作品集，
-              逐步展示不同时期的项目和能力积累。
-            </p>
-          </div>
+          <p class="about-copy">
+            我主要关注定制类产品设计、平面视觉与IP形象设计。
+            喜欢从图案、材质、结构、氛围和实际使用场景出发，
+            让作品既具备视觉表达，也能够真正落地。
+            这个网站将作为长期更新的个人设计档案，
+            逐步收录鞋类、化妆包、服装、详情页、
+            Logo、图案和原创IP等项目。
+          </p>
 
-          <div class="about-list">
-
-            <div class="about-item">
-              <strong>设计方向</strong>
-              <span>定制类产品设计 / 平面视觉 / IP设计</span>
-            </div>
-
-            <div class="about-item">
-              <strong>项目类型</strong>
-              <span>鞋类、化妆包、服装、详情页、Logo、图案、角色延展等</span>
-            </div>
-
-            <div class="about-item">
-              <strong>目前状态</strong>
-              <span>持续整理与更新个人作品中</span>
-            </div>
-
-            <div class="about-item">
-              <strong>联系方式</strong>
-              <span>后续补充邮箱、社交媒体或其他联系方式</span>
-            </div>
-
-          </div>
         </div>
       </div>
     </section>
 
   </main>
 
-  <footer class="footer">
+  <!-- =========================
+       页脚
+  ========================== -->
+
+  <footer class="site-footer">
+
     <div class="container footer-inner">
-      <span>© 2026 小船小船- Portfolio</span>
-      <span>Built with GitHub Pages</span>
+
+      <span>
+        © 2026 小船小船- PORTFOLIO
+      </span>
+
+      <span>
+        BUILT WITH GITHUB PAGES
+      </span>
+
     </div>
   </footer>
 
