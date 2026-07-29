@@ -652,6 +652,73 @@ button {
   line-height: 2;
 }
 
+
+
+/* =========================
+   首页关于我（恢复第一版排版）
+========================= */
+
+.about-home-panel {
+  padding: 34px;
+  background: linear-gradient(180deg, #141419 0%, #101014 100%);
+  border: 1px solid var(--line);
+}
+
+.about-home-grid {
+  display: grid;
+  grid-template-columns: 1.08fr 1fr;
+  gap: 58px;
+}
+
+.about-home-title {
+  max-width: 570px;
+  margin: 0 0 20px;
+  font-family: "Songti SC", SimSun, serif;
+  font-size: clamp(31px, 3.4vw, 53px);
+  line-height: 1.35;
+  font-weight: 400;
+  letter-spacing: -0.035em;
+}
+
+.about-home-copy {
+  max-width: 650px;
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 15px;
+  line-height: 2;
+}
+
+.about-home-list {
+  display: grid;
+  gap: 0;
+}
+
+.about-home-item {
+  padding: 17px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.about-home-item:first-child {
+  padding-top: 0;
+}
+
+.about-home-item:last-child {
+  border-bottom: 0;
+}
+
+.about-home-item strong {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.about-home-item span {
+  color: var(--text-soft);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
 .site-footer {
   padding: 31px 0 40px;
   color: var(--text-faint);
@@ -823,7 +890,8 @@ button {
   }
 
   .about-grid,
-  .about-page-grid {
+  .about-page-grid,
+  .about-home-grid {
     gap: 54px;
   }
 }
@@ -928,7 +996,8 @@ button {
   .method-grid,
   .placeholder-grid,
   .about-grid,
-  .about-page-grid {
+  .about-page-grid,
+  .about-home-grid {
     grid-template-columns: 1fr;
   }
 
@@ -956,6 +1025,14 @@ button {
 
   .page-title {
     font-size: 50px;
+  }
+
+  #home-about .section-header {
+    margin-bottom: 18px;
+  }
+
+  .about-home-panel {
+    padding: 23px;
   }
 
   .footer-inner {
