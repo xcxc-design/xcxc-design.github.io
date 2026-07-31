@@ -3,142 +3,679 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="description"
+    content="小船小船-定制类产品设计作品"
+  >
   <title>定制类产品设计｜小船小船-</title>
-  <link rel="stylesheet" href="styles.css">
+  <link
+    rel="stylesheet"
+    href="styles.css?v=20260731-custom-v1"
+  >
 </head>
+
 <body>
 
 <header class="site-header">
   <div class="container header-inner">
+
     <a class="header-brand" href="index.html">
       <strong>小船小船-</strong>
       <span>PORTFOLIO</span>
     </a>
 
     <nav class="site-nav" id="siteNav">
-      <a href="custom.html" aria-current='page'>定制类产品设计</a>
-      <a href="visual.html" >平面视觉</a>
-      <a href="ip.html" >IP设计</a>
-      <a href="index.html#home-about">关于我</a>
+      <a href="custom.html" aria-current="page">
+        定制类产品设计
+      </a>
+      <a href="visual.html">
+        平面视觉
+      </a>
+      <a href="ip.html">
+        IP设计
+      </a>
+      <a href="index.html#home-about">
+        关于我
+      </a>
     </nav>
 
-    <button class="menu-button" id="menuButton" type="button" aria-label="打开导航菜单">
+    <button
+      class="menu-button"
+      id="menuButton"
+      type="button"
+      aria-label="打开导航菜单"
+    >
       <span class="menu-line"></span>
     </button>
+
   </div>
 </header>
 
 <main>
-  <section class="page-hero">
-    <div class="container">
-      <div class="breadcrumb"><a href="index.html">首页</a> / 定制类产品设计</div>
-      <h1 class="page-title">定制类产品设计</h1>
-      <p class="page-intro">集中展示鞋类、化妆包、服装和其他定制类产品项目。后续可以按产品类型建立更细的项目页面。</p>
-    </div>
-  </section>
 
-  <section class="section">
+  <section class="custom-page-head">
     <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">分类方向</h2>
-        <p class="section-description">这些分类可以继续增加、删除或调整名称。</p>
+
+      <div class="breadcrumb">
+        <a href="index.html">首页</a>
+        <span>/</span>
+        <span>定制类产品设计</span>
       </div>
-      <div class="subcategory-grid">
-        
-        <article class="subcategory-card">
-          <span>01</span>
-          <div>
-            <h2>鞋类设计</h2>
-            <p>球鞋图案、配色、材质与系列化定制。</p>
-          </div>
-        </article>
-        
 
-        <article class="subcategory-card">
-          <span>02</span>
-          <div>
-            <h2>化妆包设计</h2>
-            <p>包型、面料、图案、配件与电商展示。</p>
-          </div>
-        </article>
-        
+      <div class="custom-head-grid">
 
-        <article class="subcategory-card">
-          <span>03</span>
-          <div>
-            <h2>服装设计</h2>
-            <p>服装图案、版式与成品视觉呈现。</p>
-          </div>
-        </article>
-        
+        <h1 class="custom-page-title">
+          定制类产品设计
+        </h1>
 
-        <article class="subcategory-card">
-          <span>04</span>
-          <div>
-            <h2>其他定制产品</h2>
-            <p>帽子、配饰和后续新增产品类型。</p>
-          </div>
-        </article>
-        
+        <p class="custom-page-intro">
+          展示已上架得物平台的定制产品设计，
+          按用途分为鞋类、化妆包、服装和帽子与配饰。
+          点击产品可在当前页面查看详细信息。
+        </p>
+
       </div>
     </div>
   </section>
 
-  <section class="section featured-section">
+  <section class="custom-products-section">
     <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">项目位置</h2>
-        <p class="section-description">后续替换为你的真实项目封面和项目详情入口。</p>
+
+      <div
+        class="custom-filter"
+        role="tablist"
+        aria-label="产品分类"
+      >
+        <button
+          class="custom-filter-button active"
+          type="button"
+          role="tab"
+          aria-selected="true"
+          data-category="鞋类"
+        >
+          鞋类
+        </button>
+
+        <button
+          class="custom-filter-button"
+          type="button"
+          role="tab"
+          aria-selected="false"
+          data-category="化妆包"
+        >
+          化妆包
+        </button>
+
+        <button
+          class="custom-filter-button"
+          type="button"
+          role="tab"
+          aria-selected="false"
+          data-category="服装"
+        >
+          服装
+        </button>
+
+        <button
+          class="custom-filter-button"
+          type="button"
+          role="tab"
+          aria-selected="false"
+          data-category="帽子与配饰"
+        >
+          帽子与配饰
+        </button>
       </div>
-      <div class="placeholder-grid">
-        
-        <article class="placeholder-card">
-          <h3>鞋类项目 01</h3>
-          <p>预留真实项目封面与详情。</p>
-        </article>
-        
 
-        <article class="placeholder-card">
-          <h3>化妆包项目 01</h3>
-          <p>预留真实项目封面与详情。</p>
-        </article>
-        
+      <div
+        class="custom-product-grid"
+        id="customProductGrid"
+      ></div>
 
-        <article class="placeholder-card">
-          <h3>服装项目 01</h3>
-          <p>预留真实项目封面与详情。</p>
-        </article>
-        
-
-        <article class="placeholder-card">
-          <h3>鞋类项目 02</h3>
-          <p>预留真实项目封面与详情。</p>
-        </article>
-        
-
-        <article class="placeholder-card">
-          <h3>化妆包项目 02</h3>
-          <p>预留真实项目封面与详情。</p>
-        </article>
-        
-
-        <article class="placeholder-card">
-          <h3>其他定制项目</h3>
-          <p>预留真实项目封面与详情。</p>
-        </article>
-        
+      <div
+        class="custom-empty"
+        id="customEmpty"
+        hidden
+      >
+        该分类的产品正在整理中。
       </div>
+
     </div>
   </section>
+
 </main>
+
+<div
+  class="product-drawer-layer"
+  id="productDrawerLayer"
+  hidden
+>
+  <button
+    class="product-drawer-backdrop"
+    id="productDrawerBackdrop"
+    type="button"
+    aria-label="关闭产品详情"
+  ></button>
+
+  <aside
+    class="product-drawer"
+    id="productDrawer"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="drawerProductName"
+  >
+
+    <button
+      class="product-drawer-close"
+      id="productDrawerClose"
+      type="button"
+      aria-label="关闭"
+    >
+      <span></span>
+      <span></span>
+    </button>
+
+    <div class="drawer-carousel">
+
+      <div
+        class="drawer-slide"
+        id="drawerSlide"
+      ></div>
+
+      <button
+        class="drawer-carousel-button previous"
+        id="drawerPrevious"
+        type="button"
+        aria-label="上一张图片"
+      >
+        ←
+      </button>
+
+      <button
+        class="drawer-carousel-button next"
+        id="drawerNext"
+        type="button"
+        aria-label="下一张图片"
+      >
+        →
+      </button>
+
+      <div
+        class="drawer-carousel-count"
+        id="drawerCarouselCount"
+      >
+        1 / 3
+      </div>
+
+      <div
+        class="drawer-carousel-dots"
+        id="drawerCarouselDots"
+        aria-label="轮播图位置"
+      ></div>
+
+    </div>
+
+    <div class="product-drawer-content">
+
+      <h2
+        class="product-drawer-name"
+        id="drawerProductName"
+      ></h2>
+
+      <div class="product-drawer-field">
+        <div class="product-drawer-label">
+          商品货号
+        </div>
+        <div
+          class="product-drawer-value"
+          id="drawerSku"
+        ></div>
+      </div>
+
+      <div class="product-drawer-field concept">
+        <div class="product-drawer-label">
+          设计理念
+        </div>
+        <p
+          class="product-drawer-concept"
+          id="drawerConcept"
+        ></p>
+      </div>
+
+      <a
+        class="product-drawer-link"
+        id="drawerProductLink"
+        href="#"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        前往得物查看商品
+        <span>→</span>
+      </a>
+
+    </div>
+
+  </aside>
+</div>
 
 <footer class="site-footer">
   <div class="container footer-inner">
-    <span>© <span id="currentYear"></span> 小船小船- PORTFOLIO</span>
-    <span>BUILT WITH GITHUB PAGES</span>
+    <span>
+      © <span id="currentYear"></span>
+      小船小船- PORTFOLIO
+    </span>
+    <span>
+      BUILT WITH GITHUB PAGES
+    </span>
   </div>
 </footer>
+
 <script src="script.js"></script>
+
+<script>
+  /*
+    产品资料区
+
+    后续你只需要提供：
+    1. 上架年份
+    2. 得物链接
+    3. 设计理念
+    4. 是否展示到首页精选
+
+    产品名、货号、销量和前三张商品图，
+    后续会根据得物链接整理并填写到这里。
+
+    salesValue 用于销量排序；
+    salesText 用于页面显示。
+  */
+
+  const customProducts = [
+    {
+      id: "demo-shoes",
+      name: "示例鞋款",
+      category: "鞋类",
+      year: "2025",
+      salesValue: 1000,
+      salesText: "1000+",
+      sku: "示例货号-001",
+      concept: "这里用于展示鞋款的设计理念。后续会替换为真实产品资料。",
+      link: "#",
+      featured: true,
+      images: ["", "", ""]
+    },
+    {
+      id: "demo-bag",
+      name: "示例化妆包",
+      category: "化妆包",
+      year: "2025",
+      salesValue: 500,
+      salesText: "500+",
+      sku: "示例货号-002",
+      concept: "这里用于展示化妆包的设计理念。后续会替换为真实产品资料。",
+      link: "#",
+      featured: true,
+      images: ["", "", ""]
+    },
+    {
+      id: "demo-clothing",
+      name: "示例服装",
+      category: "服装",
+      year: "2024",
+      salesValue: 300,
+      salesText: "300+",
+      sku: "示例货号-003",
+      concept: "这里用于展示服装产品的设计理念。后续会替换为真实产品资料。",
+      link: "#",
+      featured: false,
+      images: ["", "", ""]
+    },
+    {
+      id: "demo-accessory",
+      name: "示例帽子",
+      category: "帽子与配饰",
+      year: "2026",
+      salesValue: 100,
+      salesText: "100+",
+      sku: "示例货号-004",
+      concept: "这里用于展示帽子或配饰产品的设计理念。后续会替换为真实产品资料。",
+      link: "#",
+      featured: false,
+      images: ["", "", ""]
+    }
+  ];
+
+  const productGrid =
+    document.getElementById("customProductGrid");
+
+  const emptyState =
+    document.getElementById("customEmpty");
+
+  const filterButtons =
+    [...document.querySelectorAll(".custom-filter-button")];
+
+  const drawerLayer =
+    document.getElementById("productDrawerLayer");
+
+  const drawer =
+    document.getElementById("productDrawer");
+
+  const drawerClose =
+    document.getElementById("productDrawerClose");
+
+  const drawerBackdrop =
+    document.getElementById("productDrawerBackdrop");
+
+  const drawerSlide =
+    document.getElementById("drawerSlide");
+
+  const drawerPrevious =
+    document.getElementById("drawerPrevious");
+
+  const drawerNext =
+    document.getElementById("drawerNext");
+
+  const drawerCount =
+    document.getElementById("drawerCarouselCount");
+
+  const drawerDots =
+    document.getElementById("drawerCarouselDots");
+
+  const drawerName =
+    document.getElementById("drawerProductName");
+
+  const drawerSku =
+    document.getElementById("drawerSku");
+
+  const drawerConcept =
+    document.getElementById("drawerConcept");
+
+  const drawerLink =
+    document.getElementById("drawerProductLink");
+
+  let activeCategory = "鞋类";
+  let activeProduct = null;
+  let activeImageIndex = 0;
+
+  function getSortedProducts(category) {
+    return customProducts
+      .filter(product => product.category === category)
+      .sort((a, b) => b.salesValue - a.salesValue);
+  }
+
+  function createProductImage(product) {
+    if (product.images[0]) {
+      return `
+        <img
+          src="${product.images[0]}"
+          alt="${product.name}"
+          loading="lazy"
+        >
+      `;
+    }
+
+    return `
+      <div class="custom-product-placeholder">
+        <span>图片待替换</span>
+      </div>
+    `;
+  }
+
+  function renderProducts() {
+    const products =
+      getSortedProducts(activeCategory);
+
+    emptyState.hidden = products.length !== 0;
+
+    productGrid.innerHTML =
+      products
+        .map(product => `
+          <button
+            class="custom-product-card"
+            type="button"
+            data-product-id="${product.id}"
+            aria-label="查看${product.name}详情"
+          >
+            <div class="custom-product-image">
+              ${createProductImage(product)}
+            </div>
+
+            <div class="custom-product-info">
+
+              <div class="custom-product-left">
+                <h2 class="custom-product-name">
+                  ${product.name}
+                </h2>
+
+                <div class="custom-product-meta">
+                  ${product.category} · ${product.year}
+                </div>
+              </div>
+
+              <div class="custom-product-sales">
+                ${product.salesText} 销量
+              </div>
+
+            </div>
+          </button>
+        `)
+        .join("");
+
+    productGrid
+      .querySelectorAll(".custom-product-card")
+      .forEach(card => {
+        card.addEventListener("click", () => {
+          const product =
+            customProducts.find(
+              item => item.id === card.dataset.productId
+            );
+
+          openDrawer(product);
+        });
+      });
+  }
+
+  function renderDrawerImage() {
+    const image =
+      activeProduct.images[activeImageIndex];
+
+    if (image) {
+      drawerSlide.innerHTML = `
+        <img
+          src="${image}"
+          alt="${activeProduct.name}商品图${activeImageIndex + 1}"
+        >
+      `;
+    } else {
+      drawerSlide.innerHTML = `
+        <div class="drawer-image-placeholder">
+          <span>商品图片待替换</span>
+        </div>
+      `;
+    }
+
+    drawerCount.textContent =
+      `${activeImageIndex + 1} / ${activeProduct.images.length}`;
+
+    drawerDots.innerHTML =
+      activeProduct.images
+        .map((_, index) => `
+          <button
+            class="drawer-carousel-dot ${index === activeImageIndex ? "active" : ""}"
+            type="button"
+            aria-label="查看第${index + 1}张图片"
+            data-image-index="${index}"
+          ></button>
+        `)
+        .join("");
+
+    drawerDots
+      .querySelectorAll(".drawer-carousel-dot")
+      .forEach(dot => {
+        dot.addEventListener("click", () => {
+          activeImageIndex =
+            Number(dot.dataset.imageIndex);
+
+          renderDrawerImage();
+        });
+      });
+  }
+
+  function openDrawer(product) {
+    activeProduct = product;
+    activeImageIndex = 0;
+
+    drawerName.textContent =
+      product.name;
+
+    drawerSku.textContent =
+      product.sku;
+
+    drawerConcept.textContent =
+      product.concept;
+
+    drawerLink.href =
+      product.link && product.link !== "#"
+        ? product.link
+        : "#";
+
+    drawerLink.classList.toggle(
+      "disabled",
+      !product.link || product.link === "#"
+    );
+
+    renderDrawerImage();
+
+    drawerLayer.hidden = false;
+
+    requestAnimationFrame(() => {
+      drawerLayer.classList.add("open");
+    });
+
+    document.body.classList.add("drawer-open");
+
+    drawerClose.focus();
+  }
+
+  function closeDrawer() {
+    drawerLayer.classList.remove("open");
+    document.body.classList.remove("drawer-open");
+
+    window.setTimeout(() => {
+      drawerLayer.hidden = true;
+      activeProduct = null;
+    }, 320);
+  }
+
+  function showPreviousImage() {
+    if (!activeProduct) return;
+
+    activeImageIndex =
+      (
+        activeImageIndex -
+        1 +
+        activeProduct.images.length
+      ) %
+      activeProduct.images.length;
+
+    renderDrawerImage();
+  }
+
+  function showNextImage() {
+    if (!activeProduct) return;
+
+    activeImageIndex =
+      (
+        activeImageIndex +
+        1
+      ) %
+      activeProduct.images.length;
+
+    renderDrawerImage();
+  }
+
+  filterButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      activeCategory =
+        button.dataset.category;
+
+      filterButtons.forEach(item => {
+        const isActive =
+          item === button;
+
+        item.classList.toggle(
+          "active",
+          isActive
+        );
+
+        item.setAttribute(
+          "aria-selected",
+          String(isActive)
+        );
+      });
+
+      renderProducts();
+    });
+  });
+
+  drawerClose.addEventListener(
+    "click",
+    closeDrawer
+  );
+
+  drawerBackdrop.addEventListener(
+    "click",
+    closeDrawer
+  );
+
+  drawerPrevious.addEventListener(
+    "click",
+    showPreviousImage
+  );
+
+  drawerNext.addEventListener(
+    "click",
+    showNextImage
+  );
+
+  drawerLink.addEventListener(
+    "click",
+    event => {
+      if (
+        drawerLink.classList.contains("disabled")
+      ) {
+        event.preventDefault();
+      }
+    }
+  );
+
+  document.addEventListener(
+    "keydown",
+    event => {
+      if (
+        event.key === "Escape" &&
+        !drawerLayer.hidden
+      ) {
+        closeDrawer();
+      }
+
+      if (
+        event.key === "ArrowLeft" &&
+        !drawerLayer.hidden
+      ) {
+        showPreviousImage();
+      }
+
+      if (
+        event.key === "ArrowRight" &&
+        !drawerLayer.hidden
+      ) {
+        showNextImage();
+      }
+    }
+  );
+
+  renderProducts();
+</script>
 
 </body>
 </html>
