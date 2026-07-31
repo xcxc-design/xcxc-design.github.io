@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="小船小船-个人设计作品集">
   <title>小船小船-｜设计作品集</title>
-  <link rel="stylesheet" href="styles.css?v=20260731-4col-v2">
+  <link rel="stylesheet" href="styles.css?v=20260731-product-system-v1">
 </head>
 <body>
 
@@ -125,133 +125,21 @@
       <div class="section-header">
         <h2 class="section-title">精选</h2>
         <p class="section-description">
-          首页展示精选的定制类产品。桌面端每排4个，共两排8个位置。
+          根据当前销量，从标记为精选的产品中自动展示排名前8的产品。
         </p>
       </div>
 
-      <div class="product-grid">
-        
-<a class="product-card" href="custom.html">
-  <div class="product-image">
-    <div class="product-index">TOP 01</div>
-    <div class="product-placeholder"></div>
-  </div>
-  <div class="product-info">
-    <h3 class="product-title">精选产品 01</h3>
-    <div class="product-meta">
-      <span>定制类产品设计</span>
-      <span>2026</span>
-    </div>
-  </div>
-</a>
+      <div
+        class="product-grid"
+        id="featuredProductGrid"
+      ></div>
 
-
-<a class="product-card" href="custom.html">
-  <div class="product-image">
-    <div class="product-index">TOP 02</div>
-    <div class="product-placeholder"></div>
-  </div>
-  <div class="product-info">
-    <h3 class="product-title">精选产品 02</h3>
-    <div class="product-meta">
-      <span>定制类产品设计</span>
-      <span>2026</span>
-    </div>
-  </div>
-</a>
-
-
-<a class="product-card" href="custom.html">
-  <div class="product-image">
-    <div class="product-index">TOP 03</div>
-    <div class="product-placeholder"></div>
-  </div>
-  <div class="product-info">
-    <h3 class="product-title">精选产品 03</h3>
-    <div class="product-meta">
-      <span>定制类产品设计</span>
-      <span>2026</span>
-    </div>
-  </div>
-</a>
-
-
-<a class="product-card" href="custom.html">
-  <div class="product-image">
-    <div class="product-index">TOP 04</div>
-    <div class="product-placeholder"></div>
-  </div>
-  <div class="product-info">
-    <h3 class="product-title">精选产品 04</h3>
-    <div class="product-meta">
-      <span>定制类产品设计</span>
-      <span>2026</span>
-    </div>
-  </div>
-</a>
-
-
-<a class="product-card" href="custom.html">
-  <div class="product-image">
-    <div class="product-index">TOP 05</div>
-    <div class="product-placeholder"></div>
-  </div>
-  <div class="product-info">
-    <h3 class="product-title">精选产品 05</h3>
-    <div class="product-meta">
-      <span>定制类产品设计</span>
-      <span>2026</span>
-    </div>
-  </div>
-</a>
-
-
-<a class="product-card" href="custom.html">
-  <div class="product-image">
-    <div class="product-index">TOP 06</div>
-    <div class="product-placeholder"></div>
-  </div>
-  <div class="product-info">
-    <h3 class="product-title">精选产品 06</h3>
-    <div class="product-meta">
-      <span>定制类产品设计</span>
-      <span>2026</span>
-    </div>
-  </div>
-</a>
-
-
-<a class="product-card" href="custom.html">
-  <div class="product-image">
-    <div class="product-index">TOP 07</div>
-    <div class="product-placeholder"></div>
-  </div>
-  <div class="product-info">
-    <h3 class="product-title">精选产品 07</h3>
-    <div class="product-meta">
-      <span>定制类产品设计</span>
-      <span>2026</span>
-    </div>
-  </div>
-</a>
-
-
-<a class="product-card" href="custom.html">
-  <div class="product-image">
-    <div class="product-index">TOP 08</div>
-    <div class="product-placeholder"></div>
-  </div>
-  <div class="product-info">
-    <h3 class="product-title">精选产品 08</h3>
-    <div class="product-meta">
-      <span>定制类产品设计</span>
-      <span>2026</span>
-    </div>
-  </div>
-</a>
-
-
-
+      <div
+        class="products-empty"
+        id="featuredProductsEmpty"
+        hidden
+      >
+        精选产品正在整理中。
       </div>
     </div>
   </section>
@@ -321,6 +209,8 @@
   </div>
 </footer>
 <script src="script.js"></script>
+<script src="products-data.js?v=20260731-product-system-v1"></script>
+<script src="products-ui.js?v=20260731-product-system-v1"></script>
 
 </body>
 </html>

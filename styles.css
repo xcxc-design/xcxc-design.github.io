@@ -1108,12 +1108,170 @@ button {
 
 
 /* =========================
-   定制类产品设计页面
+   全站产品卡片
 ========================= */
 
-body.drawer-open {
-  overflow: hidden;
+.product-grid,
+.custom-product-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+  gap: 16px;
 }
+
+.portfolio-product-card {
+  min-width: 0;
+  padding: 0;
+  overflow: hidden;
+  color: inherit;
+  text-align: left;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  cursor: pointer;
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.portfolio-product-card:hover {
+  transform: translateY(-5px);
+  background: var(--panel-2);
+  border-color: var(--line-strong);
+}
+
+.portfolio-product-image {
+  position: relative;
+  aspect-ratio: 1 / 1.03;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at 25% 18%,
+      rgba(255, 255, 255, 0.11),
+      transparent 38%
+    ),
+    linear-gradient(
+      145deg,
+      #27272d,
+      #101014 72%
+    );
+  border-bottom: 1px solid var(--line);
+}
+
+.portfolio-product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.portfolio-product-rank {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  z-index: 3;
+  color: var(--text-faint);
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: 0.12em;
+}
+
+.portfolio-product-placeholder,
+.drawer-image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-faint);
+  font-size: 12px;
+}
+
+.portfolio-product-placeholder::before {
+  content: "";
+  width: 56%;
+  height: 46%;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.24),
+      rgba(255, 255, 255, 0.03)
+    );
+  clip-path:
+    polygon(
+      4% 67%,
+      19% 36%,
+      41% 24%,
+      70% 34%,
+      92% 63%,
+      98% 81%,
+      72% 91%,
+      20% 88%
+    );
+  filter:
+    drop-shadow(
+      0 22px 18px
+      rgba(0, 0, 0, 0.45)
+    );
+}
+
+.portfolio-product-placeholder span {
+  position: absolute;
+  left: 16px;
+  bottom: 15px;
+}
+
+.portfolio-product-info {
+  min-height: 98px;
+  padding: 17px 16px 18px;
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1fr) auto;
+  gap: 18px;
+  align-items: end;
+}
+
+.portfolio-product-left {
+  min-width: 0;
+}
+
+.portfolio-product-name {
+  margin: 0 0 8px;
+  overflow: hidden;
+  font-size: 18px;
+  line-height: 1.35;
+  font-weight: var(--weight-bold);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.portfolio-product-meta {
+  color: var(--text-soft);
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: var(--weight-regular);
+}
+
+.portfolio-product-sales {
+  padding-bottom: 1px;
+  color: var(--text);
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: var(--weight-medium);
+  white-space: nowrap;
+}
+
+.products-empty {
+  padding: 90px 20px;
+  color: var(--text-soft);
+  text-align: center;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  font-size: 14px;
+}
+
+/* =========================
+   定制类产品页面
+========================= */
 
 .custom-page-head {
   padding: 72px 0 52px;
@@ -1196,152 +1354,13 @@ body.drawer-open {
   border-color: var(--text);
 }
 
-.custom-product-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 16px;
-}
+/* =========================
+   产品详情抽屉
+========================= */
 
-.custom-product-card {
-  min-width: 0;
-  padding: 0;
+body.drawer-open {
   overflow: hidden;
-  color: inherit;
-  text-align: left;
-  background: var(--panel);
-  border: 1px solid var(--line);
-  cursor: pointer;
-  transition:
-    transform 0.3s ease,
-    border-color 0.3s ease,
-    background 0.3s ease;
 }
-
-.custom-product-card:hover {
-  transform: translateY(-5px);
-  background: var(--panel-2);
-  border-color: var(--line-strong);
-}
-
-.custom-product-image {
-  position: relative;
-  aspect-ratio: 1 / 1.03;
-  overflow: hidden;
-  background:
-    radial-gradient(
-      circle at 25% 18%,
-      rgba(255, 255, 255, 0.11),
-      transparent 38%
-    ),
-    linear-gradient(
-      145deg,
-      #27272d,
-      #101014 72%
-    );
-  border-bottom: 1px solid var(--line);
-}
-
-.custom-product-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.custom-product-placeholder,
-.drawer-image-placeholder {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-faint);
-  font-size: 12px;
-  letter-spacing: 0.08em;
-}
-
-.custom-product-placeholder::before {
-  content: "";
-  width: 56%;
-  height: 46%;
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255, 255, 255, 0.24),
-      rgba(255, 255, 255, 0.03)
-    );
-  clip-path:
-    polygon(
-      4% 67%,
-      19% 36%,
-      41% 24%,
-      70% 34%,
-      92% 63%,
-      98% 81%,
-      72% 91%,
-      20% 88%
-    );
-  filter:
-    drop-shadow(
-      0 22px 18px
-      rgba(0, 0, 0, 0.45)
-    );
-}
-
-.custom-product-placeholder span {
-  position: absolute;
-  left: 16px;
-  bottom: 15px;
-}
-
-.custom-product-info {
-  min-height: 96px;
-  padding: 17px 16px 18px;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 18px;
-  align-items: end;
-}
-
-.custom-product-left {
-  min-width: 0;
-}
-
-.custom-product-name {
-  margin: 0 0 8px;
-  overflow: hidden;
-  font-size: 18px;
-  line-height: 1.35;
-  font-weight: var(--weight-bold);
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.custom-product-meta {
-  color: var(--text-soft);
-  font-size: 12px;
-  line-height: 1.5;
-  font-weight: var(--weight-regular);
-}
-
-.custom-product-sales {
-  padding-bottom: 1px;
-  color: var(--text);
-  font-size: 13px;
-  line-height: 1.5;
-  font-weight: var(--weight-medium);
-  white-space: nowrap;
-}
-
-.custom-empty {
-  padding: 110px 20px;
-  color: var(--text-soft);
-  text-align: center;
-  background: var(--panel);
-  border: 1px solid var(--line);
-  font-size: 14px;
-}
-
-/* 右侧抽屉 */
 
 .product-drawer-layer[hidden] {
   display: none;
@@ -1361,7 +1380,6 @@ body.drawer-open {
   padding: 0;
   background: rgba(0, 0, 0, 0);
   border: 0;
-  cursor: default;
   transition: background 0.32s ease;
 }
 
@@ -1374,7 +1392,9 @@ body.drawer-open {
   overflow-y: auto;
   background: #101014;
   border-left: 1px solid var(--line-strong);
-  box-shadow: -24px 0 70px rgba(0, 0, 0, 0.42);
+  box-shadow:
+    -24px 0 70px
+    rgba(0, 0, 0, 0.42);
   transform: translateX(100%);
   transition: transform 0.32s ease;
 }
@@ -1413,13 +1433,15 @@ body.drawer-open {
   background: var(--text);
 }
 
-.product-drawer-close span:first-child {
+.product-drawer-close
+span:first-child {
   transform:
     translate(-50%, -50%)
     rotate(45deg);
 }
 
-.product-drawer-close span:last-child {
+.product-drawer-close
+span:last-child {
   transform:
     translate(-50%, -50%)
     rotate(-45deg);
@@ -1498,7 +1520,8 @@ body.drawer-open {
   width: 18px;
   height: 2px;
   padding: 0;
-  background: rgba(255, 255, 255, 0.26);
+  background:
+    rgba(255, 255, 255, 0.26);
   border: 0;
   cursor: pointer;
 }
@@ -1551,49 +1574,29 @@ body.drawer-open {
   line-height: 2;
 }
 
-.product-drawer-link {
-  min-height: 50px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-  padding: 0 23px;
-  color: #111;
-  background: var(--text);
-  border: 1px solid var(--text);
-  border-radius: 999px;
-  font-size: 14px;
-  font-weight: var(--weight-medium);
-  transition:
-    transform 0.25s ease,
-    background 0.25s ease;
-}
-
-.product-drawer-link:hover {
-  transform: translateY(-2px);
-  background: #fff;
-}
-
-.product-drawer-link.disabled {
-  color: var(--text-faint);
-  background: transparent;
-  border-color: var(--line);
-  cursor: not-allowed;
-}
-
 @media (max-width: 1120px) {
-  .custom-head-grid {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-
+  .product-grid,
   .custom-product-grid {
     grid-template-columns:
       repeat(2, minmax(0, 1fr));
   }
+
+  .custom-head-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
 }
 
 @media (max-width: 760px) {
+  .product-grid,
+  .custom-product-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .portfolio-product-image {
+    aspect-ratio: 1 / 0.82;
+  }
+
   .custom-page-head {
     padding: 52px 0 38px;
   }
@@ -1614,14 +1617,6 @@ body.drawer-open {
     width: calc(100% + 14px);
     margin-bottom: 24px;
     padding-right: 14px;
-  }
-
-  .custom-product-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .custom-product-image {
-    aspect-ratio: 1 / 0.82;
   }
 
   .product-drawer {
