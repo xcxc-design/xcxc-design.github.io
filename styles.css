@@ -1087,3 +1087,21 @@ button {
 .about-fact strong {
   font-weight: var(--weight-medium);
 }
+
+
+/* 首页精选区域：最终网格覆盖，防止旧样式或缓存导致列数错误 */
+.product-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+}
+
+@media (max-width: 1100px) {
+  .product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .product-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
