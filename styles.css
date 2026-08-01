@@ -3663,25 +3663,54 @@ body {
 }
 
 /* =========================
-   两大分类与顶部导航
+   Hi 锚点、卡片尺寸与 Case 标题
 ========================= */
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* 点击“我的作品”后让 Hi 标题完整露出，不被顶部导航遮挡 */
+#categories {
+  scroll-margin-top: 92px;
+}
 
 #categories .section-header {
   display: block;
   margin-bottom: 28px;
 }
 
-#categories .category-grid {
-  grid-template-columns:
-    repeat(2, minmax(0, 1fr)) !important;
-  gap: 20px !important;
+/* 桌面端恢复上一版三列时的卡片宽度，只放在左右两端 */
+@media (min-width: 981px) {
+  #categories .category-grid {
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr)) !important;
+    gap: 20px !important;
+  }
+
+  #categories .category-card:first-child {
+    grid-column: 1;
+  }
+
+  #categories .category-card:nth-child(2) {
+    grid-column: 3;
+  }
 }
 
-#categories .category-card {
-  width: 100%;
+/* 中等屏幕保持两张卡片横向排列 */
+@media (min-width: 761px) and (max-width: 980px) {
+  #categories .category-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr)) !important;
+    gap: 18px !important;
+  }
 }
 
 @media (max-width: 760px) {
+  #categories {
+    scroll-margin-top: 78px;
+  }
+
   #categories .category-grid {
     grid-template-columns: 1fr !important;
     gap: 14px !important;
