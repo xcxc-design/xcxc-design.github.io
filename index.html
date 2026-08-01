@@ -25,7 +25,7 @@
     })();
   </script>
   <link rel="stylesheet" href="styles.css?v=20260801-home-update-v2">
-  <link rel="icon" href='data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"%3E%3Cpath d="M8 43h48l-6 8H14z" fill="%2369A7FF"/%3E%3Cpath d="M20 38h24l8 5H12z" fill="%2386B8FF"/%3E%3Cpath d="M28 18v18" stroke="%2369A7FF" stroke-width="4" stroke-linecap="round"/%3E%3Cpath d="M30 20c8 1 12 6 12 12-7-1-12-5-12-12Z" fill="%237FB3FF"/%3E%3C/svg%3E'>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M13 46C15.5 49.5 21.5 52 32 52C42.5 52 48.5 49.5 51 46H13Z' fill='%236EB8FF'/%3E%3Cpath d='M18 41H46L42.5 46H21.5L18 41Z' fill='%234F9FFF'/%3E%3Cpath d='M31 18V41' stroke='%234F9FFF' stroke-width='3.6' stroke-linecap='round'/%3E%3Cpath d='M32 21C36 17.5 42 18.2 44.4 22.2C46.8 26.2 44.4 31.2 32 38C19.6 31.2 17.2 26.2 19.6 22.2C22 18.2 28 17.5 32 21Z' fill='%238ED0FF'/%3E%3Cpath d='M17 54C22 56.4 27 56.4 32 54' stroke='%23B6DEFF' stroke-width='2.8' stroke-linecap='round'/%3E%3Cpath d='M32 54C37 56.4 42 56.4 47 54' stroke='%23B6DEFF' stroke-width='2.8' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='33' r='2.5' fill='%23FFF1B5'/%3E%3C/svg%3E">
 </head>
 <body>
 
@@ -34,10 +34,13 @@
     <a class="header-brand" href="index.html" aria-label="返回首页">
   <span class="header-brand-icon" aria-hidden="true">
     <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M8 43H56L50 51H14L8 43Z" fill="#69A7FF"/>
-      <path d="M20 38H44L52 43H12L20 38Z" fill="#86B8FF"/>
-      <path d="M28 18V38" stroke="#69A7FF" stroke-width="4" stroke-linecap="round"/>
-      <path d="M30 20C38 21 42 26 42 32C35 31 30 27 30 20Z" fill="#7FB3FF"/>
+      <path d="M13 46C15.5 49.5 21.5 52 32 52C42.5 52 48.5 49.5 51 46H13Z" fill="#6EB8FF"/>
+      <path d="M18 41H46L42.5 46H21.5L18 41Z" fill="#4F9FFF"/>
+      <path d="M31 18V41" stroke="#4F9FFF" stroke-width="3.6" stroke-linecap="round"/>
+      <path d="M32 21C36 17.5 42 18.2 44.4 22.2C46.8 26.2 44.4 31.2 32 38C19.6 31.2 17.2 26.2 19.6 22.2C22 18.2 28 17.5 32 21Z" fill="#8ED0FF"/>
+      <path d="M17 54C22 56.4 27 56.4 32 54" stroke="#B6DEFF" stroke-width="2.8" stroke-linecap="round"/>
+      <path d="M32 54C37 56.4 42 56.4 47 54" stroke="#B6DEFF" stroke-width="2.8" stroke-linecap="round"/>
+      <circle cx="32" cy="33" r="2.5" fill="#FFF1B5"/>
     </svg>
   </span>
   <span class="header-brand-text">
@@ -52,15 +55,23 @@
       <a href="#home-about">关于我</a>
     </nav>
 
-    <div class="season-selector">
-  <label class="season-selector-label" for="seasonSelect">季</label>
-  <select class="season-selector-select" id="seasonSelect" aria-label="选择季节图案">
-    <option value="spring">春</option>
-    <option value="summer">夏</option>
-    <option value="autumn">秋</option>
-    <option value="winter">冬</option>
-  </select>
-</div>
+    <div class="header-tools">
+      <button class="season-switch" id="seasonSwitch" type="button" aria-label="切换飘散动效开关" aria-pressed="true">
+        <span class="season-switch-track"><span class="season-switch-knob"></span></span>
+      </button>
+      <div class="season-dropdown" id="seasonDropdown">
+        <button class="season-dropdown-trigger" id="seasonDropdownTrigger" type="button" aria-haspopup="listbox" aria-expanded="false">
+          <span class="season-dropdown-label" id="seasonCurrentLabel">春</span>
+          <span class="season-dropdown-arrow" aria-hidden="true">⌄</span>
+        </button>
+        <div class="season-dropdown-menu" id="seasonDropdownMenu" role="listbox" aria-label="选择季节">
+          <button class="season-option" type="button" data-season="spring" role="option">春</button>
+          <button class="season-option" type="button" data-season="summer" role="option">夏</button>
+          <button class="season-option" type="button" data-season="autumn" role="option">秋</button>
+          <button class="season-option" type="button" data-season="winter" role="option">冬</button>
+        </div>
+      </div>
+    </div>
 
     <button class="menu-button" id="menuButton" type="button" aria-label="打开导航菜单">
       <span class="menu-line"></span>
@@ -172,7 +183,7 @@
     <div class="container">
 
       <div class="section-header">
-        <h2 class="section-title">‧₊ 𓏵 About me 𓏵 ₊‧</h2>
+        <h2 class="section-title">About me</h2>
         <p class="section-description">
           这部分用于简要介绍我的设计方向、项目类型和目前的工作状态。
         </p>

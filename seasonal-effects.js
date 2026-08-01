@@ -2,14 +2,19 @@
   "use strict";
 
   const layer = document.getElementById("seasonEffectLayer");
-  const select = document.getElementById("seasonSelect");
+  const switchButton = document.getElementById("seasonSwitch");
+  const dropdown = document.getElementById("seasonDropdown");
+  const dropdownTrigger = document.getElementById("seasonDropdownTrigger");
+  const currentLabel = document.getElementById("seasonCurrentLabel");
+  const options = Array.from(document.querySelectorAll(".season-option"));
 
-  if (!layer || !select) {
+  if (!layer || !switchButton || !dropdown || !dropdownTrigger || !currentLabel || options.length === 0) {
     return;
   }
 
+  const seasonNames = { spring: "春", summer: "夏", autumn: "秋", winter: "冬" };
   const seasonConfig = {
-    spring: { className: "season-spring", count: 26 },
+    spring: { className: "season-spring", count: 28 },
     summer: { className: "season-summer", count: 20 },
     autumn: { className: "season-autumn", count: 22 },
     winter: { className: "season-winter", count: 34 }
@@ -31,28 +36,29 @@
     return getCurrentSeason();
   }
 
-  function saveSeason(season) {
+  function readEnabled() {
+    try {
+      const saved = localStorage.getItem("seasonEffectsEnabled");
+      if (saved === "false") return false;
+    } catch (error) {}
+    return true;
+  }
+
+  function saveState(season, enabled) {
     try {
       localStorage.setItem("selectedSeason", season);
+      localStorage.setItem("seasonEffectsEnabled", String(enabled));
     } catch (error) {}
   }
 
-  function random(min, max) {
-    return Math.random() * (max - min) + min;
-  }
+  function random(min, max) { return Math.random() * (max - min) + min; }
 
   function createParticle(season, index) {
     const particle = document.createElement("span");
     particle.className = "season-particle";
     particle.setAttribute("aria-hidden", "true");
 
-    const size =
-      season === "winter"
-        ? random(7, 17)
-        : season === "summer"
-          ? random(7, 13)
-          : random(9, 18);
-
+    const size = season === "winter" ? random(7, 17) : season === "summer" ? random(7, 13) : random(10, 20);
     const duration = season === "summer" ? random(13, 22) : random(9, 17);
     const drift = random(-150, 150);
     const sway = random(24, 82);
@@ -76,32 +82,89 @@
       particle.textContent = index % 4 === 0 ? "❄" : "•";
     }
 
+    if (season === "spring") {
+      const shape = Math.random() < 0.32 ? "flower" : "petal";
+      particle.dataset.shape = shape;
+    }
+
     return particle;
   }
 
-  function renderParticles(season) {
-    const config = seasonConfig[season];
+  let currentSeason = readSavedSeason();
+  let enabled = readEnabled();
+
+  function renderParticles() {
+    if (!enabled) {
+      layer.className = "season-effect-layer is-paused";
+      layer.replaceChildren();
+      return;
+    }
+
+    const config = seasonConfig[currentSeason];
     layer.className = `season-effect-layer ${config.className}`;
     layer.replaceChildren();
-
     const fragment = document.createDocumentFragment();
-    for (let index = 0; index < config.count; index += 1) {
-      fragment.appendChild(createParticle(season, index));
-    }
+    for (let i = 0; i < config.count; i += 1) fragment.appendChild(createParticle(currentSeason, i));
     layer.appendChild(fragment);
   }
 
-  function applySeason(season) {
-    if (!seasonConfig[season]) return;
-    select.value = season;
-    renderParticles(season);
-    saveSeason(season);
+  function updateControls() {
+    currentLabel.textContent = seasonNames[currentSeason];
+    switchButton.classList.toggle("is-off", !enabled);
+    switchButton.setAttribute("aria-pressed", enabled ? "true" : "false");
+    options.forEach(option => option.classList.toggle("active", option.dataset.season === currentSeason));
+    dropdownTrigger.setAttribute("aria-expanded", dropdown.classList.contains("open") ? "true" : "false");
   }
 
-  const initialSeason = readSavedSeason();
-  applySeason(initialSeason);
-  select.addEventListener("change", () => applySeason(select.value));
+  function applyState() {
+    renderParticles();
+    updateControls();
+    saveState(currentSeason, enabled);
+  }
+
+  switchButton.addEventListener("click", () => {
+    enabled = !enabled;
+    applyState();
+  });
+
+  dropdownTrigger.addEventListener("click", event => {
+    event.stopPropagation();
+    dropdown.classList.toggle("open");
+    updateControls();
+  });
+
+  dropdown.addEventListener("mouseenter", () => {
+    if (window.matchMedia("(hover: hover)").matches) {
+      dropdown.classList.add("open");
+      updateControls();
+    }
+  });
+
+  dropdown.addEventListener("mouseleave", () => {
+    if (window.matchMedia("(hover: hover)").matches) {
+      dropdown.classList.remove("open");
+      updateControls();
+    }
+  });
+
+  options.forEach(option => {
+    option.addEventListener("click", event => {
+      currentSeason = event.currentTarget.dataset.season;
+      dropdown.classList.remove("open");
+      applyState();
+    });
+  });
+
+  document.addEventListener("click", event => {
+    if (!dropdown.contains(event.target)) {
+      dropdown.classList.remove("open");
+      updateControls();
+    }
+  });
+
   document.addEventListener("visibilitychange", () => {
     layer.classList.toggle("page-hidden", document.hidden);
   });
+
+  applyState();
 })();
