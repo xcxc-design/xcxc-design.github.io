@@ -142,9 +142,9 @@
           product =>
             product.featured === true
         )
-      ).slice(0, 8);
+      ).slice(0, 4);
 
-    grid.innerHTML =
+    const productCards =
       featured
         .map(
           (product, index) =>
@@ -156,9 +156,21 @@
         )
         .join("");
 
+    const moreCard = `
+      <a
+        class="featured-more-card"
+        href="custom.html"
+        aria-label="查看更多定制类产品设计"
+      >
+        <span aria-hidden="true">…</span>
+      </a>
+    `;
+
+    grid.innerHTML =
+      productCards + moreCard;
+
     if (empty) {
-      empty.hidden =
-        featured.length !== 0;
+      empty.hidden = true;
     }
 
     attachCardEvents(grid);

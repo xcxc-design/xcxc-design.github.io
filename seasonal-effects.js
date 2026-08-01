@@ -22,22 +22,22 @@
 
   const seasonConfig = {
     spring: {
-      label: "春日花瓣",
+      label: "春",
       className: "season-spring",
       count: 26
     },
     summer: {
-      label: "夏日蒲公英",
+      label: "夏",
       className: "season-summer",
       count: 20
     },
     autumn: {
-      label: "秋日落叶",
+      label: "秋",
       className: "season-autumn",
       count: 22
     },
     winter: {
-      label: "冬日雪花",
+      label: "冬",
       className: "season-winter",
       count: 34
     }

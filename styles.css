@@ -2239,3 +2239,147 @@ body {
     animation: none;
   }
 }
+
+/* =========================
+   2026-08 首页版式调整
+========================= */
+
+/* 首页首屏整体上移 */
+.hero {
+  min-height: 555px;
+  padding: 30px 0 46px;
+  align-items: flex-start;
+}
+
+.hero-grid {
+  padding-top: 4px;
+}
+
+.hero-left {
+  width: min(100%, 420px);
+  gap: 18px;
+}
+
+.hero-name {
+  margin: 0 0 2px;
+  text-align: center;
+}
+
+.hero-photo {
+  width: min(100%, 380px);
+}
+
+.hero-lockup {
+  gap: 0;
+}
+
+.hero-portfolio {
+  margin-top: 0;
+}
+
+.hero-meta {
+  margin-top: 22px;
+}
+
+/* 三大分类 */
+.category-grid {
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+}
+
+/* 首页精选：四个作品加一个省略号 */
+#featuredProductGrid.product-grid {
+  grid-template-columns:
+    repeat(5, minmax(0, 1fr));
+}
+
+.featured-more-card {
+  min-width: 0;
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-soft);
+  background:
+    radial-gradient(
+      circle at 50% 44%,
+      rgba(23, 23, 23, 0.035),
+      transparent 38%
+    ),
+    var(--panel);
+  border: 1px solid var(--line);
+  font-size: clamp(54px, 5vw, 82px);
+  font-weight: var(--weight-light);
+  line-height: 1;
+  transition:
+    transform 0.3s ease,
+    color 0.3s ease,
+    background 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.featured-more-card:hover {
+  color: var(--text);
+  background: var(--panel-2);
+  border-color: var(--line-strong);
+  transform: translateY(-5px);
+}
+
+/* 当前季节标签缩短后保持紧凑 */
+.season-toggle {
+  gap: 7px;
+}
+
+.season-toggle-label {
+  min-width: 1em;
+  text-align: center;
+}
+
+@media (max-width: 1120px) {
+  #featuredProductGrid.product-grid {
+    grid-template-columns:
+      repeat(5, minmax(150px, 1fr));
+    overflow-x: auto;
+    padding-bottom: 8px;
+  }
+
+  .category-grid {
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .hero {
+    padding: 26px 0 42px;
+  }
+
+  .hero-left {
+    gap: 15px;
+  }
+
+  .hero-name {
+    font-size: 32px;
+  }
+
+  .category-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #featuredProductGrid.product-grid {
+    grid-template-columns:
+      repeat(5, minmax(78vw, 1fr));
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+
+  #featuredProductGrid
+  > * {
+    scroll-snap-align: start;
+  }
+
+  .featured-more-card {
+    min-height: 360px;
+  }
+}
