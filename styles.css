@@ -3661,3 +3661,29 @@ body {
     transform: translateX(-50%) rotate(135deg);
   }
 }
+
+/* =========================
+   两大分类与顶部导航
+========================= */
+
+#categories .section-header {
+  display: block;
+  margin-bottom: 28px;
+}
+
+#categories .category-grid {
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr)) !important;
+  gap: 20px !important;
+}
+
+#categories .category-card {
+  width: 100%;
+}
+
+@media (max-width: 760px) {
+  #categories .category-grid {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+}
