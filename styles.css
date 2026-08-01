@@ -7,16 +7,20 @@
   --weight-medium: 500;
   --weight-semibold: 600;
   --weight-bold: 700;
-  --bg: #0b0b0e;
-  --bg-deep: #070709;
-  --panel: #121217;
-  --panel-2: #17171d;
-  --text: #f2f0ea;
-  --text-soft: rgba(242, 240, 234, 0.67);
-  --text-faint: rgba(242, 240, 234, 0.40);
-  --line: rgba(255, 255, 255, 0.09);
-  --line-strong: rgba(255, 255, 255, 0.17);
-  --accent: #d8d1c5;
+
+  --bg: #f6f5f1;
+  --bg-deep: #efede7;
+  --panel: #ffffff;
+  --panel-2: #f1efe9;
+
+  --text: #171717;
+  --text-soft: rgba(23, 23, 23, 0.62);
+  --text-faint: rgba(23, 23, 23, 0.38);
+
+  --line: rgba(23, 23, 23, 0.10);
+  --line-strong: rgba(23, 23, 23, 0.20);
+  --accent: #171717;
+
   --max-width: 1440px;
 }
 
@@ -1680,5 +1684,229 @@ span:last-child {
   .product-modal-name {
     margin-right: 48px;
     font-size: 30px;
+  }
+}
+
+/* =========================
+   全站浅色主题
+========================= */
+
+body {
+  background:
+    radial-gradient(
+      circle at 72% 8%,
+      rgba(23, 23, 23, 0.025),
+      transparent 30%
+    ),
+    var(--bg);
+}
+
+.site-header {
+  background: rgba(246, 245, 241, 0.90);
+}
+
+.button-primary,
+.custom-filter-button.active {
+  color: #ffffff;
+  background: #171717;
+  border-color: #171717;
+}
+
+.button-primary:hover {
+  color: #ffffff;
+  background: #000000;
+  border-color: #000000;
+}
+
+.category-card {
+  background: #ffffff;
+}
+
+.category-card::after {
+  background: rgba(23, 23, 23, 0.025);
+}
+
+.category-card:hover {
+  background: #f1efe9;
+}
+
+.category-card:hover::after {
+  background: rgba(23, 23, 23, 0.045);
+}
+
+.product-image,
+.portfolio-product-image,
+.placeholder-card {
+  background:
+    radial-gradient(
+      circle at 25% 18%,
+      rgba(23, 23, 23, 0.05),
+      transparent 38%
+    ),
+    linear-gradient(
+      145deg,
+      #f4f2ed,
+      #e8e5de 72%
+    );
+}
+
+.product-placeholder,
+.portfolio-product-placeholder::before {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(23, 23, 23, 0.20),
+      rgba(23, 23, 23, 0.045)
+    );
+  filter:
+    drop-shadow(
+      0 18px 16px
+      rgba(23, 23, 23, 0.12)
+    );
+}
+
+.product-card:nth-child(2n)
+.product-placeholder {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(23, 23, 23, 0.25),
+      rgba(23, 23, 23, 0.06)
+    );
+}
+
+.about-home-panel {
+  background: #ffffff;
+}
+
+.method-intro {
+  color: #ffffff;
+  background: #171717;
+}
+
+.method-intro p {
+  color: rgba(255, 255, 255, 0.66);
+}
+
+.product-modal {
+  background: #ffffff;
+  box-shadow:
+    0 28px 90px
+    rgba(23, 23, 23, 0.24);
+}
+
+.product-modal-layer.open
+.product-modal-backdrop {
+  background: rgba(236, 233, 225, 0.76);
+}
+
+.product-modal-close {
+  background: rgba(255, 255, 255, 0.88);
+}
+
+.modal-carousel {
+  background:
+    radial-gradient(
+      circle at 26% 18%,
+      rgba(23, 23, 23, 0.05),
+      transparent 38%
+    ),
+    #f1efe9;
+}
+
+.modal-carousel-button {
+  color: #171717;
+  background: rgba(255, 255, 255, 0.84);
+}
+
+.modal-carousel-dot {
+  background: rgba(23, 23, 23, 0.22);
+}
+
+.modal-carousel-dot.active {
+  background: #171717;
+}
+
+/* =========================
+   首页极简居中首屏
+========================= */
+
+.hero {
+  min-height: 650px;
+  padding: 72px 0 76px;
+}
+
+.hero-grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-left {
+  width: min(100%, 420px);
+  padding-left: 0;
+  align-items: center;
+  gap: 32px;
+  text-align: center;
+}
+
+.hero-photo {
+  width: min(100%, 380px);
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0),
+      rgba(23, 23, 23, 0.08)
+    ),
+    url("images/home-photo.jpg"),
+    #e8e5de;
+  background-position: center;
+  background-size: cover;
+  border-color: var(--line);
+}
+
+.hero-photo::before {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.hero-photo::after {
+  background: rgba(255, 255, 255, 0.34);
+}
+
+.hero-lockup {
+  width: 100%;
+  margin-left: 0;
+  align-items: center;
+  text-align: center;
+}
+
+.hero-name {
+  margin-bottom: 12px;
+}
+
+.hero-meta {
+  justify-content: center;
+}
+
+.site-footer {
+  background: var(--bg-deep);
+}
+
+@media (max-width: 760px) {
+  .site-nav {
+    background: rgba(255, 255, 255, 0.97);
+  }
+
+  .hero {
+    min-height: auto;
+    padding: 52px 0 58px;
+  }
+
+  .hero-left {
+    width: min(100%, 360px);
+  }
+
+  .hero-photo {
+    width: min(100%, 330px);
   }
 }
