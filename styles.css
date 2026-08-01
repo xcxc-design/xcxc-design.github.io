@@ -2383,3 +2383,82 @@ body {
     min-height: 360px;
   }
 }
+
+/* =========================
+   顶部导航与首页署名微调
+========================= */
+
+/* 桌面端导航相对整张网页严格居中 */
+@media (min-width: 761px) {
+  .header-inner {
+    position: relative;
+  }
+
+  .site-nav {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .season-toggle {
+    margin-left: auto;
+  }
+}
+
+/* 左上角 PORTFOLIO 移到名称下方 */
+.header-brand {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  line-height: 1;
+}
+
+.header-brand strong {
+  line-height: 1.15;
+}
+
+.header-brand span {
+  display: block;
+  margin-left: 0;
+  line-height: 1.2;
+}
+
+/* 照片下方 PORTFOLIO 放大、加粗 */
+.hero-portfolio {
+  font-size: clamp(23px, 2vw, 30px);
+  line-height: 1.15;
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.18em;
+}
+
+/* 下方 DESIGNER 与年份顺延 */
+.hero-meta {
+  margin-top: 27px;
+}
+
+@media (max-width: 760px) {
+  .header-brand {
+    gap: 1px;
+  }
+
+  .header-brand strong {
+    font-size: 20px;
+  }
+
+  .header-brand span {
+    font-size: 8px;
+  }
+
+  .site-nav {
+    transform: none;
+  }
+
+  .hero-portfolio {
+    font-size: 23px;
+    letter-spacing: 0.16em;
+  }
+
+  .hero-meta {
+    margin-top: 23px;
+  }
+}
