@@ -9,6 +9,9 @@
   let activeProduct = null;
   let activeImageIndex = 0;
   let lastFocusedElement = null;
+  let swipeStartX = 0;
+  let swipeStartY = 0;
+  let swipePointerId = null;
 
   function formatSales(value) {
     const sales = Number(value) || 0;
@@ -60,7 +63,8 @@
   }
 
   function productCard(product, index, showRank) {
-    const rank = String(index + 1).padStart(2, "0");
+    const rank =
+      String(index + 1).padStart(2, "0");
 
     return `
       <button
@@ -75,6 +79,7 @@
               ? `<div class="portfolio-product-rank">${rank}</div>`
               : ""
           }
+
           ${productImage(product)}
         </div>
 
@@ -107,11 +112,12 @@
           const product =
             products.find(
               item =>
-                item.id === card.dataset.productId
+                item.id ===
+                card.dataset.productId
             );
 
           if (product) {
-            openDrawer(product);
+            openModal(product, card);
           }
         });
       });
@@ -119,10 +125,14 @@
 
   function renderFeaturedProducts() {
     const grid =
-      document.getElementById("featuredProductGrid");
+      document.getElementById(
+        "featuredProductGrid"
+      );
 
     const empty =
-      document.getElementById("featuredProductsEmpty");
+      document.getElementById(
+        "featuredProductsEmpty"
+      );
 
     if (!grid) return;
 
@@ -156,10 +166,14 @@
 
   function renderCustomProducts(category) {
     const grid =
-      document.getElementById("customProductGrid");
+      document.getElementById(
+        "customProductGrid"
+      );
 
     const empty =
-      document.getElementById("customProductsEmpty");
+      document.getElementById(
+        "customProductsEmpty"
+      );
 
     if (!grid) return;
 
@@ -238,31 +252,31 @@
     });
   }
 
-  function drawerMarkup() {
+  function modalMarkup() {
     return `
       <div
-        class="product-drawer-layer"
-        id="productDrawerLayer"
+        class="product-modal-layer"
+        id="productModalLayer"
         hidden
       >
         <button
-          class="product-drawer-backdrop"
-          id="productDrawerBackdrop"
+          class="product-modal-backdrop"
+          id="productModalBackdrop"
           type="button"
           aria-label="关闭产品详情"
         ></button>
 
-        <aside
-          class="product-drawer"
-          id="productDrawer"
+        <section
+          class="product-modal"
+          id="productModal"
           role="dialog"
           aria-modal="true"
-          aria-labelledby="drawerProductName"
+          aria-labelledby="modalProductName"
         >
 
           <button
-            class="product-drawer-close"
-            id="productDrawerClose"
+            class="product-modal-close"
+            id="productModalClose"
             type="button"
             aria-label="关闭"
           >
@@ -270,16 +284,17 @@
             <span></span>
           </button>
 
-          <div class="drawer-carousel">
+          <div class="modal-carousel">
 
             <div
-              class="drawer-slide"
-              id="drawerSlide"
+              class="modal-slide"
+              id="modalSlide"
+              aria-label="产品图片，可左右滑动"
             ></div>
 
             <button
-              class="drawer-carousel-button previous"
-              id="drawerPrevious"
+              class="modal-carousel-button previous"
+              id="modalPrevious"
               type="button"
               aria-label="上一张图片"
             >
@@ -287,8 +302,8 @@
             </button>
 
             <button
-              class="drawer-carousel-button next"
-              id="drawerNext"
+              class="modal-carousel-button next"
+              id="modalNext"
               type="button"
               aria-label="下一张图片"
             >
@@ -296,55 +311,62 @@
             </button>
 
             <div
-              class="drawer-carousel-count"
-              id="drawerCarouselCount"
+              class="modal-carousel-count"
+              id="modalCarouselCount"
             ></div>
 
             <div
-              class="drawer-carousel-dots"
-              id="drawerCarouselDots"
+              class="modal-carousel-dots"
+              id="modalCarouselDots"
             ></div>
 
           </div>
 
-          <div class="product-drawer-content">
+          <div class="product-modal-content">
 
             <h2
-              class="product-drawer-name"
-              id="drawerProductName"
+              class="product-modal-name"
+              id="modalProductName"
             ></h2>
 
-            <div class="product-drawer-field">
-              <div class="product-drawer-label">
+            <div
+              class="product-modal-meta"
+              id="modalProductMeta"
+            ></div>
+
+            <div class="product-modal-field">
+              <div class="product-modal-label">
                 商品货号
               </div>
+
               <div
-                class="product-drawer-value"
-                id="drawerSku"
+                class="product-modal-value"
+                id="modalSku"
               ></div>
             </div>
 
-            <div class="product-drawer-field concept">
-              <div class="product-drawer-label">
+            <div class="product-modal-field concept">
+              <div class="product-modal-label">
                 设计理念
               </div>
+
               <p
-                class="product-drawer-concept"
-                id="drawerConcept"
+                class="product-modal-concept"
+                id="modalConcept"
               ></p>
             </div>
 
           </div>
 
-        </aside>
+        </section>
       </div>
     `;
   }
 
-  function ensureDrawer() {
+  function ensureModal() {
     if (
       document.getElementById(
-        "productDrawerLayer"
+        "productModalLayer"
       )
     ) {
       return;
@@ -352,30 +374,30 @@
 
     document.body.insertAdjacentHTML(
       "beforeend",
-      drawerMarkup()
+      modalMarkup()
     );
 
     document
       .getElementById(
-        "productDrawerClose"
+        "productModalClose"
       )
       .addEventListener(
         "click",
-        closeDrawer
+        closeModal
       );
 
     document
       .getElementById(
-        "productDrawerBackdrop"
+        "productModalBackdrop"
       )
       .addEventListener(
         "click",
-        closeDrawer
+        closeModal
       );
 
     document
       .getElementById(
-        "drawerPrevious"
+        "modalPrevious"
       )
       .addEventListener(
         "click",
@@ -384,12 +406,83 @@
 
     document
       .getElementById(
-        "drawerNext"
+        "modalNext"
       )
       .addEventListener(
         "click",
         nextImage
       );
+
+    const slide =
+      document.getElementById(
+        "modalSlide"
+      );
+
+    slide.addEventListener(
+      "pointerdown",
+      event => {
+        if (
+          event.pointerType === "mouse" &&
+          event.button !== 0
+        ) {
+          return;
+        }
+
+        swipePointerId =
+          event.pointerId;
+
+        swipeStartX =
+          event.clientX;
+
+        swipeStartY =
+          event.clientY;
+
+        slide.setPointerCapture(
+          event.pointerId
+        );
+      }
+    );
+
+    slide.addEventListener(
+      "pointerup",
+      event => {
+        if (
+          swipePointerId !==
+          event.pointerId
+        ) {
+          return;
+        }
+
+        const moveX =
+          event.clientX -
+          swipeStartX;
+
+        const moveY =
+          event.clientY -
+          swipeStartY;
+
+        swipePointerId = null;
+
+        if (
+          Math.abs(moveX) >= 45 &&
+          Math.abs(moveX) >
+            Math.abs(moveY) * 1.15
+        ) {
+          if (moveX < 0) {
+            nextImage();
+          } else {
+            previousImage();
+          }
+        }
+      }
+    );
+
+    slide.addEventListener(
+      "pointercancel",
+      () => {
+        swipePointerId = null;
+      }
+    );
   }
 
   function productImages(product) {
@@ -405,7 +498,7 @@
     return images;
   }
 
-  function renderDrawerImage() {
+  function renderModalImage() {
     if (!activeProduct) return;
 
     const images =
@@ -416,7 +509,7 @@
 
     const slide =
       document.getElementById(
-        "drawerSlide"
+        "modalSlide"
       );
 
     if (image) {
@@ -424,24 +517,25 @@
         <img
           src="${image}"
           alt="${activeProduct.name}商品图${activeImageIndex + 1}"
+          draggable="false"
         >
       `;
     } else {
       slide.innerHTML = `
-        <div class="drawer-image-placeholder">
+        <div class="modal-image-placeholder">
           <span>商品图片待替换</span>
         </div>
       `;
     }
 
     document.getElementById(
-      "drawerCarouselCount"
+      "modalCarouselCount"
     ).textContent =
       `${activeImageIndex + 1} / 3`;
 
     const dots =
       document.getElementById(
-        "drawerCarouselDots"
+        "modalCarouselDots"
       );
 
     dots.innerHTML =
@@ -449,7 +543,7 @@
         .map(
           (_, index) => `
             <button
-              class="drawer-carousel-dot ${
+              class="modal-carousel-dot ${
                 index === activeImageIndex
                   ? "active"
                   : ""
@@ -464,7 +558,7 @@
 
     dots
       .querySelectorAll(
-        ".drawer-carousel-dot"
+        ".modal-carousel-dot"
       )
       .forEach(dot => {
         dot.addEventListener(
@@ -475,14 +569,62 @@
                 dot.dataset.imageIndex
               );
 
-            renderDrawerImage();
+            renderModalImage();
           }
         );
       });
   }
 
-  function openDrawer(product) {
-    ensureDrawer();
+  function setModalOrigin(card) {
+    const modal =
+      document.getElementById(
+        "productModal"
+      );
+
+    if (!card) {
+      modal.style.setProperty(
+        "--modal-shift-x",
+        "0px"
+      );
+
+      modal.style.setProperty(
+        "--modal-shift-y",
+        "0px"
+      );
+
+      return;
+    }
+
+    const rect =
+      card.getBoundingClientRect();
+
+    const cardCenterX =
+      rect.left +
+      rect.width / 2;
+
+    const cardCenterY =
+      rect.top +
+      rect.height / 2;
+
+    const viewportCenterX =
+      window.innerWidth / 2;
+
+    const viewportCenterY =
+      window.innerHeight / 2;
+
+    modal.style.setProperty(
+      "--modal-shift-x",
+      `${cardCenterX - viewportCenterX}px`
+    );
+
+    modal.style.setProperty(
+      "--modal-shift-y",
+      `${cardCenterY - viewportCenterY}px`
+    );
+  }
+
+  function openModal(product, card) {
+    ensureModal();
 
     activeProduct = product;
     activeImageIndex = 0;
@@ -490,25 +632,31 @@
       document.activeElement;
 
     document.getElementById(
-      "drawerProductName"
+      "modalProductName"
     ).textContent =
       product.name;
 
     document.getElementById(
-      "drawerSku"
+      "modalProductMeta"
+    ).textContent =
+      `${product.year} · ${formatSales(product.sales)} 销量`;
+
+    document.getElementById(
+      "modalSku"
     ).textContent =
       product.sku || "暂未填写";
 
     document.getElementById(
-      "drawerConcept"
+      "modalConcept"
     ).textContent =
       product.concept || "暂未填写";
 
-    renderDrawerImage();
+    renderModalImage();
+    setModalOrigin(card);
 
     const layer =
       document.getElementById(
-        "productDrawerLayer"
+        "productModalLayer"
       );
 
     layer.hidden = false;
@@ -518,18 +666,18 @@
     });
 
     document.body.classList.add(
-      "drawer-open"
+      "modal-open"
     );
 
     document.getElementById(
-      "productDrawerClose"
+      "productModalClose"
     ).focus();
   }
 
-  function closeDrawer() {
+  function closeModal() {
     const layer =
       document.getElementById(
-        "productDrawerLayer"
+        "productModalLayer"
       );
 
     if (!layer) return;
@@ -537,7 +685,7 @@
     layer.classList.remove("open");
 
     document.body.classList.remove(
-      "drawer-open"
+      "modal-open"
     );
 
     window.setTimeout(() => {
@@ -551,7 +699,7 @@
       ) {
         lastFocusedElement.focus();
       }
-    }, 320);
+    }, 300);
   }
 
   function previousImage() {
@@ -565,7 +713,7 @@
       ) %
       3;
 
-    renderDrawerImage();
+    renderModalImage();
   }
 
   function nextImage() {
@@ -578,7 +726,7 @@
       ) %
       3;
 
-    renderDrawerImage();
+    renderModalImage();
   }
 
   document.addEventListener(
@@ -586,7 +734,7 @@
     event => {
       const layer =
         document.getElementById(
-          "productDrawerLayer"
+          "productModalLayer"
         );
 
       if (
@@ -597,7 +745,7 @@
       }
 
       if (event.key === "Escape") {
-        closeDrawer();
+        closeModal();
       }
 
       if (event.key === "ArrowLeft") {

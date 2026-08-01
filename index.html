@@ -5,7 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="小船小船-个人设计作品集">
   <title>小船小船-｜设计作品集</title>
-  <link rel="stylesheet" href="styles.css?v=20260731-product-system-v1">
+  <script>
+    (() => {
+      const navigation =
+        performance.getEntriesByType &&
+        performance.getEntriesByType("navigation")[0];
+
+      if (navigation && navigation.type === "reload") {
+        history.scrollRestoration = "manual";
+
+        const returnToTop = () => {
+          window.scrollTo(0, 0);
+        };
+
+        returnToTop();
+        window.addEventListener("pageshow", returnToTop, { once: true });
+        window.addEventListener("load", returnToTop, { once: true });
+      }
+    })();
+  </script>
+  <link rel="stylesheet" href="styles.css?v=20260801-modal-v2">
 </head>
 <body>
 
@@ -73,7 +92,7 @@
   <section class="section" id="categories">
     <div class="container">
       <div class="section-header">
-        <h2 class="section-title">四大分类</h2>
+        <h2 class="section-title">Hi</h2>
         <p class="section-description">
           点击分类后会进入独立页面，不再在首页向下滚动。
           后续子分类和项目都可以继续增加。
@@ -125,7 +144,7 @@
       <div class="section-header">
         <h2 class="section-title">精选</h2>
         <p class="section-description">
-          根据当前销量，从标记为精选的产品中自动展示排名前8的产品。
+          销量定期更新，不代表实时数据
         </p>
       </div>
 
@@ -208,9 +227,9 @@
     <span>BUILT WITH GITHUB PAGES</span>
   </div>
 </footer>
-<script src="script.js"></script>
-<script src="products-data.js?v=20260731-product-system-v1"></script>
-<script src="products-ui.js?v=20260731-product-system-v1"></script>
+<script src="script.js?v=20260801-modal-v2"></script>
+<script src="products-data.js?v=20260801-modal-v2"></script>
+<script src="products-ui.js?v=20260801-modal-v2"></script>
 
 </body>
 </html>

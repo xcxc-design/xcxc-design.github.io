@@ -1355,24 +1355,24 @@ button {
 }
 
 /* =========================
-   产品详情抽屉
+   产品详情居中弹窗
 ========================= */
 
-body.drawer-open {
+body.modal-open {
   overflow: hidden;
 }
 
-.product-drawer-layer[hidden] {
+.product-modal-layer[hidden] {
   display: none;
 }
 
-.product-drawer-layer {
+.product-modal-layer {
   position: fixed;
   inset: 0;
   z-index: 300;
 }
 
-.product-drawer-backdrop {
+.product-modal-backdrop {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -1380,51 +1380,65 @@ body.drawer-open {
   padding: 0;
   background: rgba(0, 0, 0, 0);
   border: 0;
-  transition: background 0.32s ease;
+  transition: background 0.3s ease;
 }
 
-.product-drawer {
+.product-modal {
+  --modal-shift-x: 0px;
+  --modal-shift-y: 0px;
+
   position: absolute;
-  top: 0;
-  right: 0;
-  width: min(580px, 92vw);
-  height: 100%;
+  top: 50%;
+  left: 50%;
+  width: min(620px, calc(100vw - 48px));
+  max-height: min(88vh, 860px);
   overflow-y: auto;
   background: #101014;
-  border-left: 1px solid var(--line-strong);
+  border: 1px solid var(--line-strong);
   box-shadow:
-    -24px 0 70px
-    rgba(0, 0, 0, 0.42);
-  transform: translateX(100%);
-  transition: transform 0.32s ease;
+    0 28px 90px
+    rgba(0, 0, 0, 0.56);
+  opacity: 0;
+  transform:
+    translate(
+      calc(-50% + var(--modal-shift-x)),
+      calc(-50% + var(--modal-shift-y))
+    )
+    scale(0.46);
+  transition:
+    transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 0.22s ease;
 }
 
-.product-drawer-layer.open
-.product-drawer-backdrop {
-  background: rgba(0, 0, 0, 0.62);
+.product-modal-layer.open
+.product-modal-backdrop {
+  background: rgba(0, 0, 0, 0.68);
 }
 
-.product-drawer-layer.open
-.product-drawer {
-  transform: translateX(0);
+.product-modal-layer.open
+.product-modal {
+  opacity: 1;
+  transform:
+    translate(-50%, -50%)
+    scale(1);
 }
 
-.product-drawer-close {
-  position: fixed;
-  top: 18px;
-  right: 18px;
-  z-index: 4;
+.product-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 6;
   width: 44px;
   height: 44px;
   padding: 0;
-  background: rgba(15, 15, 18, 0.78);
+  background: rgba(15, 15, 18, 0.82);
   border: 1px solid var(--line-strong);
   border-radius: 50%;
   cursor: pointer;
   backdrop-filter: blur(12px);
 }
 
-.product-drawer-close span {
+.product-modal-close span {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -1433,23 +1447,23 @@ body.drawer-open {
   background: var(--text);
 }
 
-.product-drawer-close
+.product-modal-close
 span:first-child {
   transform:
     translate(-50%, -50%)
     rotate(45deg);
 }
 
-.product-drawer-close
+.product-modal-close
 span:last-child {
   transform:
     translate(-50%, -50%)
     rotate(-45deg);
 }
 
-.drawer-carousel {
+.modal-carousel {
   position: relative;
-  aspect-ratio: 1 / 0.86;
+  aspect-ratio: 1 / 0.78;
   overflow: hidden;
   background:
     radial-gradient(
@@ -1461,21 +1475,40 @@ span:last-child {
   border-bottom: 1px solid var(--line);
 }
 
-.drawer-slide {
+.modal-slide {
   width: 100%;
   height: 100%;
+  touch-action: pan-y;
+  cursor: grab;
+  user-select: none;
 }
 
-.drawer-slide img {
+.modal-slide:active {
+  cursor: grabbing;
+}
+
+.modal-slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  pointer-events: none;
+  user-select: none;
 }
 
-.drawer-carousel-button {
+.modal-image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-faint);
+  font-size: 12px;
+}
+
+.modal-carousel-button {
   position: absolute;
   top: 50%;
-  z-index: 3;
+  z-index: 4;
   width: 42px;
   height: 42px;
   padding: 0;
@@ -1488,35 +1521,35 @@ span:last-child {
   backdrop-filter: blur(10px);
 }
 
-.drawer-carousel-button.previous {
+.modal-carousel-button.previous {
   left: 16px;
 }
 
-.drawer-carousel-button.next {
+.modal-carousel-button.next {
   right: 16px;
 }
 
-.drawer-carousel-count {
+.modal-carousel-count {
   position: absolute;
   left: 17px;
   bottom: 17px;
-  z-index: 3;
+  z-index: 4;
   color: var(--text-soft);
   font-size: 11px;
   letter-spacing: 0.10em;
 }
 
-.drawer-carousel-dots {
+.modal-carousel-dots {
   position: absolute;
   right: 17px;
   bottom: 20px;
-  z-index: 3;
+  z-index: 4;
   display: flex;
   align-items: center;
   gap: 7px;
 }
 
-.drawer-carousel-dot {
+.modal-carousel-dot {
   width: 18px;
   height: 2px;
   padding: 0;
@@ -1526,32 +1559,40 @@ span:last-child {
   cursor: pointer;
 }
 
-.drawer-carousel-dot.active {
+.modal-carousel-dot.active {
   background: var(--text);
 }
 
-.product-drawer-content {
-  padding: 34px 34px 48px;
+.product-modal-content {
+  padding: 30px 34px 40px;
 }
 
-.product-drawer-name {
-  margin: 0 56px 36px 0;
-  font-size: clamp(30px, 3vw, 44px);
+.product-modal-name {
+  margin: 0 56px 7px 0;
+  font-size: clamp(29px, 3vw, 42px);
   line-height: 1.25;
   font-weight: var(--weight-bold);
   letter-spacing: -0.025em;
 }
 
-.product-drawer-field {
+.product-modal-meta {
+  margin-bottom: 28px;
+  color: var(--text-soft);
+  font-size: 12px;
+  line-height: 1.7;
+  font-weight: var(--weight-regular);
+}
+
+.product-modal-field {
   padding: 19px 0;
   border-top: 1px solid var(--line);
 }
 
-.product-drawer-field.concept {
-  padding-bottom: 28px;
+.product-modal-field.concept {
+  padding-bottom: 4px;
 }
 
-.product-drawer-label {
+.product-modal-label {
   margin-bottom: 9px;
   color: var(--text-faint);
   font-size: 11px;
@@ -1559,15 +1600,15 @@ span:last-child {
   letter-spacing: 0.08em;
 }
 
-.product-drawer-value {
+.product-modal-value {
   color: var(--text);
   font-size: 15px;
   line-height: 1.7;
   font-weight: var(--weight-medium);
 }
 
-.product-drawer-concept {
-  max-width: 500px;
+.product-modal-concept {
+  max-width: 540px;
   margin: 0;
   color: var(--text-soft);
   font-size: 15px;
@@ -1619,20 +1660,25 @@ span:last-child {
     padding-right: 14px;
   }
 
-  .product-drawer {
-    width: 100%;
+  .product-modal {
+    width: calc(100vw - 28px);
+    max-height: calc(100vh - 28px);
   }
 
-  .drawer-carousel {
-    aspect-ratio: 1 / 0.92;
+  .modal-carousel {
+    aspect-ratio: 1 / 0.9;
   }
 
-  .product-drawer-content {
-    padding: 28px 20px 42px;
+  .modal-carousel-button {
+    display: none;
   }
 
-  .product-drawer-name {
-    margin-right: 50px;
-    font-size: 31px;
+  .product-modal-content {
+    padding: 25px 20px 34px;
+  }
+
+  .product-modal-name {
+    margin-right: 48px;
+    font-size: 30px;
   }
 }
