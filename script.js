@@ -24,10 +24,16 @@ if (menuButton && siteNav) {
     else openMenu();
   });
 
-  siteNav.querySelectorAll("a").forEach(link => link.addEventListener("click", closeMenu));
+  siteNav.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", closeMenu);
+  });
 
   document.addEventListener("click", event => {
-    if (siteNav.classList.contains("open") && !siteNav.contains(event.target) && !menuButton.contains(event.target)) {
+    if (
+      siteNav.classList.contains("open") &&
+      !siteNav.contains(event.target) &&
+      !menuButton.contains(event.target)
+    ) {
       closeMenu();
     }
   });
@@ -45,21 +51,68 @@ if (yearNode) yearNode.textContent = new Date().getFullYear();
   const bubble = document.getElementById("photoBubble");
   if (!wrap || !bubble) return;
 
-  const items = [
-    { position: "pos-a", text: "这是上海外滩的夜景，东方明珠塔在我的对面" },
-    { position: "pos-b", text: "让我们成为幸福大王ᶻz ₍^_ ̫ _^₎" },
-    { position: "pos-c", text: "我相信缓慢 平和 细水长流的力量" }
+  const messages = [
+    "这是上海外滩的夜景，东方明珠塔在我的对面",
+    "让我们成为幸福大王ᶻz ₍^_ ̫ _^₎",
+    "我相信缓慢 平和 细水长流的力量"
   ];
 
-  let lastIndex = -1;
-  let hideTimer = null;
-  const canHover = window.matchMedia("(hover: hover) and (pointer: fine)");
+  const desktopPositions = [
+    { className: "bubble-right-top", side: "right" },
+    { className: "bubble-right-middle", side: "right" },
+    { className: "bubble-right-bottom", side: "right" },
+    { className: "bubble-left-top", side: "left" },
+    { className: "bubble-left-middle", side: "left" },
+    { className: "bubble-left-bottom", side: "left" },
+    { className: "bubble-inside-top", side: "inside" },
+    { className: "bubble-inside-bottom", side: "inside" }
+  ];
 
-  function pickItem() {
-    let next = Math.floor(Math.random() * items.length);
-    if (items.length > 1 && next === lastIndex) next = (next + 1) % items.length;
-    lastIndex = next;
-    return items[next];
+  const mobilePositions = [
+    { className: "bubble-mobile-top" },
+    { className: "bubble-mobile-bottom" },
+    { className: "bubble-mobile-above" },
+    { className: "bubble-mobile-below" }
+  ];
+
+  const canHover = window.matchMedia("(hover: hover) and (pointer: fine)");
+  let messageIndex = 0;
+  let lastPositionClass = "";
+  let hideTimer = null;
+
+  function randomBetween(min, max) {
+    return Math.round(Math.random() * (max - min) + min);
+  }
+
+  function availableDesktopPositions() {
+    const rect = wrap.getBoundingClientRect();
+    const spaceLeft = rect.left;
+    const spaceRight = window.innerWidth - rect.right;
+
+    let choices = desktopPositions.filter(position => {
+      if (position.side === "left") return spaceLeft >= 330;
+      if (position.side === "right") return spaceRight >= 330;
+      return true;
+    });
+
+    if (choices.length < 3) {
+      choices = desktopPositions.filter(position => position.side === "inside");
+    }
+
+    return choices;
+  }
+
+  function choosePosition() {
+    const choices = canHover.matches
+      ? availableDesktopPositions()
+      : mobilePositions;
+
+    let available = choices.filter(item => item.className !== lastPositionClass);
+    if (!available.length) available = choices;
+
+    const selected = available[Math.floor(Math.random() * available.length)];
+    lastPositionClass = selected.className;
+    return selected.className;
   }
 
   function showBubble() {
@@ -67,16 +120,26 @@ if (yearNode) yearNode.textContent = new Date().getFullYear();
       clearTimeout(hideTimer);
       hideTimer = null;
     }
-    const item = pickItem();
+
+    const positionClass = choosePosition();
     bubble.hidden = false;
-    bubble.textContent = item.text;
-    bubble.className = `photo-bubble ${item.position}`;
-    requestAnimationFrame(() => bubble.classList.add("show"));
+    bubble.textContent = messages[messageIndex];
+    messageIndex = (messageIndex + 1) % messages.length;
+
+    bubble.className = `photo-bubble ${positionClass}`;
+    bubble.style.setProperty("--bubble-jitter-x", `${randomBetween(-14, 14)}px`);
+    bubble.style.setProperty("--bubble-jitter-y", `${randomBetween(-12, 12)}px`);
+
+    requestAnimationFrame(() => {
+      bubble.classList.add("show");
+    });
   }
 
   function hideBubble() {
     bubble.classList.remove("show");
-    hideTimer = window.setTimeout(() => { bubble.hidden = true; }, 180);
+    hideTimer = window.setTimeout(() => {
+      bubble.hidden = true;
+    }, 190);
   }
 
   if (canHover.matches) {

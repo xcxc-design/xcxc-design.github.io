@@ -3440,3 +3440,224 @@ body {
     transform: translateX(-50%) rotate(-45deg);
   }
 }
+
+
+/* =========================
+   气泡自然随机与可爱造型
+========================= */
+
+.photo-bubble {
+  --bubble-jitter-x: 0px;
+  --bubble-jitter-y: 0px;
+  --bubble-base-x: 0px;
+  --bubble-base-y: 0px;
+
+  min-width: 250px;
+  max-width: 330px;
+  padding: 16px 19px 16px 42px;
+  color: #4a4147;
+  background:
+    radial-gradient(circle at 16px 16px, rgba(255, 221, 233, 0.74) 0 3px, transparent 4px),
+    linear-gradient(145deg, #fffafd 0%, #ffffff 76%);
+  border: 1px solid rgba(235, 174, 199, 0.34);
+  border-radius: 28px 24px 30px 22px / 24px 30px 22px 28px;
+  box-shadow:
+    0 18px 42px rgba(69, 49, 61, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  font-size: 14px;
+  line-height: 1.75;
+  text-align: left;
+  white-space: normal;
+  word-break: break-word;
+  transform:
+    translate(
+      calc(var(--bubble-base-x) + var(--bubble-jitter-x)),
+      calc(var(--bubble-base-y) + var(--bubble-jitter-y) + 10px)
+    )
+    rotate(-0.7deg)
+    scale(0.97);
+  opacity: 0;
+  transition:
+    opacity 0.2s ease,
+    transform 0.24s cubic-bezier(0.2, 0.78, 0.25, 1);
+}
+
+.photo-bubble::before {
+  content: "✿";
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  color: #f2a9c3;
+  font-size: 17px;
+  line-height: 1;
+  transform: translateY(-50%) rotate(-8deg);
+  text-shadow: 8px -11px 0 rgba(255, 216, 231, 0.64);
+}
+
+.photo-bubble.show {
+  transform:
+    translate(
+      calc(var(--bubble-base-x) + var(--bubble-jitter-x)),
+      calc(var(--bubble-base-y) + var(--bubble-jitter-y))
+    )
+    rotate(-0.7deg)
+    scale(1);
+}
+
+.photo-bubble::after {
+  width: 14px;
+  height: 14px;
+  background: #fffafd;
+  border-color: rgba(235, 174, 199, 0.34);
+}
+
+.photo-bubble.bubble-right-top {
+  left: calc(100% + 20px);
+  right: auto;
+  top: 3%;
+  bottom: auto;
+}
+
+.photo-bubble.bubble-right-middle {
+  left: calc(100% + 20px);
+  right: auto;
+  top: 38%;
+  bottom: auto;
+}
+
+.photo-bubble.bubble-right-bottom {
+  left: calc(100% + 20px);
+  right: auto;
+  top: auto;
+  bottom: 4%;
+}
+
+.photo-bubble.bubble-left-top {
+  left: auto;
+  right: calc(100% + 20px);
+  top: 5%;
+  bottom: auto;
+}
+
+.photo-bubble.bubble-left-middle {
+  left: auto;
+  right: calc(100% + 20px);
+  top: 39%;
+  bottom: auto;
+}
+
+.photo-bubble.bubble-left-bottom {
+  left: auto;
+  right: calc(100% + 20px);
+  top: auto;
+  bottom: 5%;
+}
+
+.photo-bubble.bubble-right-top::after,
+.photo-bubble.bubble-right-middle::after,
+.photo-bubble.bubble-right-bottom::after {
+  left: -8px;
+  right: auto;
+  top: 24px;
+  bottom: auto;
+  transform: rotate(45deg);
+}
+
+.photo-bubble.bubble-left-top::after,
+.photo-bubble.bubble-left-middle::after,
+.photo-bubble.bubble-left-bottom::after {
+  left: auto;
+  right: -8px;
+  top: 24px;
+  bottom: auto;
+  transform: rotate(225deg);
+}
+
+.photo-bubble.bubble-inside-top {
+  left: 18px;
+  right: auto;
+  top: 18px;
+  bottom: auto;
+  max-width: 300px;
+  background:
+    radial-gradient(circle at 16px 16px, rgba(255, 221, 233, 0.82) 0 3px, transparent 4px),
+    rgba(255, 250, 253, 0.94);
+  backdrop-filter: blur(8px);
+}
+
+.photo-bubble.bubble-inside-bottom {
+  left: auto;
+  right: 18px;
+  top: auto;
+  bottom: 18px;
+  max-width: 300px;
+  background:
+    radial-gradient(circle at 16px 16px, rgba(255, 221, 233, 0.82) 0 3px, transparent 4px),
+    rgba(255, 250, 253, 0.94);
+  backdrop-filter: blur(8px);
+}
+
+.photo-bubble.bubble-inside-top::after,
+.photo-bubble.bubble-inside-bottom::after {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .photo-bubble {
+    min-width: min(86vw, 286px);
+    max-width: min(86vw, 320px);
+    padding: 14px 17px 14px 39px;
+    font-size: 13px;
+    border-radius: 24px 20px 26px 19px / 21px 26px 20px 25px;
+    --bubble-base-x: -50%;
+  }
+
+  .photo-bubble.bubble-mobile-top {
+    left: 50%;
+    right: auto;
+    top: 15px;
+    bottom: auto;
+  }
+
+  .photo-bubble.bubble-mobile-bottom {
+    left: 50%;
+    right: auto;
+    top: auto;
+    bottom: 15px;
+  }
+
+  .photo-bubble.bubble-mobile-above {
+    left: 50%;
+    right: auto;
+    top: auto;
+    bottom: calc(100% + 13px);
+  }
+
+  .photo-bubble.bubble-mobile-below {
+    left: 50%;
+    right: auto;
+    top: calc(100% + 13px);
+    bottom: auto;
+  }
+
+  .photo-bubble.bubble-mobile-top::after,
+  .photo-bubble.bubble-mobile-bottom::after {
+    display: none;
+  }
+
+  .photo-bubble.bubble-mobile-above::after {
+    left: 50%;
+    right: auto;
+    top: auto;
+    bottom: -8px;
+    transform: translateX(-50%) rotate(-45deg);
+  }
+
+  .photo-bubble.bubble-mobile-below::after {
+    left: 50%;
+    right: auto;
+    top: -8px;
+    bottom: auto;
+    transform: translateX(-50%) rotate(135deg);
+  }
+}
