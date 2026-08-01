@@ -50,7 +50,68 @@ if (menuButton && siteNav) {
 }
 
 const yearNode = document.getElementById("currentYear");
-
 if (yearNode) {
   yearNode.textContent = new Date().getFullYear();
 }
+
+(() => {
+  const wrap = document.querySelector(".hero-photo-wrap");
+  const bubble = document.getElementById("photoBubble");
+
+  if (!wrap || !bubble || !window.matchMedia("(hover: hover)").matches) {
+    return;
+  }
+
+  const items = [
+    {
+      position: "pos-a",
+      text: "这是上海外滩的夜景，东方明珠塔在我的对面"
+    },
+    {
+      position: "pos-b",
+      text: "让我们成为幸福大王ᶻz ₍^_ ̫ _^₎"
+    },
+    {
+      position: "pos-c",
+      text: "我相信缓慢 平和 细水长流的力量"
+    }
+  ];
+
+  let lastIndex = -1;
+  let hideTimer = null;
+
+  function pickItem() {
+    let next = Math.floor(Math.random() * items.length);
+    if (items.length > 1 && next === lastIndex) {
+      next = (next + 1) % items.length;
+    }
+    lastIndex = next;
+    return items[next];
+  }
+
+  function showBubble() {
+    if (hideTimer) {
+      clearTimeout(hideTimer);
+      hideTimer = null;
+    }
+
+    const item = pickItem();
+    bubble.hidden = false;
+    bubble.textContent = item.text;
+    bubble.className = `photo-bubble ${item.position}`;
+
+    requestAnimationFrame(() => {
+      bubble.classList.add("show");
+    });
+  }
+
+  function hideBubble() {
+    bubble.classList.remove("show");
+    hideTimer = window.setTimeout(() => {
+      bubble.hidden = true;
+    }, 180);
+  }
+
+  wrap.addEventListener("mouseenter", showBubble);
+  wrap.addEventListener("mouseleave", hideBubble);
+})();

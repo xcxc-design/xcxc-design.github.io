@@ -24,16 +24,27 @@
       }
     })();
   </script>
-  <link rel="stylesheet" href="styles.css?v=20260801-white-background-meta-v1">
+  <link rel="stylesheet" href="styles.css?v=20260801-home-update-v2">
+  <link rel="icon" href='data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"%3E%3Cpath d="M8 43h48l-6 8H14z" fill="%2369A7FF"/%3E%3Cpath d="M20 38h24l8 5H12z" fill="%2386B8FF"/%3E%3Cpath d="M28 18v18" stroke="%2369A7FF" stroke-width="4" stroke-linecap="round"/%3E%3Cpath d="M30 20c8 1 12 6 12 12-7-1-12-5-12-12Z" fill="%237FB3FF"/%3E%3C/svg%3E'>
 </head>
 <body>
 
 <header class="site-header">
   <div class="container header-inner">
-    <a class="header-brand" href="index.html">
-      <strong>小船小船-</strong>
-      <span>PORTFOLIO</span>
-    </a>
+    <a class="header-brand" href="index.html" aria-label="返回首页">
+  <span class="header-brand-icon" aria-hidden="true">
+    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 43H56L50 51H14L8 43Z" fill="#69A7FF"/>
+      <path d="M20 38H44L52 43H12L20 38Z" fill="#86B8FF"/>
+      <path d="M28 18V38" stroke="#69A7FF" stroke-width="4" stroke-linecap="round"/>
+      <path d="M30 20C38 21 42 26 42 32C35 31 30 27 30 20Z" fill="#7FB3FF"/>
+    </svg>
+  </span>
+  <span class="header-brand-text">
+    <strong>小船小船-</strong>
+    <span>PORTFOLIO</span>
+  </span>
+</a>
 
     <nav class="site-nav" id="siteNav">
       <a href="custom.html">定制类产品设计</a>
@@ -41,28 +52,15 @@
       <a href="#home-about">关于我</a>
     </nav>
 
-    <button
-      class="season-toggle"
-      id="seasonToggle"
-      type="button"
-      role="switch"
-      aria-checked="true"
-      aria-label="关闭季节动效"
-    >
-      <span
-        class="season-toggle-label"
-        id="seasonToggleLabel"
-      >
-        季节动效
-      </span>
-
-      <span
-        class="season-toggle-track"
-        aria-hidden="true"
-      >
-        <span class="season-toggle-knob"></span>
-      </span>
-    </button>
+    <div class="season-selector">
+  <label class="season-selector-label" for="seasonSelect">季</label>
+  <select class="season-selector-select" id="seasonSelect" aria-label="选择季节图案">
+    <option value="spring">春</option>
+    <option value="summer">夏</option>
+    <option value="autumn">秋</option>
+    <option value="winter">冬</option>
+  </select>
+</div>
 
     <button class="menu-button" id="menuButton" type="button" aria-label="打开导航菜单">
       <span class="menu-line"></span>
@@ -84,11 +82,14 @@
 
         <h1 class="hero-name">小船小船-</h1>
 
-        <div
-          class="hero-photo"
-          role="img"
-          aria-label="首页个人照片"
-        ></div>
+        <div class="hero-photo-wrap">
+          <div
+            class="hero-photo"
+            role="img"
+            aria-label="首页个人照片"
+          ></div>
+          <div class="photo-bubble" id="photoBubble" hidden></div>
+        </div>
 
         <div class="hero-lockup">
           <div class="hero-portfolio">PORTFOLIO</div>
@@ -146,7 +147,7 @@
   <section class="section featured-section" id="featured">
     <div class="container">
       <div class="section-header">
-        <h2 class="section-title">精选</h2>
+        <h2 class="section-title">Works</h2>
         <p class="section-description">
           销量定期更新，不代表实时数据
         </p>
@@ -171,7 +172,7 @@
     <div class="container">
 
       <div class="section-header">
-        <h2 class="section-title">关于我</h2>
+        <h2 class="section-title">‧₊ 𓏵 About me 𓏵 ₊‧</h2>
         <p class="section-description">
           这部分用于简要介绍我的设计方向、项目类型和目前的工作状态。
         </p>
@@ -231,10 +232,10 @@
     <span>BUILT WITH GITHUB PAGES</span>
   </div>
 </footer>
-<script src="script.js?v=20260801-modal-v2"></script>
-<script src="seasonal-effects.js?v=20260801-home-layout-v2"></script>
+<script src="script.js?v=20260801-home-update-v2"></script>
+<script src="seasonal-effects.js?v=20260801-home-update-v2"></script>
 <script src="products-data.js?v=20260801-modal-v2"></script>
-<script src="products-ui.js?v=20260801-home-layout-v2"></script>
+<script src="products-ui.js?v=20260801-home-update-v2"></script>
 
 </body>
 </html>
