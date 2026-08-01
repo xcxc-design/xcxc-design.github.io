@@ -2589,3 +2589,16 @@ body {
     scroll-snap-align: start;
   }
 }
+
+/* =========================
+   PORTFOLIO 字色与间距调整
+========================= */
+
+.hero-portfolio {
+  color: #000000;
+  line-height: 1.18;
+}
+
+.hero-meta {
+  margin-top: 38px;
+}
