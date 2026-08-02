@@ -3732,3 +3732,64 @@ body {
     scroll-margin-top: 88px;
   }
 }
+
+/* =========================
+   产品图片完整显示
+========================= */
+
+/* 首页 Case 与定制类产品列表 */
+.portfolio-product-image {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  padding: 22px !important;
+  background: #ffffff !important;
+}
+
+.portfolio-product-image img {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+  object-fit: contain !important;
+  object-position: center !important;
+}
+
+/* 产品详情弹窗 */
+.modal-carousel {
+  background: #ffffff !important;
+}
+
+.modal-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 34px 48px !important;
+  background: #ffffff;
+}
+
+.modal-slide img {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+  object-fit: contain !important;
+  object-position: center !important;
+}
+
+/* 箭头保持在图片区域两侧，不遮住产品主体 */
+.modal-carousel-button.previous {
+  left: 16px;
+}
+
+.modal-carousel-button.next {
+  right: 16px;
+}
+
+@media (max-width: 760px) {
+  .portfolio-product-image {
+    padding: 16px !important;
+  }
+
+  .modal-slide {
+    padding: 22px 18px !important;
+  }
+}
