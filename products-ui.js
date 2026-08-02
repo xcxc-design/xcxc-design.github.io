@@ -62,7 +62,7 @@
     `;
   }
 
-  function productCard(product, index, showRank) {
+  function productCard(product, index, showRank, showSalesLabel = true) {
     const rank =
       String(index + 1).padStart(2, "0");
 
@@ -96,7 +96,7 @@
           </div>
 
           <div class="portfolio-product-sales">
-            ${formatSales(product.sales)} 销量
+            ${formatSales(product.sales)}${showSalesLabel ? " 销量" : ""}
           </div>
 
         </div>
@@ -151,7 +151,8 @@
             productCard(
               product,
               index,
-              true
+              true,
+              false
             )
         )
         .join("");
@@ -651,7 +652,7 @@
     document.getElementById(
       "modalProductMeta"
     ).textContent =
-      `${product.year} · ${formatSales(product.sales)} 销量`;
+      `${product.year} · ${formatSales(product.sales)}${showSalesLabel ? " 销量" : ""}`;
 
     document.getElementById(
       "modalSku"
