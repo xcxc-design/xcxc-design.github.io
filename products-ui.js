@@ -137,9 +137,15 @@
     if (!grid) return;
 
     const caseOrder =
-      Array.isArray(window.CASE_PRODUCT_ORDER)
+      Array.isArray(window.CASE_PRODUCT_ORDER) &&
+      window.CASE_PRODUCT_ORDER.length
         ? window.CASE_PRODUCT_ORDER
-        : [];
+        : [
+            "midsummer-dream",
+            "minuet-series",
+            "rose-girl",
+            "atomic-neon"
+          ];
 
     const featured =
       caseOrder

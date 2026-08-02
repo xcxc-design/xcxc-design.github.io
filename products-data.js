@@ -11,6 +11,13 @@
   - 每个分类内仍按 sales 从高到低排序
 */
 
+window.CASE_PRODUCT_ORDER = [
+  "midsummer-dream",
+  "minuet-series",
+  "rose-girl",
+  "atomic-neon"
+];
+
 window.PRODUCTS = [
   {
     "id": "midsummer-dream",
