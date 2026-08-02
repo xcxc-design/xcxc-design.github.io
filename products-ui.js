@@ -136,13 +136,21 @@
 
     if (!grid) return;
 
+    const caseOrder =
+      Array.isArray(window.CASE_PRODUCT_ORDER)
+        ? window.CASE_PRODUCT_ORDER
+        : [];
+
     const featured =
-      sortedProducts(
-        products.filter(
-          product =>
-            product.featured === true
+      caseOrder
+        .map(productId =>
+          products.find(
+            product =>
+              product.id === productId
+          )
         )
-      ).slice(0, 4);
+        .filter(Boolean)
+        .slice(0, 4);
 
     const productCards =
       featured

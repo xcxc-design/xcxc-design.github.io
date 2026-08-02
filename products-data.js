@@ -2,13 +2,13 @@
   全站产品资料
 
   首页 Case：
-  - 只读取 featured 为 true 的产品
-  - 按 sales 从高到低排序
-  - 展示前 4 个产品和 1 个省略号入口
+  - 使用 window.CASE_PRODUCT_ORDER 固定排列
+  - 不再根据销量自动排序
+  - 展示固定的 4 个产品和 1 个省略号入口
 
   定制类产品页面：
   - 按分类展示
-  - 每个分类内按 sales 从高到低排序
+  - 每个分类内仍按 sales 从高到低排序
 */
 
 window.PRODUCTS = [
