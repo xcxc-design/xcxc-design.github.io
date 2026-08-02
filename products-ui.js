@@ -349,6 +349,17 @@
 
             <div class="product-modal-field">
               <div class="product-modal-label">
+                品牌
+              </div>
+
+              <div
+                class="product-modal-value"
+                id="modalBrand"
+              ></div>
+            </div>
+
+            <div class="product-modal-field">
+              <div class="product-modal-label">
                 商品货号
               </div>
 
@@ -652,7 +663,12 @@
     document.getElementById(
       "modalProductMeta"
     ).textContent =
-      `${product.year} · ${formatSales(product.sales)}${showSalesLabel ? " 销量" : ""}`;
+      `${product.year} · ${formatSales(product.sales)} 销量`;
+
+    document.getElementById(
+      "modalBrand"
+    ).textContent =
+      product.brand || "暂未填写";
 
     document.getElementById(
       "modalSku"
