@@ -3708,3 +3708,27 @@ body {
     gap: 14px !important;
   }
 }
+
+/* =========================
+   包类命名、定制页标题与Hi锚点
+========================= */
+
+/* 导航跳转后，Hi标题完整显示在固定导航下方 */
+#hi-title {
+  scroll-margin-top: 106px;
+}
+
+/* 删除右侧说明后，定制类产品页标题不再保留双栏布局 */
+.custom-head-grid {
+  display: block;
+}
+
+.custom-page-title {
+  max-width: none;
+}
+
+@media (max-width: 760px) {
+  #hi-title {
+    scroll-margin-top: 88px;
+  }
+}

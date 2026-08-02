@@ -15,7 +15,7 @@ window.PRODUCTS = [
   {
     "id": "midsummer-dream",
     "name": "仲夏之梦",
-    "category": "化妆包",
+    "category": "包类",
     "brand": "DIOR",
     "year": "2026",
     "sales": 1000,
@@ -111,7 +111,7 @@ window.PRODUCTS = [
   {
     "id": "tide-moon",
     "name": "潮汐月",
-    "category": "化妆包",
+    "category": "包类",
     "brand": "Valentino",
     "year": "2026",
     "sales": 300,
@@ -127,7 +127,7 @@ window.PRODUCTS = [
   {
     "id": "yano-rinsa",
     "name": "矢野凛纱",
-    "category": "化妆包",
+    "category": "包类",
     "brand": "CHANEL",
     "year": "2025",
     "sales": 1000,
@@ -143,7 +143,7 @@ window.PRODUCTS = [
   {
     "id": "rose-girl",
     "name": "蔷薇少女",
-    "category": "化妆包",
+    "category": "包类",
     "brand": "DIOR",
     "year": "2026",
     "sales": 1000,
@@ -159,7 +159,7 @@ window.PRODUCTS = [
   {
     "id": "lace-heart",
     "name": "蕾丝心语",
-    "category": "化妆包",
+    "category": "包类",
     "brand": "DIOR",
     "year": "2025",
     "sales": 600,
